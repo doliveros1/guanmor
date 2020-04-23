@@ -63,7 +63,21 @@
 	</ion-content>
 	<ion-footer>
   		<ion-toolbar color="dark">
-    		<ion-title mode=ios ><a href="http://www.guanmor.com" target="_blank">Guanmor</a></ion-router-link>
+    		<!--ion-title mode=ios ><a href="http://www.guanmor.com" target="_blank">Guanmor</a></ion-router-link-->
+    		<ion-buttons slot="end">
+    		<ion-button>
+      			<ion-icon color="danger" slot="icon-only" name="lock-closed-outline"></ion-icon>
+      		</ion-button> 
+			<ion-button>
+      			<ion-icon color="danger" slot="icon-only" name="send-outline"></ion-icon>
+      		</ion-button>      		
+      		<ion-button>
+      			<ion-icon color="success" slot="icon-only" name="card-outline"></ion-icon>
+        	</ion-button>
+        	<ion-button>
+      			<ion-icon color="success" slot="icon-only" name="cash-outline"></ion-icon>
+        	</ion-button>
+        </ion-buttons>
   		</ion-toolbar>
 	</ion-footer>
   </ion-app>
