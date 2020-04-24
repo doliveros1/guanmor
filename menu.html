@@ -10,6 +10,14 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <!-- We create a vanilla Javascript function to call the alert -->
 <script>
+
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
     hello = async function () {
     	var property = GetURLParameter('property');
         alert(property);
