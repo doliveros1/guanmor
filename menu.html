@@ -18,6 +18,21 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/guanmor/service-worker.js');
   });
 }
+
+let deferredPrompt;
+
+  window.onload = (e) => { 
+
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+    });
+
+  }
+
     hello = async function () {
     	var property = GetURLParameter('property');
         alert(property);
@@ -33,6 +48,21 @@ if ('serviceWorker' in navigator) {
         	}
     	}
     };       
+
+    downloadApp = function () {
+    	 // Show the prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+    };    
 
 </script>
   <style>
@@ -97,8 +127,8 @@ if ('serviceWorker' in navigator) {
         		<ion-button href="whatsapp://send?text=Carta de Rte. San Blas https://doliveros1.github.io/guanmor/menu.html">
       				<ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
         		</ion-button>
-        		<ion-button>        		
-        			<ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+        		<ion-button onClick="downloadApp()">        		
+        			<ion-icon slot="icon-only" name="download-outline"></ion-icon>
   				</ion-button>
         	</ion-buttons>
 
