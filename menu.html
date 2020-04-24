@@ -31,6 +31,16 @@
       --ion-safe-area-top: 20px;
       --ion-safe-area-bottom: 22px;
     }
+    .footer{
+		height: 80px;
+		width: 100%;
+		background-color: black;    
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
 
   </style>
 </head>
@@ -66,8 +76,11 @@
   		</ion-refresher>
 	</ion-content>
 	<ion-footer>
-  		<ion-toolbar color="dark">
-			<ion-img src="guanmor_logo.svg"></ion-img>
+		<div class="footer">
+			<img src="guanmor_logo.svg">
+		</div>
+  		<!--ion-toolbar color="dark">
+			<ion-img src="guanmor_logo.svg"></ion-img-->
     		<!--ion-title mode=ios ><a href="http://www.guanmor.com" target="_blank">Guanmor</a></ion-router-link-->
     		<!--ion-buttons slot="end">
     		<ion-button>
@@ -86,7 +99,7 @@
                <ion-buttons slot="start">
                	<ion-img src="guanmor_logo.svg"></ion-img>
         	</ion-buttons-->
-  		</ion-toolbar>
+  		<!--/ion-toolbar-->
 	</ion-footer>
   </ion-app>
 </body>
