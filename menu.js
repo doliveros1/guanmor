@@ -19,6 +19,31 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
+    var url = "https://doliveros1.github.io/guanmor/menu.html?property="+localId;
+    var shortName = localId;
+    var name = "Carta de "+localId;
+    
+    setTimeout(() => {
+      var myDynamicManifest = {
+        "name": name,
+        "short_name": shortName,
+        "description": "Learn how to create and share something or other.",
+        "start_url": url,
+        "background_color": "#000000",
+        "theme_color": "#0f4a73",
+        "icons": [{
+          "src": "https://doliveros1.github.io/guanmor/icon/icon.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }]
+      }
+      const stringManifest = JSON.stringify(myDynamicManifest);
+      const blob = new Blob([stringManifest], {type: 'application/javascript'});
+      const manifestURL = URL.createObjectURL(blob);
+      document.querySelector('#manifest').setAttribute('href', manifestURL);
+    }
+    , 1000);
+    
     
     getPropertyInfo(localId);
 }
