@@ -19,7 +19,7 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
-    var url = "/guanmor/menu.html?property="+localId;
+    var url = "/guanmor/menu.html";
     var name = "Carta de "+localId;
     
     var myDynamicManifest = {
