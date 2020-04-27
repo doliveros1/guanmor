@@ -32,7 +32,7 @@ window.onload = (e) => {
         "start_url": url,
         "background_color": "black",
         "icons": [{
-          "src": "icon/icon.png",
+          "src": "https://doliveros1.github.io/guanmor/icon/icon.png",
           "sizes": "192x192",
           "type": "image/png"
         }]
