@@ -26,11 +26,11 @@ window.onload = (e) => {
     setTimeout(() => {
       var myDynamicManifest = {
         "name": name,
+        "display": "fullscreen",
         "short_name": shortName,
         "description": "Learn how to create and share something or other.",
         "start_url": url,
-        "background_color": "#000000",
-        "theme_color": "#0f4a73",
+        "background_color": "black",
         "icons": [{
           "src": "https://doliveros1.github.io/guanmor/icon/icon.png",
           "sizes": "192x192",
