@@ -20,13 +20,13 @@ window.onload = (e) => {
     });
     localId = GetURLParameter('property');
     
-	var full = window.location.host; // subdomain.domain.com
+	/*var full = window.location.host; // subdomain.domain.com
 	var parts = full.split('.');
 	var sub = parts[0];
 	link = document.createElement('link');
 	link.href = 'https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/'+localId+'/manifest';
 	link.rel = 'manifest';
-	document.getElementsByTagName('head')[0].appendChild(link);
+	document.getElementsByTagName('head')[0].appendChild(link);*/
     
     getPropertyInfo(localId);
 }
