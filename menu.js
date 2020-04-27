@@ -19,7 +19,7 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
-    var url = "https://doliveros1.github.io/guanmor/menu.html?property="+localId;
+    var url = "/guanmor/menu.html?property="+localId;
     var shortName = localId;
     var name = "Carta de "+localId;
     
@@ -32,7 +32,7 @@ window.onload = (e) => {
         "start_url": url,
         "background_color": "black",
         "icons": [{
-          "src": "https://doliveros1.github.io/guanmor/icon/icon.png",
+          "src": "icon/icon.png",
           "sizes": "192x192",
           "type": "image/png"
         }]
