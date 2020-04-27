@@ -19,34 +19,6 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
-    var url = "/guanmor/menu.html";
-    var name = "Carta de "+localId;
-    
-    var myDynamicManifest = {
-  		"name": name,
-  		"short_name": localId,
-  		"description": "Something dynamic",
-  		"start_url": url,
-  		"background_color": "#000000",
-  		"theme_color": "#0f4a73",
-  		"icons": [{
-    		"src": "icon/icon.png",
-    		"sizes": "192x192",
-    		"type": "image/png"
-  		}]
-	}
-	const stringManifest = JSON.stringify(myDynamicManifest);
-	const blob = new Blob([stringManifest], {type: 'application/json'});
-	const manifestURL = URL.createObjectURL(blob);
-	document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
-    
-	/*var full = window.location.host; // subdomain.domain.com
-	var parts = full.split('.');
-	var sub = parts[0];
-	link = document.createElement('link');
-	link.href = 'https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/'+localId+'/manifest';
-	link.rel = 'manifest';
-	document.getElementsByTagName('head')[0].appendChild(link);*/
     
     getPropertyInfo(localId);
 }
