@@ -23,7 +23,7 @@ window.onload = (e) => {
     var shortName = localId;
     var name = "Carta de "+localId;
     
-    setTimeout(() => {
+    /*setTimeout(() => {
       var myDynamicManifest = {
         "name": name,
         "display": "fullscreen",
@@ -42,7 +42,7 @@ window.onload = (e) => {
       const manifestURL = URL.createObjectURL(blob);
       document.querySelector('#manifest').setAttribute('href', manifestURL);
     }
-    , 1000);
+    , 1000);*/
     
     
     getPropertyInfo(localId);
