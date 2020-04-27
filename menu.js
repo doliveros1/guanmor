@@ -20,6 +20,14 @@ window.onload = (e) => {
     });
     localId = GetURLParameter('property');
     
+	var full = window.location.host; // subdomain.domain.com
+	var parts = full.split('.');
+	var sub = parts[0];
+	link = document.createElement('link');
+	link.href = 'https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/'+localId+'/manifest';
+	link.rel = 'manifest';
+	document.getElementsByTagName('head')[0].appendChild(link);
+    
     getPropertyInfo(localId);
 }
 
@@ -35,7 +43,7 @@ GetURLParameter = function (sParam) {
 };   
 
 getPropertyInfo = function (idProperty) {
-	var propertyInfo = JSON.parse("{\"propertyName\":\"Rte. San Blas\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":false,\"cash\":false,\"card\":false,\"timeTable\":\"L-V de 9:00 a 21:00, S y D 9:00 a 23:00\"}");
+	var propertyInfo = JSON.parse("{\"propertyName\":\""+idProperty+"\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":false,\"cash\":false,\"card\":false,\"timeTable\":\"L-V de 9:00 a 21:00, S y D 9:00 a 23:00\"}");
 	
 	//if (idProperty === "000001") {
 		setPropertyInfo(propertyInfo);
