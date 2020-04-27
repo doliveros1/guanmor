@@ -1,821 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
-    <!-- Basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-     <!-- Site Metas -->
-    <title>ProApp - Responsive Landing Page HTML5 Template</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("./images/restaurant.jpg");
+  min-height: 100%;
+}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="style.css">    
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
+      <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-</head>
-<body class="app_version" data-spy="scroll" data-target="#navbarApp" data-offset="98">
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
 
-    <!-- LOADER -->
-    <div id="preloader">
-        <img class="preloader" src="images/loaders/loader-app.gif" alt="">
-    </div><!-- end loader -->
-    <!-- END LOADER -->
-    <header class="header header_style_01">
-        <nav class="navbar header-nav navbar-expand-lg">
-            <div class="container">
-				<a class="navbar-brand" href="index.html"><img src="images/logos/logo-app.png" alt="image"></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarApp">
-                    <ul class="navbar-nav">
-                        <li><a class="nav-link active" href="#home">Home</a></li>
-                        <li><a class="nav-link" href="#features">Features</a></li>
-                        <li><a class="nav-link" href="#download">Download</a></li>
-                        <li><a class="nav-link" href="#pricing">Pricing</a></li>
-                        <li><a class="nav-link" href="#clients">Clients</a></li>
-                        <li><a class="nav-link" href="#faqs">FAQs</a></li>
-						<li><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>	
-	
-	<section id="home" class="cd-hero js-cd-hero">
-		<ul class="cd-hero__slider">
-			<li class="cd-hero__slide cd-hero__slide--selected js-cd-slide">
-				<div class="cd-hero__content cd-hero__content--half-width">
-					<h2>Familiarize Your Creative Apps</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
-				</div> <!-- .cd-hero__content -->
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
 
-				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-					<img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
-				</div> <!-- .cd-hero__content -->
-			</li>
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">Start something that matters</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+    <span class="w3-large">Stop wasting valuable time with projects that just isn't you.</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more and start today</a></p>
+  </div> 
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</header>
 
-			<li class="cd-hero__slide js-cd-slide">
-				<div class="cd-hero__content cd-hero__content--half-width">
-					<h2>Familiarize Your Creative Apps</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
-				</div> <!-- .cd-hero__content -->
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center">ABOUT THE COMPANY</h3>
+  <p class="w3-center w3-large">Key features of our company</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Responsive</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Passion</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Design</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Support</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    </div>
+  </div>
+</div>
 
-				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-					<img src="uploads/app_iphone_02.png" class="img-fluid" alt="tech 1">
-				</div> <!-- .cd-hero__content -->
-			</li>
+<!-- Promo Section - "We know design" -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>We know design.</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
+      <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View Our Works</a></p>
+    </div>
+    <div class="w3-col m6">
+      <img class="w3-image w3-round-large" src="./images/phone_buildings.jpg" alt="Buildings" width="700" height="394">
+    </div>
+  </div>
+</div>
 
-			<li class="cd-hero__slide js-cd-slide">
-				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-					<img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 2">
-				</div> <!-- .cd-hero__content -->
-
-				<div class="cd-hero__content cd-hero__content--half-width">
-					<h2>Familiarize Your Creative Apps</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
-				</div> <!-- .cd-hero__content -->
-				
-			</li>
-
-			<li class="cd-hero__slide js-cd-slide">
-				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-					<img src="uploads/app_iphone_02.png" class="img-fluid" alt="tech 2">
-				</div> <!-- .cd-hero__content -->
-
-				<div class="cd-hero__content cd-hero__content--half-width">
-					<h2>Familiarize Your Creative Apps</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
-				</div> <!-- .cd-hero__content -->
-				
-			</li>
-
-			<li class="cd-hero__slide js-cd-slide">
-				<div class="cd-hero__content cd-hero__content--half-width">
-					<h2>Familiarize Your Creative Apps</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn">App Store</a>
-					<a href="#0" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">GooglePlay</a>
-				</div> <!-- .cd-hero__content -->
-
-				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
-					<img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
-				</div> <!-- .cd-hero__content -->
-			</li>
-		</ul> <!-- .cd-hero__slider -->
-
-		<div class="cd-hero__nav js-cd-nav">
-			<nav>
-				<span class="cd-hero__marker cd-hero__marker--item-1 js-cd-marker"></span>
-				
-				<ul>
-					<li class="cd-selected"><a href="#0">01</a></li>
-					<li><a href="#0">02</a></li>
-					<li><a href="#0">03</a></li>
-					<li><a href="#0">04</a></li>
-					<li><a href="#0">05</a></li>
-				</ul>
-			</nav> 
-		</div> <!-- .cd-hero__nav -->
-	</section> <!-- .cd-hero -->
-
-	
-	<div id="about" class="section wb">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title text-center">
-						<h3>About Us</h3>
-						<p>Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>auctor nisi elit consequat ipsum, nec sagittis sem!</p>
-					</div><!-- end title -->
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col-lg-7 col-md-6">
-					<div class="about-left">
-						<img src="uploads/about-01.png" class="img-fluid" alt="" />
-					</div>
-				</div>
-				<div class="col-lg-5 col-md-6">
-					<div class="about-right">
-						<h2>Easy customization </h2>
-						<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</p>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row align-items-center">
-				<div class="col-lg-5 col-md-6">
-					<div class="about-right">
-						<h2>Get started </h2>
-						<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</p>
-					</div>
-				</div>
-				<div class="col-lg-7 col-md-6">
-					<div class="about-left">
-						<img src="uploads/about-02.png" class="img-fluid" alt="" />
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	
-    <div id="features" class="section lb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>The App Features</h3>
-                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>auctor nisi elit consequat ipsum, nec sagittis sem!</p>
-            </div><!-- end title -->
-
-            <div class="row">
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-new-file effect-1"></i>		
-						</div>
-						<h2>Easy to Customize</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-                <div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-price-tag effect-1"></i>
-						</div>
-						<h2>eCommerce Ready</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-windows effect-1"></i>
-						</div>
-						<h2>Browser Compatible</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-wordpress-logo effect-1" ></i>
-						</div>
-						<h2>WordPress Installation</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-pantone effect-1"></i>
-						</div>
-						<h2>Limitless Colors</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
-                    <div class="services-inner-box">
-						<div class="ser-icon">
-							<i class="flaticon-cloud-computing effect-1"></i>
-						</div>
-						<h2>Lifetime Update</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-                </div><!-- end col -->
-            </div>
-			
-        </div><!-- end container -->
-    </div><!-- end section -->
-
-    <div class="how-its-work clearfix">
-        <div class="hc colon1">
-            <h2>1</h2>
-            <h3>Go App Store</h3>
-            <p>Lorem Ipsum dolroin gravida nibh vel velit aliquet. Aenean sollicitudin, lorem quis bibendum..</p>
-        </div><!-- end col -->
-
-        <div class="hc colon2">
-            <h2>2</h2>
-            <h3>Create an Account</h3>
-            <p>Lorem Ipsum dolroin gravida nibh vel velit aliquet. Aenean sollicitudin, lorem quis bibendum..</p>
-        </div><!-- end col -->
-
-        <div class="hc colon3">
-            <h2>3</h2>
-            <h3>Download the App</h3>
-            <p>Lorem Ipsum dolroin gravida nibh vel velit aliquet. Aenean sollicitudin, lorem quis bibendum..</p>
-        </div><!-- end col -->  
-
-        <div class="hc colon4">
-            <h2>4</h2>
-            <h3>Enjoy & Rate us!</h3>
-            <p>Lorem Ipsum dolroin gravida nibh vel velit aliquet. Aenean sollicitudin, lorem quis bibendum..</p>
-        </div><!-- end col -->  
-    </div><!-- end how-its-work -->
-
-    <div id="screenshots" class="section wb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Screenshots of the App</h3>
-                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>auctor nisi elit consequat ipsum, nec sagittis sem!</p>
-            </div><!-- end title -->
-
-            <div class="owl-screenshots swiper-container">
-				<div class="mobilescreen-image"></div>
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_01.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_01.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_02.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_02.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_03.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_03.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_04.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_04.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_05.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_05.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_06.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_06.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_01.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_01.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_02.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_02.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_03.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_03.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-					<div class="swiper-slide">
-						<div class="service-widget">
-							<div class="post-media entry wow fadeIn">
-								<a href="uploads/screenshot_04.png" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-								<img src="uploads/screenshot_04.png" alt="" class="img-fluid img-rounded">
-								<div class="magnifier"></div>
-							</div>
-						</div><!-- end service -->
-					</div>
-				</div>
-				<div class="swiper-pagination"></div>
-				<div class="swiper-button-next">
-					<i class="fa fa-angle-right" aria-hidden="true"></i>
-				</div>
-				<div class="swiper-button-prev">
-					<i class="fa fa-angle-left" aria-hidden="true"></i>
-				</div>
-            </div><!-- end row -->			
-        </div><!-- end container -->
-    </div><!-- end section -->
-
-    <div id="download" class="section noover download-bg">
-        <div class="container">
-            <div class="row align-items-center text-center">
-                <div class="col-md-6 col-sm-12">
-                    <div class="customwidget text-left">
-                        <h1>Download Start</h1>
-                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id felis rhoncus, ultrices dolor quis, faucibus velit. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                    </div>
-                </div><!-- end col -->
-                <div class="col-md-6 iphones">
-                    <div class="text-center image-center">
-                        <img src="uploads/iphones.png" alt="" class="img-fluid wow fadeInUp">
-                    </div>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-	
-	<div class="download-icons">
-		<div class="box-icon">
-			<div class="btn-buy apple-button">
-				<a href="#"><i class="flaticon-android"></i> Download on the <strong>Google Play</strong></a>
-			</div>
-			<div class="btn-buy apple-button">
-				<a href="#"><i class="flaticon-apple"></i> Download on the <strong>App Store</strong></a>
-			</div>
-			<div class="btn-buy apple-button">
-				<a href="#"><i class="flaticon-windows"></i> Download on the <strong>Windows Store</strong></a>
-			</div>
-		</div>
-	</div>
-
-    <div id="team" class="section wb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>The Dev Team</h3>
-                <p class="lead">All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, true generator<br> on the Internet. It uses a dictionary of over..</p>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="our-team">
-                        <div class="team_img">
-                            <img src="uploads/team_01.jpg">
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">Williamson</h3>
-                            <span class="post">Founder & CEO</span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typeseing industry</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="our-team">
-                        <div class="team_img">
-                            <img src="uploads/team_02.jpg">
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">kristina</h3>
-                            <span class="post">UI Designer</span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typeseing industry</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="our-team">
-                        <div class="team_img">
-                            <img src="uploads/team_03.jpg">
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="team-content">
-                            <h3 class="title">Steve Thomas</h3>
-                            <span class="post">Chief Developer</span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typeseing industry</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end section -->
-
-    <div class="parallax section stats-box" style="background-image:url('uploads/ben_img_2.jpg');">
-        <div class="container">
-            <div class="row text-left stat-wrap">
-                <div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="text-center">
-						<span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-apple"></i></span>
-						<p class="stat_count_download">12500</p>
-						<h3>App Store</h3>
-					</div>
-                </div><!-- end col -->
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="text-center">
-						<span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-amazon-logo"></i></span>
-						<p class="stat_count_download">31000</p>
-						<h3>Amazon</h3>
-					</div>
-                </div><!-- end col -->
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="text-center">
-						<span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-android"></i></span>
-						<p class="stat_count_download">15788</p>
-						<h3>Google Play</h3>
-					</div>
-                </div><!-- end col -->
-
-                <div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="text-center">
-						<span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-windows"></i></span>
-						<p class="stat_count_download">21000</p>
-						<h3>Windows App</h3>
-					</div>
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-
-    <div id="pricing" class="section lb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Pricing</h3>
-                <p>Get the red carpet treatment <strong>just $39 per month!</strong> It is estimated that 3.5 million established by personal blogs.<br> From each other, we share paid WordPress themes WP Service...</p>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable">
-                        <div class="price-value">$10
-                            <span class="month">monthly</span>
-                        </div>
-                        <h3 class="title">Standard</h3>
-                        <ul class="pricing-content">
-                            <li>50 GB Disk Space</li>
-                            <li>50 Email Accounts</li>
-                            <li>50 GB Monthly Bandwidth</li>
-                            <li>10 Subdomains</li>
-                            <li>15 Domains</li>
-                        </ul>
-                        <a href="#" class="pricingTable-signup hvr-bounce-to-right">Sign Up</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable active">
-                        <div class="price-value">$20
-                            <span class="month">monthly</span>
-                        </div>
-                        <h3 class="title">Business</h3>
-                        <ul class="pricing-content">
-                            <li>60 GB Disk Space</li>
-                            <li>60 Email Accounts</li>
-                            <li>60 GB Monthly Bandwidth</li>
-                            <li>15 Subdomains</li>
-                            <li>20 Domains</li>
-                        </ul>
-                        <a href="#" class="pricingTable-signup hvr-bounce-to-right">Sign Up</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="pricingTable">
-                        <div class="price-value">$30
-                            <span class="month">monthly</span>
-                        </div>
-                        <h3 class="title">Premium</h3>
-                        <ul class="pricing-content">
-                            <li>70 GB Disk Space</li>
-                            <li>70 Email Accounts</li>
-                            <li>70 GB Monthly Bandwidth</li>
-                            <li>20 Subdomains</li>
-                            <li>25 Domains</li>
-                        </ul>
-                        <a href="#" class="pricingTable-signup hvr-bounce-to-right">Sign Up</a>
-                    </div>
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end section -->
-
-    <div id="clients" class="section wb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Happy Clients</h3>
-                <p class="lead">We thanks for all our awesome testimonials! There are hundreds of our happy customers! <br>Let's see what others say about Appfast website template!</p>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="offset-md-2 col-md-8 ">
-						<div class="testi-carousel owl-carousel owl-theme">
-							<div class="testimonial">
-								<p class="description">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus molestie, justo nec convallis sollicitudin, sapien lorem dictum lacus, non consequat odio ipsum nec est. Sed mattis egestas elementum. Nulla facilisi. Quisque placerat risus ac nunc ornare tincidunt. Sed quis faucibus nunc. Pellentesque accumsan arcu mi, eget venenatis mauris.
-								</p>
-								<h3 class="title">williamson</h3>
-								<span class="post">Web Developer</span>
-							</div>
-		 
-							<div class="testimonial">
-								<p class="description">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus molestie, justo nec convallis sollicitudin, sapien lorem dictum lacus, non consequat odio ipsum nec est. Sed mattis egestas elementum. Nulla facilisi. Quisque placerat risus ac nunc ornare tincidunt. Sed quis faucibus nunc. Pellentesque accumsan arcu mi, eget venenatis mauris.
-								</p>
-								<h3 class="title">Kristina</h3>
-								<span class="post">Web Designer</span>
-							</div>
-		 
-							<div class="testimonial">
-								<p class="description">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus molestie, justo nec convallis sollicitudin, sapien lorem dictum lacus, non consequat odio ipsum nec est. Sed mattis egestas elementum. Nulla facilisi. Quisque placerat risus ac nunc ornare tincidunt. Sed quis faucibus nunc. Pellentesque accumsan arcu mi, eget venenatis mauris.
-								</p>
-								<h3 class="title">Miranda Joy</h3>
-								<span class="post">Web Developer</span>
-							</div>
-						</div>
-					</div>
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-	
-	
-	<div id="faqs" class="section lb">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6 col-md-6">
-					<div class="accordion" id="accordionExample">
-					  <div class="card">
-						<div class="card-header" id="headingOne">
-						  <h5 class="mb-0">
-							<a href="" class="btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								What is the Start App ?
-							</a>
-						  </h5>
-						</div>
-
-						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						  <div class="card-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem, dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit posuere tortor aliquam vitae. Curabitur molestie eros. 
-						  </div>
-						</div>
-					  </div>
-					  <div class="card">
-						<div class="card-header" id="headingTwo">
-						  <h5 class="mb-0">
-							<a href="" class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								How to install this app ?
-							</a>
-						  </h5>
-						</div>
-						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						  <div class="card-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem, dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit posuere tortor aliquam vitae. Curabitur molestie eros. 
-						  </div>
-						</div>
-					  </div>
-					  <div class="card">
-						<div class="card-header" id="headingThree">
-						  <h5 class="mb-0">
-							<a href="" class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-							  Lorem ipsum dolor sit amet
-							</a>
-						  </h5>
-						</div>
-						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						  <div class="card-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem, dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit posuere tortor aliquam vitae. Curabitur molestie eros. 
-						  </div>
-						</div>
-					  </div>
-					</div>					
-				</div>
-				<div class="col-lg-6 col-md-6">
-					<div class="faq-right">
-						<img src="uploads/about-02.png" class="img-fluid" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-    <div id="contact" class="section lb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Get in Touch</h3>
-				<div class="info-box" data-toggle="tooltip" data-placement="bottom" title="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.">
-					<i class="fa fa-question-circle" aria-hidden="true"></i>
-				</div>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="contact_form">
-                        <div id="message"></div>
-                        <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Give us more details.."></textarea>
-                                </div>
-                                <div class="text-center pdi">
-                                    <button type="submit" value="SEND" id="submit" class="hvr-bounce-to-right get-btn">Get a Quote</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<!-- Team Section -->
+<div class="w3-container" style="padding:128px 16px" id="team">
+  <h3 class="w3-center">THE TEAM</h3>
+  <p class="w3-center w3-large">The ones who runs this company</p>
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="./images/team2.jpg" alt="John" style="width:100%">
+        <div class="w3-container">
+          <h3>John Doe</h3>
+          <p class="w3-opacity">CEO & Founder</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
         </div>
-    </div><!-- end section -->
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="./images/team1.jpg" alt="Jane" style="width:100%">
+        <div class="w3-container">
+          <h3>Anja Doe</h3>
+          <p class="w3-opacity">Art Director</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="./images/team3.jpg" alt="Mike" style="width:100%">
+        <div class="w3-container">
+          <h3>Mike Ross</h3>
+          <p class="w3-opacity">Web Designer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <img src="./images/team4.jpg" alt="Dan" style="width:100%">
+        <div class="w3-container">
+          <h3>Dan Star</h3>
+          <p class="w3-opacity">Designer</p>
+          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <footer class="footer">
-		<div class="container"> 
-			<div class="row"> 
-				<div class="col-md-12"> 
-					<div class="subscribe-text">
-						<h3>Subscribe for Newsletter</h3>
-						<p>Lorem ipsum madolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor coli incididunt ut labore Lorem ipsum madolor sit amet, consectetur adipisicing incididunt.</p>
-					</div>
-					
-					<div class="subscribe-form">
-						<form>
-							<input class="form-control" id="subscribe_email" name="email" placeholder="Email Address..." required="" type="email">
-							<button type="submit" class="btn subscribe-btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-    </footer><!-- end footer -->
+<!-- Promo Section "Statistics" -->
+<div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">14+</span>
+    <br>Partners
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">55+</span>
+    <br>Projects Done
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">89+</span>
+    <br>Happy Clients
+  </div>
+  <div class="w3-quarter">
+    <span class="w3-xxlarge">150+</span>
+    <br>Meetings
+  </div>
+</div>
 
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-                <div class="footer-left">                    
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">ProApp</a> Design By : 
-					<a href="https://html.design/">html design</a></p>
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+<!-- Work Section -->
+<div class="w3-container" style="padding:128px 16px" id="work">
+  <h3 class="w3-center">OUR WORK</h3>
+  <p class="w3-center w3-large">What we've done for people</p>
 
-    <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_mic.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A microphone">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_phone.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A phone">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_drone.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A drone">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_sound.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Soundbox">
+    </div>
+  </div>
 
-    <!-- ALL JS FILES -->
-    <script src="js/all.js"></script>
-    <!-- ALL PLUGINS -->
-	<script src="js/main.js"></script>
-    <script src="js/custom.js"></script>
-	<script src="js/swiper.min.js"></script>
-	<script>
-		var swiper = new Swiper('.swiper-container', {
-			loop: true,
-			effect: 'coverflow',
-			centeredSlides: true,
-			loopFillGroupWithBlank: true,
-			slidesPerView: 3,
-            initialSlide: 3,
-            keyboardControl: true,
-            mousewheelControl: false,
-            lazyLoading: true,
-			pagination: {
-				el: '.swiper-pagination',
-				clickable: true,
-			},
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			breakpoints: {
-                1199: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                },
-                991: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                },
-                767: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                575: {
-                    slidesPerView: 1,
-                    spaceBetween: 3,
-                }
-            }
-		});
-	  </script>
+  <div class="w3-row-padding w3-section">
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_tablet.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tablet">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_camera.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A camera">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_typewriter.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A typewriter">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="./images/tech_tableturner.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tableturner">
+    </div>
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Skills Section -->
+<div class="w3-container w3-light-grey w3-padding-64">
+  <div class="w3-row-padding">
+    <div class="w3-col m6">
+      <h3>Our Skills.</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
+      tempor incididunt ut labore et dolore.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
+      tempor incididunt ut labore et dolore.</p>
+    </div>
+    <div class="w3-col m6">
+      <p class="w3-wide"><i class="fa fa-camera w3-margin-right"></i>Photography</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:90%">90%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-desktop w3-margin-right"></i>Web Design</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
+      </div>
+      <p class="w3-wide"><i class="fa fa-photo w3-margin-right"></i>Photoshop</p>
+      <div class="w3-grey">
+        <div class="w3-container w3-dark-grey w3-center" style="width:75%">75%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing Section -->
+<div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="pricing">
+  <h3>PRICING</h3>
+  <p class="w3-large">Choose a pricing plan that fits your needs.</p>
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-third w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
+        <li class="w3-padding-16"><b>10GB</b> Storage</li>
+        <li class="w3-padding-16"><b>10</b> Emails</li>
+        <li class="w3-padding-16"><b>10</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 10</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>
+    <div class="w3-third">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-red w3-xlarge w3-padding-48">Pro</li>
+        <li class="w3-padding-16"><b>25GB</b> Storage</li>
+        <li class="w3-padding-16"><b>25</b> Emails</li>
+        <li class="w3-padding-16"><b>25</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 25</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>
+    <div class="w3-third w3-section">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
+        <li class="w3-padding-16"><b>50GB</b> Storage</li>
+        <li class="w3-padding-16"><b>50</b> Emails</li>
+        <li class="w3-padding-16"><b>50</b> Domains</li>
+        <li class="w3-padding-16"><b>Endless</b> Support</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">$ 50</h2>
+          <span class="w3-opacity">per month</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button class="w3-button w3-black w3-padding-large">Sign Up</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Chicago, US</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+    <br>
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+    <!-- Image of location/map -->
+    <img src="./images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
 
 </body>
 </html>
