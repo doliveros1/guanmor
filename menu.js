@@ -70,7 +70,6 @@ handleButtonClick = function () {
       handler: () => {
         var clientAddress = "Para recoger"; 
 		hacerPedido(clientAddress);
-		presentToast("Introduzca el lugar de envío");
         console.log('Confirm Ok')
       }
     }, {
@@ -80,7 +79,7 @@ handleButtonClick = function () {
       	var number = document.getElementById("numberId").value;
       	
       	if(street === "" || number === ""){
-			presentToast("Introduzca la dirección de envío");      	
+			presentToast("Introduzca una dirección de envío");      	
       	} else {
 			var clientAddress = street + ", "+number; 
 			hacerPedido(clientAddress);      	
@@ -97,7 +96,7 @@ handleButtonClick = function () {
 presentToast = function (text) {
   const toast = document.createElement('ion-toast');
   toast.message = text;
-  toast.duration = 2000;
+  toast.duration = 3000;
 
   document.body.appendChild(toast);
   return toast.present();
@@ -107,6 +106,7 @@ hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("cartaContent").children;
 	var pedido = "_Pedido_";
 	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+clientAddress+"*";
+	var empty = true;
 	
 	for(var i=0;i<cartaContent.length;i++){
 		if(cartaContent[i].tagName === "ION-LIST"){
@@ -118,6 +118,7 @@ hacerPedido = function (clientAddress) {
 					var productName = product.children[0].textContent;
 					if(value === "" || value === "0"){
 					} else {
+					  empty = false;
 					  pedido = pedido + "\r\n\r\n"+"- "+value+" "+productName;
 					}			
 					
@@ -126,8 +127,12 @@ hacerPedido = function (clientAddress) {
 		}
 	}
 	
-	var encodedPedido = window.encodeURIComponent(pedido);
-	window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
+	if(empty) {
+		presentToast("No ha seleccionado ningún producto");    	
+	} else {
+		var encodedPedido = window.encodeURIComponent(pedido);
+		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
+	}
 }; 
     
 
