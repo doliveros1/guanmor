@@ -1,9 +1,10 @@
 const SEND_WHATSAPP = "";
 const CALL_PHONE = "";
 const SHARE_WHATSAPP = "";
-const MENU_BASE_URL = "";
+const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu.html";
+
 var localId;
-var localInfo;
+var propertyInfo;
 var clientAddress;
 
 // Check that service workers are supported
@@ -39,14 +40,15 @@ GetURLParameter = function (sParam) {
 };   
 
 getPropertyInfo = function (idProperty) {
-	var propertyInfo = JSON.parse("{\"propertyName\":\""+idProperty+"\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":false,\"cash\":false,\"card\":false,\"timeTable\":\"L-V de 9:00 a 21:00, S y D 9:00 a 23:00\"}");
-	//if (idProperty === "000001") {
-		setPropertyInfo(propertyInfo);
-	//}
+	propertyInfo = JSON.parse("{\"propertyName\":\""+idProperty+"\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":false,\"cash\":false,\"card\":false,\"timeTable\":\"L-V de 9:00 a 21:00, S y D 9:00 a 23:00\"}");
+	setPropertyInfo(idProperty, propertyInfo);
 }; 
 
-setPropertyInfo = function (propertyInfo){
+setPropertyInfo = function (idProperty, propertyInfo){
 	document.getElementById("propertyName").innerHTML = propertyInfo.propertyName;
+	document.getElementById("callButton").href = "tel:"+propertyInfo.phoneNumber;
+	var text = "Ver carta de "+propertyName+" " 
+	document.getElementById("shareButton").href = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
 handleButtonClick = function () {
   const alert = document.createElement('ion-alert');
