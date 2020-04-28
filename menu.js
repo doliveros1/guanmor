@@ -64,15 +64,23 @@ handleButtonClick = function () {
     }
   ];
   alert.buttons = [
-    {
+  	{
       text: 'Cancelar',
       role: 'cancel',
       cssClass: 'secondary',
       handler: () => {
         console.log('Confirm Cancel')
       }
+    },
+    {
+      text: 'Lo recojo yo',
+      handler: () => {
+        var clientAddress = "Para recoger"; 
+		hacerPedido(clientAddress);
+        console.log('Confirm Ok')
+      }
     }, {
-      text: 'Pedir',
+      text: 'Enviádmelo',
       handler: () => {
       	var street = document.getElementById("streetId").value;
       	var number = document.getElementById("numberId").value;
