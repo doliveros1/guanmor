@@ -3,6 +3,8 @@ const CALL_PHONE = "";
 const SHARE_WHATSAPP = "";
 const MENU_BASE_URL = "";
 var localId;
+var localInfo;
+var clientAddress;
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -22,29 +24,6 @@ window.onload = (e) => {
     var url = "/guanmor/menu.html?property="+localId;
     var shortName = localId;
     var name = "Carta de "+localId;
-    
-    /*setTimeout(() => {
-      var myDynamicManifest = {
-        "name": name,
-        "display": "fullscreen",
-        "short_name": shortName,
-        "description": "Learn how to create and share something or other.",
-        "start_url": url,
-        "background_color": "black",
-        "icons": [{
-          "src": "https://doliveros1.github.io/guanmor/icon/icon.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }]
-      }
-      const stringManifest = JSON.stringify(myDynamicManifest);
-      const blob = new Blob([stringManifest], {type: 'application/javascript'});
-      const manifestURL = URL.createObjectURL(blob);
-      document.querySelector('#manifest').setAttribute('href', manifestURL);
-    }
-    , 1000);*/
-    
-    
     getPropertyInfo(localId);
 }
 
@@ -61,7 +40,6 @@ GetURLParameter = function (sParam) {
 
 getPropertyInfo = function (idProperty) {
 	var propertyInfo = JSON.parse("{\"propertyName\":\""+idProperty+"\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":false,\"cash\":false,\"card\":false,\"timeTable\":\"L-V de 9:00 a 21:00, S y D 9:00 a 23:00\"}");
-	
 	//if (idProperty === "000001") {
 		setPropertyInfo(propertyInfo);
 	//}
@@ -72,9 +50,10 @@ setPropertyInfo = function (propertyInfo){
 };
 
 
-hacerPedido = function () {
+hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("cartaContent").children;
 	var pedido = "PEDIDO";
+	var pedido = pedido + "\r\n\r\n Dirección de envío: "+clientAddress;
 	
 	for(var i=0;i<cartaContent.length;i++){
 		if(cartaContent[i].tagName === "ION-LIST"){
@@ -98,3 +77,42 @@ hacerPedido = function () {
 	window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
 }; 
     
+
+handleButtonClick = function () {
+  const alert = document.createElement('ion-alert');
+  alert.header = 'Dirección de envío';
+  alert.inputs = [
+    {
+      name: 'name2',
+      id: 'streetId',
+      placeholder: 'Calle'
+    },
+     {
+      name: 'name3',
+      id: 'numberId',
+      placeholder: 'Número'
+    }
+  ];
+  alert.buttons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      cssClass: 'secondary',
+      handler: () => {
+        console.log('Confirm Cancel')
+      }
+    }, {
+      text: 'Pedir',
+      handler: () => {
+      	var street = document.getElementById("streetId").value;
+      	var number = document.getElementById("numberId").value;
+        var clientAddress = street + ", "+number; 
+		hacerPedido(clientAddress);
+        console.log('Confirm Ok')
+      }
+    }
+  ];
+
+  document.body.appendChild(alert);
+  return alert.present();
+}

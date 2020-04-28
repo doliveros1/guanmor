@@ -12,6 +12,11 @@
   <!--link rel="manifest" id="manifest"-->
   <script src="./menu.js"></script>
 
+  <script type="module">
+    import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.alertController = alertController;
+  </script>
+
   <style>
     :root {
       --ion-safe-area-top: 20px;
@@ -57,9 +62,9 @@
 		padding-top:10px;
 	}
 	
-	//window.encodeURIComponent("My title"+"\r\n\r\n"+"My description and link")
 
   </style>
+
 </head>
 <body>
   <ion-app>
@@ -68,7 +73,7 @@
 			<ion-button id="callButton" href="tel:679 827 962">
       			<ion-icon slot="icon-only" name="call"></ion-icon>
       		</ion-button>
-      		<ion-button id="whatsappButton" onclick="hacerPedido()" >
+      		<ion-button id="whatsappButton" onclick="handleButtonClick()" >
       			<ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
         	</ion-button>
         </ion-buttons>
