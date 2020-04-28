@@ -48,36 +48,6 @@ getPropertyInfo = function (idProperty) {
 setPropertyInfo = function (propertyInfo){
 	document.getElementById("propertyName").innerHTML = propertyInfo.propertyName;
 };
-
-
-hacerPedido = function (clientAddress) {
-	var cartaContent = document.getElementById("cartaContent").children;
-	var pedido = "PEDIDO";
-	var pedido = pedido + "\r\n\r\n Dirección de envío: "+clientAddress;
-	
-	for(var i=0;i<cartaContent.length;i++){
-		if(cartaContent[i].tagName === "ION-LIST"){
-			var productsContent = cartaContent[i].children;
-			for(var j=0;j<productsContent.length;j++){
-				if(productsContent[j].tagName === "ION-ITEM"){
-					var product = productsContent[j].children[0];
-					var value = product.children[2].value;
-					var productName = product.children[0].textContent;
-					if(value === "" || value === "0"){
-					} else {
-					  pedido = pedido + "\r\n\r\n"+"- "+value+" "+productName;
-					}			
-					
-				}
-			}
-		}
-	}
-	
-	var encodedPedido = window.encodeURIComponent(pedido);
-	window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
-}; 
-    
-
 handleButtonClick = function () {
   const alert = document.createElement('ion-alert');
   alert.header = 'Dirección de envío';
@@ -115,4 +85,33 @@ handleButtonClick = function () {
 
   document.body.appendChild(alert);
   return alert.present();
-}
+};
+
+hacerPedido = function (clientAddress) {
+	var cartaContent = document.getElementById("cartaContent").children;
+	var pedido = "PEDIDO";
+	var pedido = pedido + "\r\n\r\n Dirección de envío: "+clientAddress;
+	
+	for(var i=0;i<cartaContent.length;i++){
+		if(cartaContent[i].tagName === "ION-LIST"){
+			var productsContent = cartaContent[i].children;
+			for(var j=0;j<productsContent.length;j++){
+				if(productsContent[j].tagName === "ION-ITEM"){
+					var product = productsContent[j].children[0];
+					var value = product.children[2].value;
+					var productName = product.children[0].textContent;
+					if(value === "" || value === "0"){
+					} else {
+					  pedido = pedido + "\r\n\r\n"+"- "+value+" "+productName;
+					}			
+					
+				}
+			}
+		}
+	}
+	
+	var encodedPedido = window.encodeURIComponent(pedido);
+	window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
+}; 
+    
+
