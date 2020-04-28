@@ -64,28 +64,27 @@ handleButtonClick = function () {
     }
   ];
   alert.buttons = [
-  	{
-      text: 'Cancelar',
-      role: 'cancel',
-      cssClass: 'secondary',
-      handler: () => {
-        console.log('Confirm Cancel')
-      }
-    },
+
     {
-      text: 'Lo recojo yo',
+      text: 'Para recoger',
       handler: () => {
         var clientAddress = "Para recoger"; 
 		hacerPedido(clientAddress);
+		presentToast("Introduzca el lugar de envío");
         console.log('Confirm Ok')
       }
     }, {
-      text: 'Enviádmelo',
+      text: 'Te lo llevamos',
       handler: () => {
       	var street = document.getElementById("streetId").value;
       	var number = document.getElementById("numberId").value;
-        var clientAddress = street + ", "+number; 
-		hacerPedido(clientAddress);
+      	
+      	if(street === "" || number === ""){
+			presentToast("Introduzca la dirección de envío");      	
+      	} else {
+			var clientAddress = street + ", "+number; 
+			hacerPedido(clientAddress);      	
+      	}
         console.log('Confirm Ok')
       }
     }
@@ -94,6 +93,15 @@ handleButtonClick = function () {
   document.body.appendChild(alert);
   return alert.present();
 };
+
+presentToast = function (text) {
+  const toast = document.createElement('ion-toast');
+  toast.message = text;
+  toast.duration = 2000;
+
+  document.body.appendChild(toast);
+  return toast.present();
+}
 
 hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("cartaContent").children;
