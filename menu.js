@@ -136,5 +136,55 @@ hacerPedido = function (clientAddress) {
 		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
 	}
 }; 
-    
+
+handleButtonInfoClick = async function handleButtonInfoClick(ev) {
+      popover = await popoverController.create({
+        component: 'popover-example-page',
+        event: ev,
+        translucent: true
+      });
+      currentPopover = popover;
+      return popover.present();
+    }
+
+    function dismissPopover() {
+      if (currentPopover) {
+        currentPopover.dismiss().then(() => { currentPopover = null; });
+      }
+    };
+
+ customElements.define('popover-example-page', class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <ion-list>
+            <ion-list-header>Bar Virrey - Info</ion-list-header>
+            <ion-item>
+            	<ion-icon name="card-outline"></ion-icon>
+            	<p>Tarjeta aceptada</p>
+            </ion-item>
+            <ion-item>
+            	<ion-icon name="cash-outline"></ion-icon>
+            	<p>Pago en efectivo</p>
+            </ion-item>
+            <ion-item>
+            	<ion-icon name="home-outline"></ion-icon>
+            	<p>Envío a domicilio</p>
+            </ion-item>  
+            <ion-item>
+            	<ion-icon name="alarm-outline"></ion-icon>
+            	<p>L-D de 9:00 a 21:00</p>
+            </ion-item>  
+            <ion-item button href="https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393" target="_blank">
+            	<ion-icon name="location-outline"></ion-icon>
+            	<p>Ubicación</p>
+            </ion-item> 
+			<ion-item button href="tel:679827962">
+            	<ion-icon name="call-outline"></ion-icon>
+            	<p>679827962</p>
+            </ion-item> 
+            <ion-item lines="none" detail="false" button onClick="dismissPopover()">Cerrar</ion-item>
+          </ion-list>
+        `;
+      }
+    });
 
