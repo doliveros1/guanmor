@@ -89,8 +89,8 @@ handleButtonClick = function () {
 
 hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("cartaContent").children;
-	var pedido = "PEDIDO";
-	var pedido = pedido + "\r\n\r\n Dirección de envío: "+clientAddress;
+	var pedido = "_Pedido_";
+	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+clientAddress+"*";
 	
 	for(var i=0;i<cartaContent.length;i++){
 		if(cartaContent[i].tagName === "ION-LIST"){
