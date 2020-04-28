@@ -71,4 +71,30 @@ setPropertyInfo = function (propertyInfo){
 	document.getElementById("propertyName").innerHTML = propertyInfo.propertyName;
 };
 
+
+hacerPedido = function () {
+	var cartaContent = document.getElementById("cartaContent").children;
+	var pedido = "PEDIDO";
+	
+	for(var i=0;i<cartaContent.length;i++){
+		if(cartaContent[i].tagName === "ION-LIST"){
+			var productsContent = cartaContent[i].children;
+			for(var j=0;j<productsContent.length;j++){
+				if(productsContent[j].tagName === "ION-ITEM"){
+					var product = productsContent[j].children[0];
+					var value = product.children[2].value;
+					var productName = product.children[0].textContent;
+					if(value === "" || value === "0"){
+					} else {
+					  pedido = pedido + "\r\n\r\n"+"- "+value+" "+productName;
+					}			
+					
+				}
+			}
+		}
+	}
+	
+	var encodedPedido = window.encodeURIComponent(pedido);
+	window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
+}; 
     
