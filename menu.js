@@ -190,7 +190,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 //DATA
 
 const fetchLocal = (local) => {
-    return axios.get(API_PATH+local)
+    return axios.get(API_PATH+local,{ crossdomain: true })
         .then(response => {
 			hideLoading();
 			if(isEmpty(response.data)){

@@ -44,7 +44,7 @@ hideLoading = function () {
 //DATA
 
 const fetchLocales = () => {
-    return axios.get(API_PATH)
+    return axios.get(API_PATH,{ crossdomain: true })
         .then(response => {
 			hideLoading();
 			if(isEmpty(response.data)){
