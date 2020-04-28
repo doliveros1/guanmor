@@ -47,7 +47,7 @@ getPropertyInfo = function (idProperty) {
 setPropertyInfo = function (idProperty, propertyInfo){
 	document.getElementById("propertyName").innerHTML = propertyInfo.propertyName;
 	document.getElementById("callButton").href = "tel:"+propertyInfo.phoneNumber;
-	var text = "Ver carta de "+propertyName+" " 
+	var text = "Ver carta de "+propertyInfo.propertyName+" ";
 	document.getElementById("shareButton").href = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
 handleButtonClick = function () {
