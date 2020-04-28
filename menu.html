@@ -8,6 +8,7 @@
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
   <link rel="manifest" href="/guanmor/manifest.webmanifest">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   
   <!--link rel="manifest" id="manifest"-->
   <script src="./menu.js"></script>
@@ -17,6 +18,8 @@
     window.alertController = alertController;
     import { popoverController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
     window.popoverController = popoverController;
+    import { loadingController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.loadingController = loadingController;
   </script>
 
   <style>
@@ -307,27 +310,6 @@
    			 </div>
 		</div>
 
-  		<!--ion-toolbar color="dark">
-			<ion-img src="guanmor_logo.svg"></ion-img-->
-    		<!--ion-title mode=ios ><a href="http://www.guanmor.com" target="_blank">Guanmor</a></ion-router-link-->
-    		<!--ion-buttons slot="end">
-    		<ion-button>
-      			<ion-icon color="danger" slot="icon-only" name="lock-closed-outline"></ion-icon>
-      		</ion-button> 
-			<ion-button>
-      			<ion-icon color="danger" slot="icon-only" name="send-outline"></ion-icon>
-      		</ion-button>      		
-      		<ion-button>
-      			<ion-icon color="success" slot="icon-only" name="card-outline"></ion-icon>
-        	</ion-button>
-        	<ion-button>
-      			<ion-icon color="success" slot="icon-only" name="cash-outline"></ion-icon>
-        	</ion-button>
-        </ion-buttons>
-               <ion-buttons slot="start">
-               	<ion-img src="guanmor_logo.svg"></ion-img>
-        	</ion-buttons-->
-  		<!--/ion-toolbar-->
 	</ion-footer>
   </ion-app>
 </body>

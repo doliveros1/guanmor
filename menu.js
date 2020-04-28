@@ -2,10 +2,14 @@ const SEND_WHATSAPP = "";
 const CALL_PHONE = "";
 const SHARE_WHATSAPP = "";
 const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu.html";
+const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
+const HOME = "./index.html"
 
 var localId;
 var propertyInfo;
 var clientAddress;
+
+var loading;
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -22,9 +26,7 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
-    var url = "/guanmor/menu.html?property="+localId;
-    var shortName = localId;
-    var name = "Carta de "+localId;
+    showLoading("Cargando la carta");
     getPropertyInfo(localId);
 }
 
@@ -40,16 +42,14 @@ GetURLParameter = function (sParam) {
 };   
 
 getPropertyInfo = function (idProperty) {
-	propertyInfo = JSON.parse("{\"propertyName\":\""+idProperty+"\",\"whatsapp\":\"666100015\",\"phoneNumber\":\"925190457\",\"homeDelivery\":true,\"cash\":true,\"card\":true,\"timeTable\":\"L-V de 9:00 a 21:00\"}");
-	propertyInfo.latitude = -3.167052;
-	propertyInfo.longitude = 39.758944;
-	setPropertyInfo(idProperty, propertyInfo);
+	fetchLocal(idProperty);
 }; 
 
-setPropertyInfo = function (idProperty, propertyInfo){
-	document.getElementById("propertyName").innerHTML = propertyInfo.propertyName;
-	document.getElementById("callButton").href = "tel:"+propertyInfo.phoneNumber;
-	var text = "Ver carta de "+propertyInfo.propertyName+" ";
+setPropertyInfo = function (idProperty, object){
+    propertyInfo = object;
+	document.getElementById("propertyName").innerHTML = object.propertyName;
+	document.getElementById("callButton").href = "tel:"+object.phoneNumber;
+	var text = "Ver carta de "+object.propertyName+" ";
 	document.getElementById("shareButton").href = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
 handleButtonClick = function () {
@@ -106,6 +106,15 @@ presentToast = function (text) {
   return toast.present();
 }
 
+showLoading = function (text) {
+	loading = document.createElement('ion-loading');
+  	loading.message = text;
+  	document.body.appendChild(loading);
+    loading.present();
+}
+hideLoading = function () {
+	loading.dismiss();
+}
 hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("cartaContent").children;
 	var pedido = "_Pedido_";
@@ -178,3 +187,25 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
       }
     });
 
+//DATA
+
+const fetchLocal = (local) => {
+    return axios.get(API_PATH+local)
+        .then(response => {
+			hideLoading();
+			if(isEmpty(response.data)){
+				goToHome();		
+			} else{
+        		setPropertyInfo(local, response.data);			
+			}
+        })
+        .catch(error => console.error(error));
+};
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
+function goToHome(){
+	window.location.href = HOME;
+}

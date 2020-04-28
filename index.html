@@ -8,7 +8,8 @@
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
   <link rel="manifest" href="/guanmor/manifest.webmanifest">
-  
+  <script src="./index.js"></script>  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <style>
     :root {
@@ -66,8 +67,30 @@
         <ion-title id="propertyName" mode=ios>Cartas disponibles</ion-title>
 	</ion-toolbar>
 
-            <ion-router-link target="_blank" href="./menu.html?property=virrey01">Virrey</ion-router-link>
-            <ion-router-link target="_blank" href="./menu.html?property=sanblas1">San Blas</ion-router-link>
+    <ion-content fullscreen>
+      <ion-list>
+        <ion-list-header>
+          Restaurantes con carta
+        </ion-list-header>
+
+        <ion-item onclick="goToCarta('david_01')">
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Bar David</h2>
+            <p>Especialidad en bla bla</p>
+          </ion-label>
+        </ion-item>
+        
+        <ion-item onclick="goToCarta('javi_01')">
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Bar Javier</h2>
+            <p>Especialidad en bla bla</p>
+          </ion-label>
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
 
     
 	<ion-footer>
@@ -78,28 +101,6 @@
     			</a>				
    			 </div>
 		</div>
-
-  		<!--ion-toolbar color="dark">
-			<ion-img src="guanmor_logo.svg"></ion-img-->
-    		<!--ion-title mode=ios ><a href="http://www.guanmor.com" target="_blank">Guanmor</a></ion-router-link-->
-    		<!--ion-buttons slot="end">
-    		<ion-button>
-      			<ion-icon color="danger" slot="icon-only" name="lock-closed-outline"></ion-icon>
-      		</ion-button> 
-			<ion-button>
-      			<ion-icon color="danger" slot="icon-only" name="send-outline"></ion-icon>
-      		</ion-button>      		
-      		<ion-button>
-      			<ion-icon color="success" slot="icon-only" name="card-outline"></ion-icon>
-        	</ion-button>
-        	<ion-button>
-      			<ion-icon color="success" slot="icon-only" name="cash-outline"></ion-icon>
-        	</ion-button>
-        </ion-buttons>
-               <ion-buttons slot="start">
-               	<ion-img src="guanmor_logo.svg"></ion-img>
-        	</ion-buttons-->
-  		<!--/ion-toolbar-->
 	</ion-footer>
   </ion-app>
 </body>
