@@ -190,17 +190,16 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 //DATA
 
 const fetchLocal = (local) => {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		hideLoading();
-		if (this.readyState == 4 && this.status == 200) {
-       		setPropertyInfo(local, JSON.parse(xhttp.responseText));	
-     	
-    	}
-	};
-	xhttp.open("GET", API_PATH+local, true);
-	xhttp.send();
-
+    return axios.get(API_PATH+local,{ crossdomain: true })
+        .then(response => {
+			hideLoading();
+			if(isEmpty(response.data)){
+				goToHome();		
+			} else{
+        		setPropertyInfo(local, response.data);			
+			}
+        })
+        .catch(error => console.error(error));
 };
 
 function isEmpty(obj) {

@@ -4,7 +4,6 @@ const SHARE_WHATSAPP = "";
 const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu.html";
 const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
 const MENU = "./menu.html"
-const PROXY = "https://thingproxy.freeboard.io/fetch/";
 
 var localId;
 var propertyInfo;
@@ -45,7 +44,7 @@ hideLoading = function () {
 //DATA
 
 const fetchLocales = () => {
-    return axios.get(PROXY+API_PATH,{ crossdomain: true })
+    return axios.get(API_PATH,{ crossdomain: true })
         .then(response => {
 			hideLoading();
 			if(isEmpty(response.data)){
