@@ -39,6 +39,7 @@
 		background-color: #1B1B1E; 
     	display: flex;
     	justify-content: center;
+    	border-top:2px solid #3ed7ca;
 	}
 
 	div.vertical {
@@ -75,6 +76,9 @@
 	.categoryTitle {
   		color: #3ed7ca;
 	}
+	.searchBar {
+		border-bottom:2px solid #3ed7ca;
+	}
 	
 	ion-item{ --border-color: #3ed7ca; }
 	
@@ -103,7 +107,7 @@
 
         <ion-title class="localTitle" id="propertyName" mode=ios>-</ion-title>
 	</ion-toolbar>
-	<ion-toolbar color="dark">
+	<ion-toolbar class="searchBar" color="dark">
 		<ion-searchbar placeholder="Buscar plato">	
 
 		</ion-searchbar>    
