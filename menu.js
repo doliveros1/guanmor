@@ -199,7 +199,9 @@ const fetchLocal = (local) => {
         		setPropertyInfo(local, response.data);			
 			}
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+        	hideLoading();
+		});
 };
 
 function isEmpty(obj) {

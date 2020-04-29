@@ -27,7 +27,22 @@ getLocalesInfo = function () {
 }; 
 
 setLocalesInfo = function (locales){
-    //alert(locales);
+	var listLocales = document.getElementById("propertiesList");
+	var inner = `<ion-list><ion-list-header>Restaurantes con carta</ion-list-header>`;
+	
+	locales.forEach(local => {
+		inner = inner + `<ion-list><ion-item onclick="goToCarta('`+local.id+`')">
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>`+local.propertyName+`</h2>
+            <p>`+local.description+`</p>
+          </ion-label>
+        </ion-item>`;
+	});
+	inner = inner + `</ion-list>`;
+	
+	listLocales.innerHTML = inner;
+
 };
 
 
@@ -53,7 +68,9 @@ const fetchLocales = () => {
         		setLocalesInfo(response.data);			
 			}
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+			hideLoading();
+        });
 };
 
 function isEmpty(obj) {
