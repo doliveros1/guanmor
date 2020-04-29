@@ -106,6 +106,14 @@ presentToast = function (text) {
   return toast.present();
 }
 
+increment = function(id){
+	document.getElementById(id).stepUp(1);
+};
+
+decrement = function(id){
+	document.getElementById(id).stepDown(1);
+};
+
 showLoading = function (text) {
 	loading = document.createElement('ion-loading');
   	loading.message = text;
@@ -206,8 +214,10 @@ const fetchLocal = (local) => {
 
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
-}
+};
 
 function goToHome(){
 	window.location.href = HOME;
-}
+};
+
+

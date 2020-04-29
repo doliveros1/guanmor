@@ -114,44 +114,18 @@
         <ion-list-header class="categoryTitle">
           ENTRANTES
         </ion-list-header>
-        <ion-item>
-          <ion-label class="ion-text-wrap">
-            <h3>JAMÓN IBÉRICO DE RECEBO</h3>
-            <p>Jamón ibérico bueno pero no es 5 Js</p>
-            <input type="number" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">
-            <div>
-            	<ion-button color="dark">
-            		<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
-            	</ion-button>
-            	<ion-button color="dark">
-            		<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-            	</ion-button>
-            </div>
 
-            <!--input type="number" placeHolder="Cdad." min="0" max="100000" id="points" name="points" step="1">
-            <ion-button>
-            	<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
-            </ion-button>
-            <ion-button>
-            	<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-            </ion-button-->
-          </ion-label>
-          <ion-label>
-
-          </ion-label>
-			<p class="price">15.00 €</p>
-        </ion-item>
 
         <ion-item>
           <ion-label class="ion-text-wrap">
             <h3>JAMÓN IBÉRICO Y QUESO MONTESCUSA</h3>
             <p>Queso de tu pueblo</p>   
-            <input type="number" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">
+            <input type="number" id="input1" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">
             <div>
-            	<ion-button color="dark">
+            	<ion-button color="dark" onclick="decrement('input1')">
             		<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
             	</ion-button>
-            	<ion-button color="dark">
+            	<ion-button color="dark" onclick="increment('input1')">
             		<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
             	</ion-button>
             </div>
