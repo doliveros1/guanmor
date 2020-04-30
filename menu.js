@@ -190,7 +190,7 @@ hideLoading = function () {
 	loading.dismiss();
 }
 hacerPedido = function (clientAddress) {
-	var cartaContent = document.getElementById("cartaContent").children;
+	var cartaContent = document.getElementById("menuContent").children;
 	var pedido = "_Pedido_";
 	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+clientAddress+"*";
 	var empty = true;
