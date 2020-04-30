@@ -11,7 +11,7 @@ var propertyMenu;
 
 var clientAddress;
 
-
+var inputCon = 0;
 var loading;
 
 // Check that service workers are supported
@@ -80,8 +80,15 @@ updateMenuInfo = function (menu){
 updateCategoryProducts = function(categoryProducts){
 	var products = "";
 	categoryProducts.forEach(prod =>{
+		var idInput = "pvpInput"+inputCon;
+	    inputCon = inputCon + 1;
 		var product = `<ion-item><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
-		product = product + `<p>`+prod.description+`</p></ion-label>`;
+		product = product + `<p>`+prod.description+`</p>`;
+		product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">`;
+		product = product + `<div><ion-button color="dark" onclick="decrement('`+idInput+`')">`;	
+		product = product + `<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon></ion-button>`;
+		product = product + `<ion-button color="dark" onclick="increment('`+idInput+`')">`;	
+		product = product + `<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button></div></ion-label>`;
 		product = product + `<p class="price">`+prod.pvp+`</p>`;
 		product = product + `</ion-item>`;
 		products = products + product;
@@ -106,6 +113,9 @@ updateCategoryProducts = function(categoryProducts){
           </ion-label>
 			<p class="price">15.00 €</p>
         </ion-item>*/
+        
+
+        
 };
 
 handleButtonClick = function () {
