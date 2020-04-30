@@ -203,10 +203,13 @@ hideLoading = function () {
 	loading.dismiss();
 }
 
-hacerPedido = function (clientAddress) {
+hacerPedido = function () {
+    var street = document.getElementById("streetId").value;
+    var city = document.getElementById("cityId").value;
+    var address = street + ", "+city;
 	var cartaContent = document.getElementById("menuContent").children;
 	var pedido = "_Pedido_";
-	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+clientAddress+"*";
+	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
 	var empty = true;
 	
 	for(var i=0;i<cartaContent.length;i++){
@@ -334,12 +337,12 @@ function goToHome(){
             <ion-list>
                  <ion-radio-group value="sendType">
 
-          <ion-item>
-            <ion-label>Recoger en el local</ion-label>
+          <ion-item class="typeSendInput">
+            <ion-label >Recoger en el local</ion-label>
             <ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
           </ion-item>
 
-          <ion-item>
+          <ion-item class="typeSendInput">
             <ion-label>Enviar a casa</ion-label>
             <ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
           </ion-item>
@@ -352,18 +355,18 @@ function goToHome(){
           <form>
       		<ion-item>
         		<ion-label>Calle</ion-label>
-       			 <ion-input type="text" name="title"></ion-input>
+       			 <ion-input type="text" id="streetId" name="title"></ion-input>
       		</ion-item>
       		<ion-item>
         		<ion-label>Municipio</ion-label>
-        		<ion-input name="description"></ion-textarea>
+        		<ion-input id="cityId" name="description"></ion-textarea>
      	 	</ion-item>
-     	 	 <ion-item>
-        		<ion-label>Comenta lo que quieras</ion-label>
-        		<ion-textarea name="description"></ion-textarea>
-     	 	</ion-item>
+     	 	
     	  </form>
 
+<ion-item>
+  <ion-textarea placeholder="Coméntanos lo que quieras"></ion-textarea>
+</ion-item>
 
         </ion-radio-group>
             </ion-list>
@@ -371,7 +374,7 @@ function goToHome(){
           <ion-footer>
 		<div class="horizontal div1">
     		<div class="vertical">
-        	<ion-button expand="block" color="vibrant">Pedir por Whatsapp</ion-button>
+        	<ion-button expand="block" onclick="hacerPedido()" color="vibrant">Pedir por Whatsapp</ion-button>
    			 </div>
 		</div>
 
