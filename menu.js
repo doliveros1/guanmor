@@ -7,7 +7,10 @@ const HOME = "./index.html"
 
 var localId;
 var propertyInfo;
+var propertyMenu;
+
 var clientAddress;
+
 
 var loading;
 
@@ -52,6 +55,59 @@ setPropertyInfo = function (idProperty, object){
 	var text = "Ver carta de "+object.propertyName+" ";
 	document.getElementById("shareButton").href = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
+
+setMenuInfo = function (object){
+    propertyMenu = object;
+    updateMenuInfo(propertyMenu);
+};
+
+updateMenuInfo = function (menu){
+	var menuContent = document.getElementById("menuContent");
+
+	var inner = "";
+	
+	menu[0].categories.forEach(category => {
+		inner = inner + `<ion-list><ion-list-header class="categoryTitle">`;
+		inner = inner + category.title + `</ion-list-header>`;
+		inner = inner + updateCategoryProducts(category.products);
+		inner = inner + `</ion-list>`;
+
+	});
+	
+	menuContent.innerHTML = inner;
+};
+
+updateCategoryProducts = function(categoryProducts){
+	var products = "";
+	categoryProducts.forEach(prod =>{
+		var product = `<ion-item><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
+		product = product + `<p>`+prod.description+`</p></ion-label>`;
+		product = product + `<p class="price">`+prod.pvp+`</p>`;
+		product = product + `</ion-item>`;
+		products = products + product;
+	});
+	
+	return products;
+	
+	/*<ion-item>
+          <ion-label class="ion-text-wrap">
+            <h3>JAMÓN IBÉRICO DE RECEBO</h3>
+            <p>Jamón ibérico bueno pero no es 5 Js</p>
+            <input type="number" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">
+            <div>
+            	<ion-button color="dark">
+            		<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
+            	</ion-button>
+            	<ion-button color="dark">
+            		<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+            	</ion-button>
+            </div>
+
+          </ion-label>
+			<p class="price">15.00 €</p>
+        </ion-item>*/
+};
+
 handleButtonClick = function () {
   const alert = document.createElement('ion-alert');
   alert.header = 'Dirección de envío';
@@ -200,11 +256,29 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 const fetchLocal = (local) => {
     return axios.get(API_PATH+local,{ crossdomain: true })
         .then(response => {
-			hideLoading();
 			if(isEmpty(response.data)){
+				hideLoading();
 				goToHome();		
 			} else{
-        		setPropertyInfo(local, response.data);			
+        		setPropertyInfo(local, response.data);	
+        		fetchMenu(local);
+			}
+        })
+        .catch(error => {
+        	hideLoading();
+		});
+};
+
+const fetchMenu = (local) => {
+    return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
+        .then(response => {
+			hideLoading();
+			if(isEmpty(response.data)){
+				hideLoading();
+				//Toast no hay carta		
+			} else{
+        		setMenuInfo(response.data);	   
+        		hideLoading();     				
 			}
         })
         .catch(error => {
