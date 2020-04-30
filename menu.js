@@ -13,6 +13,7 @@ var clientAddress;
 
 var inputCon = 0;
 var loading;
+var numProductos=0;
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -87,7 +88,7 @@ updateCategoryProducts = function(categoryProducts){
 	    inputCon = inputCon + 1;
 		var product = `<ion-item><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
 		product = product + `<p>`+prod.description+`</p>`;
-		product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">`;
+		product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>`;
 		product = product + `<div><ion-button color="vibrant" onclick="decrement('`+idInput+`')">`;	
 		product = product + `<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon></ion-button>`;
 		product = product + `<ion-button color="vibrant" onclick="increment('`+idInput+`')">`;	
@@ -176,12 +177,30 @@ presentToast = function (text) {
 }
 
 increment = function(id){
+	numProductos = numProductos+1;
 	document.getElementById(id).stepUp(1);
+	updateBadge();
 };
 
 decrement = function(id){
+	numProductos = numProductos-1;
+	if(numProductos<0){
+		numProductos = 0;
+	}
 	document.getElementById(id).stepDown(1);
+	updateBadge();
+
 };
+
+updateBadge = function () {
+	var badgeContent;
+	if(numProductos === 0){
+		badgeContent = "";
+	} else{
+		badgeContent = numProductos;
+	}
+	document.getElementById("cart-badge").innerHTML = badgeContent;
+}
 
 showLoading = function (text) {
 	loading = document.createElement('ion-loading');
