@@ -28,6 +28,8 @@
 		background-color: #1B1B1E; 
     	display: flex;
     	justify-content: center;
+    	border-top:1px solid #3ed7ca;
+
 	}
 
 	div.vertical {
@@ -56,13 +58,17 @@
 		padding-top:10px;
 	}
 	
+	.toolBar {
+		border-bottom:1px solid #3ed7ca;
+	}
+	
 	//window.encodeURIComponent("My title"+"\r\n\r\n"+"My description and link")
 
   </style>
 </head>
 <body>
   <ion-app>
-	<ion-toolbar color="dark">
+	<ion-toolbar color="dark" class="toolBar">
 
         <ion-title id="propertyName" mode=ios>Cartas disponibles</ion-title>
 	</ion-toolbar>
