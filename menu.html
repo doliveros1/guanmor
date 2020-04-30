@@ -75,12 +75,23 @@
 	
 	.categoryTitle {
   		color: #3ed7ca;
+  		font-size: 20px;
+  		
 	}
 	.searchBar {
 		border-bottom:1px solid #3ed7ca;
 	}
 	
 	ion-item{ --border-color: #3ed7ca; }
+	
+	.ion-color-vibrant {
+  --ion-color-base: #3ed7ca;
+  --ion-color-base-rgb: 255,255,0;
+  --ion-color-contrast: #000000;
+  --ion-color-contrast-rgb: 0,0,0;
+  --ion-color-shade: #e0e000;
+  --ion-color-tint: #3ed7ca;
+}
 	
   </style>
 
@@ -93,7 +104,7 @@
       			<ion-icon slot="icon-only" name="call"></ion-icon>
       		</ion-button>
       		<ion-button id="whatsappButton" onclick="handleButtonClick()" >
-      			<ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+      			<ion-icon slot="icon-only" color="vibrant" name="cart-outline"></ion-icon>
         	</ion-button>
         </ion-buttons>
        <ion-buttons slot="start">
