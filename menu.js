@@ -99,30 +99,19 @@ updateCategoryProducts = function(categoryProducts){
 	});
 	
 	return products;
-	
-	/*<ion-item>
-          <ion-label class="ion-text-wrap">
-            <h3>JAMÓN IBÉRICO DE RECEBO</h3>
-            <p>Jamón ibérico bueno pero no es 5 Js</p>
-            <input type="number" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1">
-            <div>
-            	<ion-button color="dark">
-            		<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
-            	</ion-button>
-            	<ion-button color="dark">
-            		<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-            	</ion-button>
-            </div>
-
-          </ion-label>
-			<p class="price">15.00 €</p>
-        </ion-item>*/
-        
-
         
 };
 
 handleButtonClick = function () {
+	if(numProductos === 0){
+		presentToast("No ha seleccionado ningún producto");    		
+	} else {
+		//showOrderDetail();
+		createModal();
+	}
+};
+
+showOrderDetail = function () {
   const alert = document.createElement('ion-alert');
   alert.header = 'Dirección de envío';
   alert.inputs = [
@@ -213,6 +202,7 @@ showLoading = function (text) {
 hideLoading = function () {
 	loading.dismiss();
 }
+
 hacerPedido = function (clientAddress) {
 	var cartaContent = document.getElementById("menuContent").children;
 	var pedido = "_Pedido_";
@@ -328,4 +318,66 @@ function goToHome(){
 	window.location.href = HOME;
 };
 
+
+    customElements.define('modal-content', class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <ion-header translucent>
+            <ion-toolbar color="dark">
+              <ion-title>Mi Pedido</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="dismissModal()">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content fullscreen>
+            <ion-list>
+                 <ion-radio-group value="sendType">
+
+          <ion-item>
+            <ion-label>Recoger en el local</ion-label>
+            <ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Enviar a casa</ion-label>
+            <ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
+          </ion-item>
+          <!--ion-item>
+            <ion-label position="stacked">Dirección de envío</ion-label>
+            <ion-input placeholder="Dirección"></ion-input>
+            <ion-input placeholder="Población"></ion-input>
+          </ion-item-->
+
+
+        </ion-radio-group>
+            </ion-list>
+          </ion-content>
+          <ion-footer>
+		<div class="horizontal div1">
+    		<div class="vertical">
+        	<ion-button expand="block" color="vibrant">Pedir por Whatsapp</ion-button>
+   			 </div>
+		</div>
+
+	</ion-footer>
+        `;
+      }
+    });
+
+var currentModal = null;
+
+async function createModal() {
+	const modal = await modalController.create({
+	component: 'modal-content'
+	});
+	await modal.present();
+	currentModal = modal;
+}
+
+function dismissModal() {
+	if (currentModal) {
+        currentModal.dismiss().then(() => { currentModal = null; });
+	}
+}
 
