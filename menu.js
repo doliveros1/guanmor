@@ -348,6 +348,21 @@ function goToHome(){
             <ion-input placeholder="Dirección"></ion-input>
             <ion-input placeholder="Población"></ion-input>
           </ion-item-->
+          
+          <form>
+      		<ion-item>
+        		<ion-label>Calle</ion-label>
+       			 <ion-input type="text" name="title"></ion-input>
+      		</ion-item>
+      		<ion-item>
+        		<ion-label>Municipio</ion-label>
+        		<ion-input name="description"></ion-textarea>
+     	 	</ion-item>
+     	 	 <ion-item>
+        		<ion-label>Comenta lo que quieras</ion-label>
+        		<ion-textarea name="description"></ion-textarea>
+     	 	</ion-item>
+    	  </form>
 
 
         </ion-radio-group>
