@@ -183,9 +183,10 @@ increment = function(id){
 };
 
 decrement = function(id){
-	numProductos = numProductos-1;
 	if(numProductos<0){
 		numProductos = 0;
+	} else {
+		numProductos = numProductos-1;
 	}
 	document.getElementById(id).stepDown(1);
 	updateBadge();
