@@ -92,7 +92,18 @@
   --ion-color-shade: #e0e000;
   --ion-color-tint: #3ed7ca;
 }
-	
+
+	#whatsappButton {
+   		position: relative;
+    }
+    
+    #cart-badge {
+   		position: absolute;
+   		top: 0px;
+   		right: 0px;
+   		font-size: 6px;
+	}
+
   </style>
 
 </head>
@@ -104,7 +115,9 @@
       			<ion-icon slot="icon-only" name="call"></ion-icon>
       		</ion-button>
       		<ion-button id="whatsappButton" onclick="handleButtonClick()" >
-      			<ion-icon slot="icon-only" color="vibrant" name="cart-outline"></ion-icon>
+      			<ion-icon size="large" slot="icon-only" color="vibrant" name="cart-outline">
+      			</ion-icon>
+				<ion-badge id="cart-badge" color="danger">30</ion-badge>
         	</ion-button>
         </ion-buttons>
        <ion-buttons slot="start">
