@@ -73,9 +73,9 @@ updateMenuInfo = function (menu){
 		inner = inner + `</ion-list>`;
 	});
 	
-	inner = inner + `<ion-item text-center><ion-label color="danger">`;
+	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 	inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
-	inner = inner + `<ion-item text-center><ion-label color="danger">`;
+	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 	inner = inner + menu[0].nota + `</ion-label></ion-item>`;
 	menuContent.innerHTML = inner;
 };
