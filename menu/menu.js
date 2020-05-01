@@ -1,7 +1,7 @@
 const SEND_WHATSAPP = "";
 const CALL_PHONE = "";
 const SHARE_WHATSAPP = "";
-const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu.html";
+const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu/menu.html";
 const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
 const HOME = "./index.html"
 
@@ -447,8 +447,6 @@ function pickUp(){
 	document.getElementById("formAddress").className="formAddressDisable";
 };
 
-
-    
 
     function handleInputSearchBar(event) {
       var items = Array.from(document.getElementsByClassName("productItem"));
