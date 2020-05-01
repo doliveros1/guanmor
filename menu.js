@@ -254,7 +254,7 @@ hacerPedido = function () {
 	} else {
 		dismissModal();
 		var encodedPedido = window.encodeURIComponent(pedido);
-		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
+		window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
 	}
 }; 
 
