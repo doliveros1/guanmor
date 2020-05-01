@@ -210,10 +210,8 @@ hacerPedido = function () {
        
     var address = "Para recoger";
     var street = document.getElementById("streetId").value;
-    var city = document.getElementById("cityId").value;
-    if(isToHome){
-    	
-    	address = street + ", "+city;
+    if(isToHome){    	
+    	address = street;
     }
 	var cartaContent = document.getElementById("menuContent").children;
 	var pedido = "_Pedido_";
@@ -243,9 +241,10 @@ hacerPedido = function () {
 
 	if(!isPickUp && !isToHome) {
 		presentToast("Indique el modo de envío/recogida");    	
-	}else if(isToHome && (street === "" || city === "")) {
+	}else if(isToHome && (street === "")) {
 		presentToast("Indique una dirección de envío");    	
 	} else {
+		dismissPopover();
 		var encodedPedido = window.encodeURIComponent(pedido);
 		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
 	}
@@ -392,10 +391,6 @@ function goToHome(){
         				<ion-label>Dirección</ion-label>
        			 		<ion-input type="text" id="streetId" name="title"></ion-input>
       				</ion-item>
-      				<ion-item>
-        				<ion-label>Municipio</ion-label>
-        				<ion-input id="cityId" name="description"></ion-textarea>
-     	 			</ion-item>
     	  		</form>
 				<ion-item>
   					<ion-textarea id="freeText" placeholder="Coméntanos lo que quieras"></ion-textarea>
