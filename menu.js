@@ -18,6 +18,8 @@ var numProductos=0;
 var isPickUp = false;
 var isToHome =  false;
 
+var currentPopover;
+
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
@@ -244,7 +246,7 @@ hacerPedido = function () {
 	}else if(isToHome && (street === "")) {
 		presentToast("Indique una dirección de envío");    	
 	} else {
-		dismissPopover();
+		dismissModal();
 		var encodedPedido = window.encodeURIComponent(pedido);
 		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
 	}
