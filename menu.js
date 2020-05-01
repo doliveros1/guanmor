@@ -15,6 +15,9 @@ var inputCon = 0;
 var loading;
 var numProductos=0;
 
+var isPickUp = false;
+var isToHome =  false;
+
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
@@ -204,9 +207,14 @@ hideLoading = function () {
 }
 
 hacerPedido = function () {
+       
+    var address = "Para recoger";
     var street = document.getElementById("streetId").value;
     var city = document.getElementById("cityId").value;
-    var address = street + ", "+city;
+    if(isToHome){
+    	
+    	address = street + ", "+city;
+    }
 	var cartaContent = document.getElementById("menuContent").children;
 	var pedido = "_Pedido_";
 	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
@@ -230,14 +238,46 @@ hacerPedido = function () {
 			}
 		}
 	}
-	
-	if(empty) {
-		presentToast("No ha seleccionado ningún producto");    	
+	var freeText = document.getElementById("freeText").value;
+	pedido = pedido + "\r\n\r\n_"+freeText+"_";
+
+	if(!isPickUp && !isToHome) {
+		presentToast("Indique el modo de envío/recogida");    	
+	}else if(street === "" || city === "") {
+		presentToast("Indique una dirección de envío");    	
 	} else {
 		var encodedPedido = window.encodeURIComponent(pedido);
 		window.open('whatsapp://send?text='+encodedPedido+'&phone=+34679827962&abid=+34679827962')
 	}
 }; 
+
+getCurrentOrderInner = function () {
+	var cartaContent = document.getElementById("menuContent").children;
+	var currentOrder = [];
+	var innerHTML = "";
+
+	for(var i=0;i<cartaContent.length;i++){
+		if(cartaContent[i].tagName === "ION-LIST"){
+			var productsContent = cartaContent[i].children;
+			for(var j=0;j<productsContent.length;j++){
+				if(productsContent[j].tagName === "ION-ITEM"){
+					var product = productsContent[j].children[0];
+					var value = product.children[2].value;
+					var productName = product.children[0].textContent;
+					if(value === "" || value === "0"){
+					} else {
+					  empty = false;
+					  currentOrder.push(value+" "+productName);
+					  innerHTML = innerHTML + `<ion-item class="typeSendInput"><ion-label>`+value+" "+productName+`</ion-label></ion-item>`;
+					}			
+					
+				}
+			}
+		}
+	}
+	return innerHTML;
+	
+}
 
 handleButtonInfoClick = async function handleButtonInfoClick(ev) {
       popover = await popoverController.create({
@@ -324,6 +364,8 @@ function goToHome(){
 
     customElements.define('modal-content', class ModalContent extends HTMLElement {
       connectedCallback() {
+      	var currentOrder = getCurrentOrderInner();
+   
         this.innerHTML = `
           <ion-header translucent>
             <ion-toolbar color="dark">
@@ -335,41 +377,32 @@ function goToHome(){
           </ion-header>
           <ion-content fullscreen>
             <ion-list>
-                 <ion-radio-group value="sendType">
-
-          <ion-item class="typeSendInput">
-            <ion-label >Recoger en el local</ion-label>
-            <ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
-          </ion-item>
-
-          <ion-item class="typeSendInput">
-            <ion-label>Enviar a casa</ion-label>
-            <ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
-          </ion-item>
-          <!--ion-item>
-            <ion-label position="stacked">Dirección de envío</ion-label>
-            <ion-input placeholder="Dirección"></ion-input>
-            <ion-input placeholder="Población"></ion-input>
-          </ion-item-->
-          
-          <form>
-      		<ion-item>
-        		<ion-label>Calle</ion-label>
-       			 <ion-input type="text" id="streetId" name="title"></ion-input>
-      		</ion-item>
-      		<ion-item>
-        		<ion-label>Municipio</ion-label>
-        		<ion-input id="cityId" name="description"></ion-textarea>
-     	 	</ion-item>
-     	 	
-    	  </form>
-
-<ion-item>
-  <ion-textarea placeholder="Coméntanos lo que quieras"></ion-textarea>
-</ion-item>
-
-        </ion-radio-group>
-            </ion-list>
+                 <ion-radio-group mode=md value="sendType" >
+					<ion-item class="typeSendInput" onclick="pickUp()">
+            			<ion-label >Recoger en el local</ion-label>
+            			<ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
+          			</ion-item>
+					<ion-item class="typeSendInput" onclick="sendHome()">
+            			<ion-label>Enviar a casa</ion-label>
+            			<ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
+          			</ion-item>
+                  </ion-radio-group>
+         		<form class="formAddressDisable" id="formAddress">
+      				<ion-item>
+        				<ion-label>Dirección</ion-label>
+       			 		<ion-input type="text" id="streetId" name="title"></ion-input>
+      				</ion-item>
+      				<ion-item>
+        				<ion-label>Municipio</ion-label>
+        				<ion-input id="cityId" name="description"></ion-textarea>
+     	 			</ion-item>
+    	  		</form>
+				<ion-item>
+  					<ion-textarea id="freeText" placeholder="Coméntanos lo que quieras"></ion-textarea>
+				</ion-item>
+				<ion-item>
+        			<ion-title>Pedido</ion-title>
+     	 		</ion-item>`+currentOrder+`</ion-list>
           </ion-content>
           <ion-footer>
 		<div class="horizontal div1">
@@ -399,3 +432,14 @@ function dismissModal() {
 	}
 }
 
+function sendHome(){
+	isToHome =  true;
+	isPickUp = false;
+	document.getElementById("formAddress").className="formAddressEnable";
+}
+
+function pickUp(){
+	isToHome =  false;
+	isPickUp = true;
+	document.getElementById("formAddress").className="formAddressDisable";
+}
