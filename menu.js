@@ -20,6 +20,9 @@ var isToHome =  false;
 
 var currentPopover;
 
+var searchbar;
+
+
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
@@ -35,8 +38,11 @@ window.onload = (e) => {
 		deferredPrompt = e;
     });
     localId = GetURLParameter('property');
+    searchbar = document.querySelector('ion-searchbar');
+    searchbar.addEventListener('ionInput', handleInputSearchBar);
     showLoading("Cargando la carta");
     getPropertyInfo(localId);
+    
 }
 
 GetURLParameter = function (sParam) {
@@ -91,7 +97,7 @@ updateCategoryProducts = function(categoryProducts){
 	categoryProducts.forEach(prod =>{
 		var idInput = "pvpInput"+inputCon;
 	    inputCon = inputCon + 1;
-		var product = `<ion-item><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
+		var product = `<ion-item class="productItem"><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
 		product = product + `<p>`+prod.description+`</p>`;
 		product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>`;
 		product = product + `<div><ion-button color="vibrant" onclick="decrement('`+idInput+`')">`;	
@@ -421,22 +427,38 @@ async function createModal() {
 	});
 	await modal.present();
 	currentModal = modal;
-}
+};
 
 function dismissModal() {
 	if (currentModal) {
         currentModal.dismiss().then(() => { currentModal = null; });
 	}
-}
+};
 
 function sendHome(){
 	isToHome =  true;
 	isPickUp = false;
 	document.getElementById("formAddress").className="formAddressEnable";
-}
+};
 
 function pickUp(){
 	isToHome =  false;
 	isPickUp = true;
 	document.getElementById("formAddress").className="formAddressDisable";
-}
+};
+
+
+    
+
+    function handleInputSearchBar(event) {
+      var items = Array.from(document.getElementsByClassName("productItem"));
+
+      var query = event.target.value.toLowerCase();
+      requestAnimationFrame(() => {
+        items.forEach(item => {
+          var productLabel = item.children[0].children[0].textContent;
+          var shouldShow = productLabel.toLowerCase().indexOf(query) > -1;
+          item.style.display = shouldShow ? 'block' : 'none';
+        });
+      });
+    }
