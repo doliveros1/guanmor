@@ -243,7 +243,7 @@ hacerPedido = function () {
 
 	if(!isPickUp && !isToHome) {
 		presentToast("Indique el modo de envío/recogida");    	
-	}else if(street === "" || city === "") {
+	}else if(isToHome && (street === "" || city === "")) {
 		presentToast("Indique una dirección de envío");    	
 	} else {
 		var encodedPedido = window.encodeURIComponent(pedido);
