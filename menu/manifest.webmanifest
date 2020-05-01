@@ -11,5 +11,5 @@
   ],
   "name": "Mis cartas de restaurantes",
   "short_name": "ILMenu",
-  "start_url": "/guanmor/menu/index.html"
+  "start_url": "/menu/index.html"
 }
