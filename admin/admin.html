@@ -116,7 +116,7 @@
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title id="mainTitle" mode=ios>Configurar local</ion-title>
+          <ion-title id="mainTitle">Configurar local</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content id="local" class="ion-padding">
@@ -280,6 +280,22 @@
 				<img src="./qr_img.png">
 			</ion-item>
 		</ion-list>
+		<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="vibrant">
+          <ion-icon name="share-social-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+          <ion-fab-button color="light">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
 		</ion-content>
     </div>
   </ion-app>
