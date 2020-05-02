@@ -1,8 +1,3 @@
-const SEND_WHATSAPP = "";
-const CALL_PHONE = "";
-const SHARE_WHATSAPP = "";
-const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu.html";
-const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
 const MENU = "./menu.html"
 
 var localId;

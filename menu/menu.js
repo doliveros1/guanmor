@@ -1,8 +1,3 @@
-const SEND_WHATSAPP = "";
-const CALL_PHONE = "";
-const SHARE_WHATSAPP = "";
-const MENU_BASE_URL = "https://doliveros1.github.io/guanmor/menu/menu.html";
-const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
 const HOME = "./index.html"
 
 var localId;
@@ -27,7 +22,7 @@ var searchbar;
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/guanmor/menu/service-worker.js');
+    navigator.serviceWorker.register(SERVICE_WORKER);
   });
 }
 
@@ -222,28 +217,18 @@ hacerPedido = function () {
     	address = street;
     }
 	var cartaContent = document.getElementById("menuContent").children;
+	var itemsPedido = Array.from(document.getElementsByClassName("carritoItem"));
+
 	var pedido = "_Pedido_";
-	var pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
+	pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
 	var empty = true;
 	
-	for(var i=0;i<cartaContent.length;i++){
-		if(cartaContent[i].tagName === "ION-LIST"){
-			var productsContent = cartaContent[i].children;
-			for(var j=0;j<productsContent.length;j++){
-				if(productsContent[j].tagName === "ION-ITEM"){
-					var product = productsContent[j].children[0];
-					var value = product.children[2].value;
-					var productName = product.children[0].textContent;
-					if(value === "" || value === "0"){
-					} else {
-					  empty = false;
-					  pedido = pedido + "\r\n\r\n"+"- "+value+" "+productName;
-					}			
-					
-				}
-			}
-		}
+	for(var i=0;i<itemsPedido.length;i++){
+		var productName = itemsPedido[i].textContent;
+		pedido = pedido + "\r\n\r\n"+"- "+productName;
+			
 	}
+	
 	var freeText = document.getElementById("freeText").value;
 	pedido = pedido + "\r\n\r\n_"+freeText+"_";
 
@@ -266,6 +251,7 @@ getCurrentOrderInner = function () {
 	for(var i=0;i<cartaContent.length;i++){
 		if(cartaContent[i].tagName === "ION-LIST"){
 			var productsContent = cartaContent[i].children;
+			var carritoProductIndex = 0;
 			for(var j=0;j<productsContent.length;j++){
 				if(productsContent[j].tagName === "ION-ITEM"){
 					var product = productsContent[j].children[0];
@@ -275,7 +261,10 @@ getCurrentOrderInner = function () {
 					} else {
 					  empty = false;
 					  currentOrder.push(value+" "+productName);
-					  innerHTML = innerHTML + `<ion-item class="typeSendInput"><ion-label>`+value+" "+productName+`</ion-label></ion-item>`;
+					  carritoProductIndex = carritoProductIndex + 1;
+					  var idProduct = "carritoProduct"+carritoProductIndex;
+					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`<button onclick="removeCarritoItem('`+idProduct+`')" ion-button  float-right><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
+      					</ion-icon></button></ion-label></ion-item>`;
 					}			
 					
 				}
@@ -284,6 +273,10 @@ getCurrentOrderInner = function () {
 	}
 	return innerHTML;
 	
+}
+
+function removeCarritoItem(id){
+	document.getElementById(id).remove();
 }
 
 handleButtonInfoClick = async function handleButtonInfoClick(ev) {
