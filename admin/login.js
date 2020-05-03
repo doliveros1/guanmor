@@ -55,7 +55,8 @@ const fetchLogin = (pUser, pPassword) => {
 	xhr.onload = function () {
 	var response = JSON.parse(xhr.responseText);
 	if (xhr.readyState == 4 && xhr.status == "200") {
-		localStorage.setItem('jwt-token', response.token)
+		localStorage.setItem('jwt-token', response.token);
+		localStorage.setItem('localId', response.user);
 		goToAdmin();
 	} else {
 		presentToast(response.message)

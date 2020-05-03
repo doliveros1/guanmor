@@ -1,11 +1,20 @@
+var API_PATH_ADMIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 var indexCategory = 10;
 const LOGIN = "./login.html";
 
 var jwtToken;
+var localId;
 
 window.onload = (e) => { 
 	jwtToken = localStorage.getItem("jwt-token");
-	selectConfiguration("local");    
+	if(jwtToken === null){
+		goToLogin();
+	} else {
+		localId = localStorage.getItem("localId");
+		selectConfiguration("local");  
+		showLoading("Obteniendo información del local"); 
+		fetchLocal(localId);	
+	} 
 }
 
 addNewCategory = function (id) {
@@ -73,7 +82,94 @@ async function closeMenu() {
 function goToLogin(){
 	localStorage.removeItem("jwt-token");
 	window.location.href = LOGIN;
-
 }
+
+function setLocalInfo(localInfo){
+	document.getElementById("id").value = localInfo.id;
+	document.getElementById("propertyName").value = localInfo.propertyName;
+	document.getElementById("shortName").value = localInfo.shortName;
+	document.getElementById("latitude").value = localInfo.latitude;
+	document.getElementById("longitude").value = localInfo.longitude;
+	document.getElementById("description").value = localInfo.description;
+	document.getElementById("phoneNumber").value = localInfo.phoneNumber;
+	document.getElementById("whatsapp").value = localInfo.whatsapp;
+	document.getElementById("timeTable").value = localInfo.timeTable;
+	document.getElementById("card").checked = localInfo.card;
+	document.getElementById("cash").checked = localInfo.cash;
+	document.getElementById("homeDelivery").checked = localInfo.homeDelivery;	
+}
+
+function saveLocalInfo(){
+	showLoading("Guardando datos del local");
+	var localInfo = {};
+	localInfo.id = document.getElementById("id").value;
+	localInfo.propertyName = document.getElementById("propertyName").value;
+	localInfo.shortName = document.getElementById("shortName").value;
+	localInfo.latitude = document.getElementById("latitude").value;
+	localInfo.longitude = document.getElementById("longitude").value;
+	localInfo.description = document.getElementById("description").value;
+	localInfo.phoneNumber = document.getElementById("phoneNumber").value;
+	localInfo.whatsapp = document.getElementById("whatsapp").value;
+	localInfo.timeTable = document.getElementById("timeTable").value;
+	localInfo.card = document.getElementById("card").checked;
+	localInfo.cash = document.getElementById("cash").checked;
+	localInfo.homeDelivery = document.getElementById("homeDelivery").checked;	
+	sendLocalInfo(localId, localInfo);
+}
+
+showLoading = function (text) {
+	loading = document.createElement('ion-loading');
+  	loading.message = text;
+  	document.body.appendChild(loading);
+    loading.present();
+}
+hideLoading = function () {
+	loading.dismiss();
+}
+function presentToast(text) {
+  const toast = document.createElement('ion-toast');
+  toast.message = text;
+  toast.duration = 3000;
+
+  document.body.appendChild(toast);
+  return toast.present();
+}
+
+//DATA
+
+const fetchLocal = (idLocal) => {
+    return axios.get(API_PATH_ADMIN+"/local/"+idLocal,{ crossdomain: true })
+        .then(response => {
+        	setLocalInfo(response.data);
+        	hideLoading();
+        })
+        .catch(error => {
+        	hideLoading();
+        	goToLogin();
+        });
+};
+
+
+const sendLocalInfo = (idLocal, localPostData) => {
+
+	var url = API_PATH_ADMIN+"/local/"+idLocal+"?access_token="+jwtToken;
+	var json = JSON.stringify(localPostData);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("PUT", url, true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.onload = function () {
+	if (xhr.readyState == 4 && xhr.status == "200") {
+	    hideLoading();
+	    presentToast("Datos guardados correctamente");
+	} else if(xhr.status == "403"){
+		hideLoading();
+		goToLogin();
+	}else {
+		fetchLocal(idLocal);
+	}
+}
+	xhr.send(json);
+};
 
 
