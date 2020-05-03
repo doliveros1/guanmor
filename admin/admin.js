@@ -1,8 +1,10 @@
 var indexCategory = 10;
 const LOGIN = "./login.html";
 
+var jwtToken;
 
 window.onload = (e) => { 
+	jwtToken = localStorage.getItem("jwt-token");
 	selectConfiguration("local");    
 }
 
@@ -69,6 +71,7 @@ async function closeMenu() {
     }
 
 function goToLogin(){
+	localStorage.removeItem("jwt-token");
 	window.location.href = LOGIN;
 
 }

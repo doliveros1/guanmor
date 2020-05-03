@@ -1,7 +1,10 @@
 const ADMIN = "./admin.html";
-const API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+const API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 
 window.onload = (e) => { 
+	if(localStorage.getItem("jwt-token")!== null){
+		goToAdmin();
+	}
 }
 
 login = function () {
@@ -29,42 +32,35 @@ function validateLogin() {
 	if(user === "" || password ===""){
 		presentToast("Introduzca usuario y password");
 	} else{
-		//fetchLocales();
 		fetchLogin(user, password);
-		//goToAdmin();
 	}
 
 }
-
-
 
 
 //DATA
 
 const fetchLogin = (pUser, pPassword) => {
-
-	 var postData = {
+	var postData = {
       user: pUser,
       password: pPassword
     };
-
     // Post a user
-var url = API_PATH_LOGIN+"/signing/login";
+	var url = API_PATH_LOGIN+"/signing/login";
+	var json = JSON.stringify(postData);
 
-
-var json = JSON.stringify(postData);
-
-var xhr = new XMLHttpRequest();
-xhr.open("POST", url, true);
-xhr.setRequestHeader('Content-type','application/json');
-xhr.onload = function () {
-	var users = JSON.parse(xhr.responseText);
-	if (xhr.readyState == 4 && xhr.status == "201") {
-		console.table(users);
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.onload = function () {
+	var response = JSON.parse(xhr.responseText);
+	if (xhr.readyState == 4 && xhr.status == "200") {
+		localStorage.setItem('jwt-token', response.token)
+		goToAdmin();
 	} else {
-		console.error(users);
+		presentToast(response.message)
 	}
-}
-xhr.send(json);
+	}
+	xhr.send(json);
 };
 
