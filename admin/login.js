@@ -1,5 +1,5 @@
 const ADMIN = "./admin.html";
-const API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+const API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 
 window.onload = (e) => { 
 	if(localStorage.getItem("jwt-token")!== null){
