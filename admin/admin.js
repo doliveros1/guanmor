@@ -1,4 +1,6 @@
 var indexCategory = 10;
+const LOGIN = "./login.html";
+
 
 window.onload = (e) => { 
 	selectConfiguration("local");    
@@ -55,6 +57,8 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("carta").style.display="none";
 		document.getElementById("code").style.display="block";		
 		document.getElementById("mainTitle").innerHTML="Generar código";			
+	} else if(idConfiguration === "exit"){
+		goToLogin();		
 	}
 	closeMenu();
 
@@ -63,5 +67,10 @@ selectConfiguration = function (idConfiguration) {
 async function closeMenu() {
       await menuController.close();
     }
+
+function goToLogin(){
+	window.location.href = LOGIN;
+
+}
 
 

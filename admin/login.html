@@ -1,435 +1,133 @@
 <!DOCTYPE html>
-<html>
-<title>I Love Menu</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://checkoutlib.billsby.com/checkout.min.js" data-billsby-company="ilovemenu"></script>
-
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("./images/restaurant.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
-</style>
-<body>
-
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a href="#home" class="w3-bar-item w3-button w3-wide">
-          <img class="w3-image w3-round-large" src="./images/logo.png" alt="I love menu" width="135" height="40">
-    </a>
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="./menu/index.html" target="_blank" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WEB APP</a-->
-      <a href="#about" class="w3-bar-item w3-button">BENEFICIOS</a>
-      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> EQUIPO</a>
-      <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRECIOS</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACTA</a>
-    </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
-</div>
-
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="./menu/index.html" target="_blank" onclick="w3_close()" class="w3-bar-item w3-button">WEB APP</a-->
-  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">BENEFICIOS</a>
-  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">EQUIPO</a>
-  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRECIOS</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACTA</a>
-</nav>
-
-<!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-left w3-text-white" style="padding:48px">
-    <span class="w3-jumbo w3-hide-small"><p style="color:white;text-shadow: 0 0 5px #3ed7ca, 0 0 5px #3ed7ca;">EL MENÚ en tu móvil</p></span><br>
-    <div style="background-color:#3ed7ca">
-    <span><p style="color:white;font-size:26px" >Tu carta digital y tus pedidos online más fácil que nunca.</p></span>
-    </div>
-    <p><a href="#pricing" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">CONTRATA</a></p>
-  </div> 
-  <!--div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div-->
-</header>
-
-<!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
-  <h3 class="w3-center">AUMENTA TUS PEDIDOS HACIENDO UN MENÚ DIGITAL</h3>
-  <p class="w3-center w3-large">Tus clientes verán tu menú siempre actualizado</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px">
-    <div class="w3-quarter">
-      <i class="fa fa-rocket w3-margin-bottom w3-jumbo w3-center"></i>
-      <p class="w3-large">SIN PERMANENCIA</p>
-      <p>No tenemos permanencia, en el momento que no quieras formar parte de ilovemenu se cancelarán tus servicios.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-life-bouy w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">MÁS SEGURO</p>
-      <p>Cada cliente puede ver tu carta desde su dispositivo móvil, mantendrás la distancia de seguridad al máximo.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-refresh w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">SIEMPRE ACTUALIZADA</p>
-      <p>Cambia productos o precios y mantén tus menús siempre actualizados, no pierdas tiempo en volver a imprimirlos.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-shopping-basket w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">AUMENTA LOS PEDIDOS</p>
-      <p>Cada vez el pedido a los bares es cada vez mayor, tus clientes podrán ver tu carta de forma sencilla aumentando tus ventas.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Promo Section - "We know design" -->
-<div class="w3-container w3-aqua" style="padding:128px 16px">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h1>I LOVE MENU</h1>
-      <p>Es un sistema por el cual tienes tu carta en internet y tus clientes la pueden ver, hacer pedidos por whatsapp, llamarte al teléfono, ver ofertas y promociones. Todo lo gestionas tú y es muy fácil conseguirlo.</p>
-      <p>Nosotros te facilitamos el acceso y sólo tienes que empezar a vender más</p>
-      <p><a href="#pricing" class="w3-button w3-black"><i class="fa fa-th"> </i> CONTRATA</a></p>
-      <h3>¿NECESITAS IMPRIMIR VINILOS CON EL CÓDIGO QR?</h3>
-      <p>Nosotros tenemos packs con el código qr que enlaza con tu carta online, elige la mejor forma y da el salto online.</p>
-      <p><a href="#pricing" class="w3-button w3-black"><i class="fa fa-th"> </i> IMPRIME QR</a></p>
-    </div>
-    <div class="w3-col m6">
-      <img class="w3-image w3-round-large" src="./images/194.png" alt="Buildings" width="900" height="596">
-    </div>
-  </div>
-</div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guanmor</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
+  <script src="../config.js"></script>
+  <script src="./login.js"></script>  
 
 
-<!-- About Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="about">
-  <h3 class="w3-center">TENER UNA CARTA ONLINE ES MUY FÁCIL</h3>
-  <p class="w3-center w3-large">Nosotros te ayudamos a conseguirlo</p>
-  <div class="w3-row-padding w3-center" style="margin-top:64px">
-    <div class="w3-quarter">
-      <i class="fa fa-thumbs-o-up w3-margin-bottom w3-jumbo w3-center"></i>
-      <p class="w3-large">1 CONTRATA NUESTROS SERVICIOS</p>
-      <p>Compra el servicio que mejor se adapte a tus necesidades y ya formarás parte de ilovemenu, es muy fácil.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-send w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">2 ENVÍANOS TU CARTA</p>
-      <p>Tan solo nos tienes que hacer llegar los productos con sus características y precios y nosotros los incluímos la primera vez.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-check-circle w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">3 YA TIENES CARTA ONLINE</p>
-      <p>Te generamos un enlace en el que puedes ver la carta, de forma rápida y sencilla. Generamos un código qr para visualizarla.</p>
-    </div>
-    <div class="w3-quarter">
-      <i class="fa fa-line-chart w3-margin-bottom w3-jumbo"></i>
-      <p class="w3-large">4 COMIENZA A VENDER MÁS</p>
-      <p>Dínos si aceptas pedidos por whatsapp, recogida en tu negocio o si haces reparto a domicilio y comienza a vender más.</p>
-    </div>
-  </div>
-</div>
+  <script type="module">
+    import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.menuController = menuController;
+  </script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+  <style>
+    :root {
+      --ion-safe-area-top: 20px;
+      --ion-safe-area-bottom: 22px;
+    }
+    .footer{
+		height: 60px;
+		width: 100%;
+		background-color: black;    
+    }
 
-<!-- Team Section -->
-<div class="w3-container" style="padding:128px 16px" id="team">
-  <h3 class="w3-center">NOS GUSTAN LOS BARES</h3>
-  <p class="w3-center w3-large">El equipo humano de ilovemenu.es</p>
-  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="./images/team2.png" alt="John" style="width:100%">
-        <div class="w3-container">
-          <h3>DAVID</h3>
-          <p class="w3-opacity">Tech Lead</p>
-          <p>David tiene un perfil técnico muy completo. Desarrollador full stack con altos conocimientos frontend (web y mobile), backend y sistemas.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Escríbeme</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="./images/team1.jpg" alt="Jane" style="width:100%">
-        <div class="w3-container">
-          <h3>JAVIER</h3>
-          <p class="w3-opacity">Diseño Web</p>
-          <p>Javi no para de ver colores rgb, detrás de un ordenador es un diseñador puro. De vena artista es capaz de crear entornos increíbles. Diseño UX & UI.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Escríbeme</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="./images/team3.jpg" alt="Mike" style="width:100%">
-        <div class="w3-container">
-          <h3>ALBERTO</h3>
-          <p class="w3-opacity">Marketing</p>
-          <p>Marketing puro y duro. A Alberto le encanta ver como sus clientes son capaces de crecer, les ayuda en su plan de negocio, I+D en una sola persona.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Escríbeme</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="./images/team4.jpg" alt="Dan" style="width:100%">
-        <div class="w3-container">
-          <h3>MANOLITO</h3>
-          <p class="w3-opacity">Tester</p>
-          <p>Manolito es nuestro tester y todas aquellas personas que nos ayudan a desarrollar nuestras ideas.</p>
-          <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Escríbeme</button></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+    div.horizontal {
+    	height: 60px;
+		width: 100%;
+		background-color: #1B1B1E; 
+    	display: flex;
+    	justify-content: center;
+    	border-top:1px solid #3ed7ca;
 
-<!-- Promo Section "Statistics" -->
-<div class="w3-container w3-row w3-center w3-aqua w3-padding-64">
-  <div class="w3-quarter">
-    <span class="w3-xxlarge">+</span>
-    <br>PRÁCTICO
-  </div>
-  <div class="w3-quarter">
-    <span class="w3-xxlarge">+</span>
-    <br>RÁPIDO
-  </div>
-  <div class="w3-quarter">
-    <span class="w3-xxlarge">+</span>
-    <br>MODERNO
-  </div>
-  <div class="w3-quarter">
-    <span class="w3-xxlarge">+</span>
-    <br>PEDIDOS
-  </div>
-</div>
+	}
 
-<!-- Work Section -->
-<div class="w3-container" style="padding:128px 16px" id="work">
-  <div style="background-color:#3ed7ca">
+	div.vertical {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+	}
 	
-  <h3 class="w3-center">GRATIS HASTA EL 31 DE MAYO</h3>
-  <p class="w3-center w3-large">Sin compromiso</p>
+	@font-face {
+		font-family: guanmorFont;
+		src: url(ubuntu-v14-latin-regular.woff);
+	}
+	* {
+		font-family: guanmorFont;
+	}
+	.price{
+    	text-align: right;
+	}
 
-  <!--div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_mic.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A microphone">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_phone.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A phone">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_drone.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A drone">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_sound.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Soundbox">
-    </div>
-  </div>
+	.multiline {
+  		padding:20px;
+  		white-space: pre-wrap;
+	}
+	
+	.titleMenu {
+		padding-top:10px;
+	}
+	
+	.toolBar {
+		border-bottom:1px solid #3ed7ca;
+	}
+	.ion-color-vibrant {
+  		--ion-color-base: #3ed7ca;
+  		--ion-color-base-rgb: 255,255,0;
+  		--ion-color-contrast: #000000;
+  		--ion-color-contrast-rgb: 0,0,0;
+  		--ion-color-shade: #e0e000;
+  		--ion-color-tint: #3ed7ca;
+	}
+	
 
-  <div class="w3-row-padding w3-section">
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_tablet.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tablet">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_camera.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A camera">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_typewriter.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A typewriter">
-    </div>
-    <div class="w3-col l3 m6">
-      <img src="./images/tech_tableturner.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tableturner">
-    </div>
-  </div-->
-  </div>
-</div>
+  </style>
+</head>
 
-<!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
-  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-    <img id="img01" class="w3-image">
-    <p id="caption" class="w3-opacity w3-large"></p>
-  </div>
-</div>
+<body>
+  <ion-app>
 
-<!-- Skills Section -->
-<!--div class="w3-container w3-light-grey w3-padding-64">
-  <div class="w3-row-padding">
-    <div class="w3-col m6">
-      <h3>Our Skills.</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>
-      tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="w3-col m6">
-      <p class="w3-wide"><i class="fa fa-camera w3-margin-right"></i>Photography</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:90%">90%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-desktop w3-margin-right"></i>Web Design</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:85%">85%</div>
-      </div>
-      <p class="w3-wide"><i class="fa fa-photo w3-margin-right"></i>Photoshop</p>
-      <div class="w3-grey">
-        <div class="w3-container w3-dark-grey w3-center" style="width:75%">75%</div>
-      </div>
-    </div>
-  </div>
-</div-->
+<ion-content color="dark" padding>
+  <form>
+    <ion-grid>
+      <ion-row color="vibrant" justify-content-center>
+        <ion-col align-self-center >
+          <div text-center>
+            <h3>Login</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="email" type="text" placeholder="usuario ILoveMenu" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button color="vibrant" size="large" onclick="login()" expand="block">Login</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+       <ion-row>
+          <div text-center>
+        	¡Si no tienes cuenta regístrate <a routerLink='/register'>
+          register</a> antes!
+          </div>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+    <ion-footer>
+		<div class="horizontal div1">
+    		<div class="vertical">
+    			<a href="../index.html" target="_blank">
+    				<img class="logo" src="guanmor_logo.svg">
+    			</a>				
+   			 </div>
+		</div>
+	</ion-footer>
+  </ion-app>
 
-<!-- Pricing Section -->
-<div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="pricing">
-  <h3>PRECIOS</h3>
-  <p class="w3-large">Elige el PLAN que mejor se adapta a tus necesidades</p>
-  
-    <div style="background-color:yellow">
-		<h3 style="color:black" class="w3-center">GRATIS HASTA EL 31 DE MAYO</h3>
-  		<p style="color:black" class="w3-center w3-large">Sin compromiso</p>
-  	</div>
-  
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-third w3-section">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
-        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>SIN</b> Cambios (Se cobra por cada cambio solicitado)</li>
-        <!--li class="w3-padding-16"><b>COÌAS DE SEGURIDAD</b> Mensuales</li-->
-        <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
-        <li class="w3-padding-16"><b>SIN</b> pedido por whatsapp</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">4,99€</h2>
-          <span class="w3-opacity">al mes</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button><a href="javascript:void(0)" data-billsby-type="checkout">Subscribe</a></button>
-        </li>
-      </ul>
-    </div>
-    <div class="w3-third">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-aqua w3-xlarge w3-padding-48">Pro</li>
-        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>2 CAMBIOS</b> al mes</li>
-        <!--li class="w3-padding-16"><b>COPIAS DE SEGURIDAD</b> Semanales</li-->
-        <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
-        <li class="w3-padding-16"><b>CON</b> pedido por whatsapp</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">9,99€</h2>
-          <span class="w3-opacity">al mes</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button onclick="window.location.href='tel:+34619048731'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
-        </li>
-      </ul>
-    </div>
-    <div class="w3-third w3-section">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
-        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>4 CAMBIOS</b> al mes</li>
-        <!--li class="w3-padding-16"><b>COPIAS DE SEGURIDAD</b> Diarias</li-->
-        <li class="w3-padding-16"><b>SOPORTE</b> por mail (respuesta antes de 24 horas)</li>
-        <li class="w3-padding-16"><b>CON</b> pedido por whatsapp</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">14,99€</h2>
-          <span class="w3-opacity">al mes</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button onclick="window.location.href='tel:+34619048731'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Contact Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-  <h3 class="w3-center">CONTACTA</h3>
-  <p class="w3-center w3-large">Habla con nosotros para cualquier duda</p>
-  <div style="margin-top:48px">
-    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> España</p>
-    <p ><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i><a href="tel:+34619048731"> Phone/Whatsapp: +34 619 048 731</a></p>
-    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i><a href="mailto:info@ilovemenu.es"> Email: info@ilovemenu.es</a></p>
-    <br>
-    <!--form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-border" type="text" placeholder="Nombre" required name="Nombre"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Asunto" required name="Asunto"></p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Mensaje" required name="Mensaje"></p>
-      <p>
-        <button class="w3-button w3-black" type="submit">
-          <i class="fa fa-paper-plane"></i> ENVIAR MENSAJE
-        </button>
-      </p>
-    </form-->
-    <!-- Image of location/map -->
-    <img src="./images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
-  </div>
-</div>
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
-  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>SUBIR</a>
-  <div class="w3-xlarge w3-section">
-    <i class="fa fa-instagram w3-hover-opacity" ></i>
-  </div>
-  <p>Powered by <a href="https://www.ilovelamari.com" title="W3.CSS" target="_blank" class="w3-hover-text-green">ilovelamari.com</a></p>
-</footer>
- 
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
-
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
-</script>
-
+  <script>
+    async function openMenu() {
+      await menuController.open();
+    }
+  </script>
 </body>
 </html>
