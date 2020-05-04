@@ -49,7 +49,6 @@ removeCategory = function (id) {
 	var lastNode = document.getElementById(id).remove();
 };  
 
-
 //
 
 selectConfiguration = function (idConfiguration) {

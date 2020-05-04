@@ -1,6 +1,14 @@
 const ADMIN = "./admin.html";
 const API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/admin/service-worker.js');
+  });
+}
+
 window.onload = (e) => { 
 	if(localStorage.getItem("jwt-token")!== null){
 		goToAdmin();
