@@ -4,15 +4,20 @@ const LOGIN = "./login.html";
 
 var jwtToken;
 var localId;
+var MENU_INFO = {};
+var LOCAL_INFO = {};
+var MAP_CATEGORIES_ID = new Map();
+var nav;
 
 window.onload = (e) => { 
+	nav = document.querySelector('ion-nav');
+
 	jwtToken = localStorage.getItem("jwt-token");
 	if(jwtToken === null){
 		goToLogin();
 	} else {
 		localId = localStorage.getItem("localId");
 		selectConfiguration("local");  
-		showLoading("Obteniendo información del local"); 
 		fetchLocal(localId);	
 	} 
 }
@@ -28,6 +33,12 @@ addNewCategory = function (id) {
 	var elem = document.createElement('ion-item');
 	elem.setAttribute("id", category);
 
+	var categoryObject = {};
+	categoryObject.title = value;
+	categoryObject.products = [];
+	MAP_CATEGORIES_ID.set(category, categoryObject);
+
+
     elem.innerHTML = `<ion-buttons slot="end">
         			<ion-button color="vibrant" onclick="removeCategory('`+category+`')">
       					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
@@ -35,7 +46,7 @@ addNewCategory = function (id) {
         			<ion-button color="vibrant">        		
         				<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
   					</ion-button>
-  					<ion-button color="vibrant">        		
+  					<ion-button color="vibrant" onclick="showCategoryDetail('`+category+`')">        		
         				<ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
   					</ion-button>
         		</ion-buttons>        		
@@ -47,6 +58,7 @@ addNewCategory = function (id) {
 
 removeCategory = function (id) {
 	var lastNode = document.getElementById(id).remove();
+	MAP_CATEGORIES_ID.delete(id);
 };  
 
 //
@@ -61,7 +73,8 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="block";
 		document.getElementById("code").style.display="none";		
-		document.getElementById("mainTitle").innerHTML="Configurar carta";			
+		document.getElementById("mainTitle").innerHTML="Configurar carta";	
+		fetchMenu(localId);		
 	} else if(idConfiguration === "code"){
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="none";
@@ -84,6 +97,7 @@ function goToLogin(){
 }
 
 function setLocalInfo(localInfo){
+	LOCAL_INFO = localInfo;
 	document.getElementById("id").value = localInfo.id;
 	document.getElementById("propertyName").value = localInfo.propertyName;
 	document.getElementById("shortName").value = localInfo.shortName;
@@ -97,6 +111,82 @@ function setLocalInfo(localInfo){
 	document.getElementById("cash").checked = localInfo.cash;
 	document.getElementById("homeDelivery").checked = localInfo.homeDelivery;	
 }
+
+function setMenuInfo(menuInfo){
+	MAP_CATEGORIES_ID = new Map();
+	MENU_INFO = menuInfo;
+	customElements.define('nav-categories', class NavHome extends HTMLElement {
+		connectedCallback() {
+		  var categoryHTML = "";
+
+		  categoryHTML = `
+			<ion-header translucent>
+			  <ion-toolbar>
+				<ion-title>Categorías</ion-title>
+			  </ion-toolbar>
+			</ion-header>
+			<ion-content fullscreen>
+			  <ion-list id="listCategories">`;
+			  
+			  menuInfo[0].categories.forEach(category=>{
+				indexCategory = indexCategory +1;
+				var idCategory = "category"+indexCategory;
+				MAP_CATEGORIES_ID.set(idCategory,category);
+				categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
+				<ion-buttons slot="end">
+				  <ion-button color="vibrant" onclick="removeCategory('`+idCategory+`')" >
+						<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+				  </ion-button>
+				  <ion-button color="vibrant">        		
+					  <ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+					</ion-button>
+					<ion-button color="vibrant" onclick="showCategoryDetail('`+idCategory+`')">        		
+					  <ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
+					</ion-button>
+			  </ion-buttons>
+		
+				<ion-input value="`+category.title+`" class="ion-text-wrap">
+				</ion-input>
+		  </ion-item>`;
+			});
+			categoryHTML = categoryHTML + `<ion-item id="newCategoryItem">
+			<ion-button color="vibrant" onclick="addNewCategory('newCategoryId')" slot="end">
+				Añadir
+			  </ion-button>          		
+				<ion-input id="newCategoryId" value="" placeholder="Escriba nombre de la categoría" class="ion-text-wrap">
+				</ion-input>
+			</ion-item>`;
+			categoryHTML = categoryHTML+  `</ion-list>
+			</ion-content>
+		  `;
+		  this.innerHTML = categoryHTML;
+		  console.info(categoryHTML);
+		}
+	  });
+	
+};
+
+customElements.define('nav-products', class NavDetail extends HTMLElement {
+	connectedCallback() {
+	  this.innerHTML = `
+		<ion-header translucent>
+		  <ion-toolbar>
+			<ion-buttons slot="start">
+			  <ion-back-button defaultHref="/"></ion-back-button>
+			</ion-buttons>
+			<ion-title>`+this.categoryProduct.title+`</ion-title>
+		  </ion-toolbar>
+		</ion-header>
+		<ion-content fullscreen class="ion-padding">
+		</ion-content>
+	  `;
+	}
+  });
+
+function showCategoryDetail(category) {
+	const categoryProduct = MAP_CATEGORIES_ID.get(category);
+	nav.push('nav-products', {categoryProduct});
+};
 
 function saveLocalInfo(){
 	showLoading("Guardando datos del local");
@@ -113,6 +203,7 @@ function saveLocalInfo(){
 	localInfo.card = document.getElementById("card").checked;
 	localInfo.cash = document.getElementById("cash").checked;
 	localInfo.homeDelivery = document.getElementById("homeDelivery").checked;	
+	LOCAL_INFO = localInfo;
 	sendLocalInfo(localId, localInfo);
 }
 
@@ -137,9 +228,23 @@ function presentToast(text) {
 //DATA
 
 const fetchLocal = (idLocal) => {
+	showLoading("Obteniendo información del local"); 
     return axios.get(API_PATH_ADMIN+"/local/"+idLocal,{ crossdomain: true })
         .then(response => {
         	setLocalInfo(response.data);
+        	hideLoading();
+        })
+        .catch(error => {
+        	hideLoading();
+        	goToLogin();
+        });
+};
+
+const fetchMenu = (idLocal) => {
+	showLoading("Obteniendo el menú"); 
+    return axios.get(API_PATH_ADMIN+"/local/"+idLocal+"/menu",{ crossdomain: true })
+        .then(response => {
+        	setMenuInfo(response.data);
         	hideLoading();
         })
         .catch(error => {
