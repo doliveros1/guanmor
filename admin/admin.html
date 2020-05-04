@@ -185,7 +185,7 @@
 		<ion-nav root="nav-categories"></ion-nav>
 
 		<ion-fab horizontal="center" vertical="bottom" slot="fixed">
-        		<ion-fab-button color="vibrant">
+        		<ion-fab-button onclick="saveMenuInfo()" color="vibrant">
           			<ion-icon name="save-outline"></ion-icon>
        			 </ion-fab-button>
       	</ion-fab>
@@ -193,53 +193,8 @@
       <ion-content id="code" class="ion-padding">
 		<ion-list>
 		<ion-item>
-			<ion-col>
-			  <ion-list inset>
-				<ion-item>
-					<ion-label position="stacked"  color="vibrant" >Título</ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-				  <ion-item>
-					<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-				  <ion-item>
-					<ion-label position="stacked"  color="vibrant">Precio</ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-			  </ion-list>
-			</ion-col>
-		  </ion-row>
-		  <ion-buttons slot="end">
-			<ion-button color="vibrant">
-				  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-			</ion-button>
-			<ion-button color="vibrant">        		
-				<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
-			  </ion-button>
-		</ion-buttons>
-  
-		</ion-item>
-
-		<ion-item>
-			<ion-col>
-			  <ion-list inset>
-				<ion-item>
-					<ion-label position="stacked" color="vibrant" >Título: </ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-				  <ion-item>
-					<ion-label position="stacked" color="vibrant" >Descripción: </ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-				  <ion-item>
-					<ion-label position="stacked" color="vibrant">Precio: </ion-label>
-					<ion-input></ion-input>
-				  </ion-item>
-			  </ion-list>
-			</ion-col>
-		  </ion-row>
-		</ion-item>
+			<h3>Próximamente</h3>
+		</ion-item>	
 		</ion-list>
 		<ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="vibrant">

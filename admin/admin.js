@@ -65,11 +65,16 @@ addNewCategory = function (id) {
 addNewProduct= function (idCategory, idProduct) {
     indexProduct = indexProduct + 1;
     var product = "product"+indexProduct;
-	var value = document.getElementById(idProduct).value;
-	if(value === ""){
+	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
+	var valueDescription = document.getElementById(idProduct).getElementsByClassName("inputProductDescription")[0].value;
+	var valuePvp= document.getElementById(idProduct).getElementsByClassName("inputProductPvp")[0].value;
+
+	if(valueTitle === ""){
 		presentToast("El nombre del producto no puede estar vacío");
 	}else {
-	document.getElementById("newProductId").value="";
+	document.getElementById("newProductTitleId").value="";
+	document.getElementById("newProductDescriptionId").value="";
+	document.getElementById("newProductPvpId").value="";
 
 	var lastNode = document.getElementById("newProductItem");
 	
@@ -77,22 +82,42 @@ addNewProduct= function (idCategory, idProduct) {
 	elem.setAttribute("id", product);
 
 	var productObject = {};
-	productObject.title = value;
-	productObject.products = [];
+	productObject.title = valueTitle;
+	productObject.description =valueDescription;
+	productObject.pvp = valuePvp;;
 	MAP_CATEGORIES_ID.get(idCategory).products.push(productObject);
 	MAP_PRODUCTS_ID.set(product, productObject);
 
-    elem.innerHTML = `<ion-buttons slot="end">
-        			<ion-button color="vibrant" onclick="removeProduct('`+idCategory+`','`+product+`')">
-      					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-        			</ion-button>
-        			<ion-button color="vibrant">        		
-        				<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
-  					</ion-button>
-        		</ion-buttons>        		
-          		<ion-input value="`+value+`" class="ion-text-wrap">
-          		</ion-input>`;
+				  elem.innerHTML = `
+				  <ion-col>
+					<ion-list inset>
+					  <ion-item>
+						  <ion-label position="stacked"  color="vibrant" >Título</ion-label>
+						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.title+`" class="ion-text-wrap inputProductTitle">
+						  </ion-item>
+						<ion-item>
+						  <ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.description+`" class="ion-text-wrap inputProductDescription">
+						</ion-item>
+						<ion-item>
+						  <ion-label position="stacked"  color="vibrant">Precio</ion-label>
+						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
+						</ion-item>
+					</ion-list>
+				  </ion-col>
+				</ion-row>
+				<ion-buttons slot="end">
+				<ion-button color="vibrant" onclick="removeProduct('`+idCategory+`','`+product+`')" >
+				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+				  </ion-button>
+				  <ion-button color="vibrant">        		
+					  <ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+					</ion-button>
+			  </ion-buttons>  
+			 `;
+				  
 	document.getElementById("listProducts").insertBefore(elem,lastNode);
+
 	}
 
 };
@@ -111,9 +136,12 @@ removeProduct = function (idCategory, idProduct) {
 };  
 updateProduct = function (idCategory, idProduct) {
 	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
+	var valueDescription = document.getElementById(idProduct).getElementsByClassName("inputProductDescription")[0].value;
+	var valuePvp= document.getElementById(idProduct).getElementsByClassName("inputProductPvp")[0].value;
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	product.title = valueTitle;
-	console.info(product);
+	product.description = valueDescription;
+	product.pvp = valuePvp;
 };  
 
 selectConfiguration = function (idConfiguration) {
@@ -243,6 +271,33 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		var idProduct = "product"+indexProduct;
 		MAP_PRODUCTS_ID.set(idProduct, product);
 		productHTML = productHTML + `<ion-item id="`+idProduct+`">
+		<ion-col>
+		  <ion-list inset>
+			<ion-item>
+				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
+				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
+				</ion-item>
+			  <ion-item>
+				<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.description+`" class="ion-text-wrap inputProductDescription">
+			  </ion-item>
+			  <ion-item>
+				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
+				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
+			  </ion-item>
+		  </ion-list>
+		</ion-col>
+	  </ion-row>
+	  <ion-buttons slot="end">
+	  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
+	  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+		</ion-button>
+		<ion-button color="vibrant">        		
+			<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+		  </ion-button>
+	</ion-buttons>  
+	</ion-item>`;
+		/*productHTML = productHTML + `<ion-item id="`+idProduct+`">
 		<ion-buttons slot="end">
 		  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
@@ -254,16 +309,35 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 
 		<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
 		</ion-input>
-  </ion-item>`;
+  </ion-item>`;*/
+
+
 	  });
-	  
-	  productHTML = productHTML + `<ion-item id="newProductItem">
-	  <ion-button color="vibrant" onclick="addNewProduct('`+this.categoryProduct.id+`','newProductId')" slot="end">
-		  Añadir
-		</ion-button>          		
-		  <ion-input id="newProductId" value="" placeholder="Escriba nombre del producto" class="ion-text-wrap">
+
+	  productHTML = productHTML + `		<ion-item id="newProductItem">
+	  <ion-col>
+		<ion-list inset>
+		  <ion-item>
+			  <ion-label position="stacked"  color="vibrant" >Título</ion-label>
+			  <ion-input id="newProductTitleId" value=""  class="ion-text-wrap inputProductTitle">
 		  </ion-input>
-	  </ion-item>`;
+			</ion-item>
+			<ion-item>
+			  <ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+			  <ion-input id="newProductDescriptionId" value=""  class="ion-text-wrap inputProductDescription">
+			</ion-item>
+			<ion-item>
+			  <ion-label position="stacked"  color="vibrant">Precio</ion-label>
+			  <ion-input id="newProductPvpId" value=""  class="ion-text-wrap inputProductPvp">
+			</ion-item>
+		</ion-list>
+	  </ion-col>
+	</ion-row>
+	<ion-button color="vibrant" onclick="addNewProduct('`+this.categoryProduct.id+`','newProductItem')" slot="end">
+		  Añadir
+		</ion-button>  
+  </ion-item>`;
+
 	  productHTML = productHTML +`</ion-list></ion-content>`;
 
 	  this.innerHTML = productHTML;
@@ -296,6 +370,19 @@ function saveLocalInfo(){
 	localInfo.homeDelivery = document.getElementById("homeDelivery").checked;	
 	LOCAL_INFO = localInfo;
 	sendLocalInfo(localId, localInfo);
+}
+
+function saveMenuInfo(){
+	showLoading("Guardando datos de la carta");
+	var menuInfo = MENU_INFO;
+	var arrayCategories = Array.from(MAP_CATEGORIES_ID);
+	var newCategories = [];
+	arrayCategories.forEach(categoryObject=>{
+		newCategories.push(categoryObject[1])
+	});
+
+	menuInfo[0].categories = newCategories;
+	sendMenuInfo(localId, menuInfo);
 }
 
 showLoading = function (text) {
@@ -349,6 +436,28 @@ const sendLocalInfo = (idLocal, localPostData) => {
 
 	var url = API_PATH_ADMIN+"/local/"+idLocal+"?access_token="+jwtToken;
 	var json = JSON.stringify(localPostData);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("PUT", url, true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.onload = function () {
+	if (xhr.readyState == 4 && xhr.status == "200") {
+	    hideLoading();
+	    presentToast("Datos guardados correctamente");
+	} else if(xhr.status == "403"){
+		hideLoading();
+		goToLogin();
+	}else {
+		fetchLocal(idLocal);
+	}
+}
+	xhr.send(json);
+};
+
+const sendMenuInfo = (idLocal, menuPostData) => {
+
+	var url = API_PATH_ADMIN+"/local/"+idLocal+"/menu?access_token="+jwtToken;
+	var json = JSON.stringify(menuPostData);
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("PUT", url, true);
