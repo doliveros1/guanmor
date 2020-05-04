@@ -109,6 +109,12 @@ removeProduct = function (idCategory, idProduct) {
 	MAP_CATEGORIES_ID.get(idCategory).products = products;
 	console.info(products);
 };  
+updateProduct = function (idCategory, idProduct) {
+	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
+	var product = MAP_PRODUCTS_ID.get(idProduct);
+	product.title = valueTitle;
+	console.info(product);
+};  
 
 selectConfiguration = function (idConfiguration) {
 	if(idConfiguration === "local"){
@@ -182,7 +188,7 @@ function setMenuInfo(menuInfo){
 			</ion-button>
 	  </ion-buttons>
 
-		<ion-input value="`+category.title+`" class="ion-text-wrap">
+		<ion-input class="inputProductTitle" value="`+category.title+`" class="ion-text-wrap">
 		</ion-input>
   </ion-item>`;
 	});
@@ -246,10 +252,11 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			</ion-button>
 	  </ion-buttons>
 
-		<ion-input value="`+product.title+`" class="ion-text-wrap">
+		<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
 		</ion-input>
   </ion-item>`;
 	  });
+	  
 	  productHTML = productHTML + `<ion-item id="newProductItem">
 	  <ion-button color="vibrant" onclick="addNewProduct('`+this.categoryProduct.id+`','newProductId')" slot="end">
 		  Añadir
