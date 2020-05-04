@@ -101,7 +101,7 @@
           </ion-item>
           <ion-item onclick="selectConfiguration('code')">
             <ion-icon name="qr-code-outline" slot="start"></ion-icon>
-            <ion-label>Generar código</ion-label>
+            <ion-label>Comparte tu carta</ion-label>
           </ion-item>
           <ion-item onclick="selectConfiguration('exit')">
             <ion-icon name="log-out-outline" slot="start"></ion-icon>
@@ -192,18 +192,54 @@
       </ion-content>
       <ion-content id="code" class="ion-padding">
 		<ion-list>
-			<ion-item>
-		  		<ion-label>Enlace a la carta
-		  		<h3><a href="https://www.ilovemenu.es/menu/menu.html?property=sanblas0">https://www.ilovemenu.es/menu/menu.html?property=sanblas0</a></h3>
-				</ion-label>
-			</ion-item>
-			<ion-item>
-            	<ion-label position="stacked">¿Tienes página web? Mete tu carta digital...</ion-label>
-            	<ion-textarea value="&lt;div style=&quot;width: 100%&quot;&gt;&lt;iframe width=&quot;100%&quot; height=&quot;600&quot; src=&quot;https://www.ilovemenu.es/menu/menu.html?property=sanblas0&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;br /&gt;"></ion-textarea>
-          	</ion-item>
-			<ion-item>
-				<img src="./qr_img.png">
-			</ion-item>
+		<ion-item>
+			<ion-col>
+			  <ion-list inset>
+				<ion-item>
+					<ion-label position="stacked"  color="vibrant" >Título</ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label position="stacked"  color="vibrant">Precio</ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+			  </ion-list>
+			</ion-col>
+		  </ion-row>
+		  <ion-buttons slot="end">
+			<ion-button color="vibrant">
+				  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+			</ion-button>
+			<ion-button color="vibrant">        		
+				<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+			  </ion-button>
+		</ion-buttons>
+  
+		</ion-item>
+
+		<ion-item>
+			<ion-col>
+			  <ion-list inset>
+				<ion-item>
+					<ion-label position="stacked" color="vibrant" >Título: </ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label position="stacked" color="vibrant" >Descripción: </ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label position="stacked" color="vibrant">Precio: </ion-label>
+					<ion-input></ion-input>
+				  </ion-item>
+			  </ion-list>
+			</ion-col>
+		  </ion-row>
+		</ion-item>
 		</ion-list>
 		<ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="vibrant">
