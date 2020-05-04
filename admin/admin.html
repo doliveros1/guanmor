@@ -28,6 +28,9 @@
 		background-color: black;    
     }
 
+	.ion-input{
+		word-break: break-word;
+	}
     div.horizontal {
     	height: 60px;
 		width: 100%;
@@ -86,7 +89,7 @@
     <ion-menu side="start" content-id="main-content">
       <ion-header>
         <ion-toolbar color="dark" >
-          <ion-title>Rte. San Blas</ion-title>
+		  <ion-title>Rte. San Blas</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -116,7 +119,13 @@
         <ion-toolbar color="dark" class="toolBar">
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+		  </ion-buttons>
+		  <ion-buttons slot="end">
+			<ion-button id="SaveButton" onclick="saveSettings()" >
+				<ion-icon size="large" slot="icon-only" color="vibrant" name="save-outline">
+				</ion-icon>
+		  </ion-button>
+	  </ion-buttons>
           <ion-title id="mainTitle">Configurar local</ion-title>
         </ion-toolbar>
       </ion-header>
@@ -175,20 +184,9 @@
   			</ion-item>
 
 		</ion-list>
-				<ion-fab horizontal="center" vertical="bottom" slot="fixed">
-        		<ion-fab-button onclick="saveLocalInfo()" color="vibrant">
-          			<ion-icon name="save-outline"></ion-icon>
-       			 </ion-fab-button>
-      	</ion-fab>
       	</ion-content>
       <ion-content id="carta" class="ion-padding">
 		<ion-nav root="nav-categories"></ion-nav>
-
-		<ion-fab horizontal="center" vertical="bottom" slot="fixed">
-        		<ion-fab-button onclick="saveMenuInfo()" color="vibrant">
-          			<ion-icon name="save-outline"></ion-icon>
-       			 </ion-fab-button>
-      	</ion-fab>
       </ion-content>
       <ion-content id="code" class="ion-padding">
 		<ion-list>

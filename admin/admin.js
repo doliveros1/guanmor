@@ -12,6 +12,8 @@ var MAP_CATEGORIES_ID = new Map();
 var MAP_PRODUCTS_ID = new Map();
 var nav;
 
+var page;
+
 window.onload = (e) => { 
 	nav = document.querySelector('ion-nav');
 
@@ -145,6 +147,7 @@ updateProduct = function (idCategory, idProduct) {
 };  
 
 selectConfiguration = function (idConfiguration) {
+	page = idConfiguration;
 	if(idConfiguration === "local"){
 		document.getElementById("local").style.display="block";
 		document.getElementById("carta").style.display="none";	
@@ -384,6 +387,14 @@ function saveMenuInfo(){
 	menuInfo[0].categories = newCategories;
 	sendMenuInfo(localId, menuInfo);
 }
+
+function saveSettings() {
+	if (page === "local"){
+		saveLocalInfo();
+	} else if (page === "carta"){
+		saveMenuInfo();
+	}
+};
 
 showLoading = function (text) {
 	loading = document.createElement('ion-loading');
