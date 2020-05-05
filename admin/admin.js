@@ -57,8 +57,8 @@ addNewCategory = function (id) {
         				<ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
   					</ion-button>
         		</ion-buttons>        		
-          		<ion-input value="`+value+`" class="ion-text-wrap">
-          		</ion-input>`;
+          		<ion-textarea value="`+value+`" class="ion-text-wrap">
+          		</ion-textarea>`;
     document.getElementById("listCategories").insertBefore(elem,lastNode);		
 	}
 };
@@ -94,15 +94,15 @@ addNewProduct= function (idCategory, idProduct) {
 					<ion-list inset>
 					  <ion-item>
 						  <ion-label position="stacked"  color="vibrant" >Título</ion-label>
-						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.title+`" class="ion-text-wrap inputProductTitle">
+						  <ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.title+`" class="ion-text-wrap inputProductTitle">
 						  </ion-item>
 						<ion-item>
 						  <ion-label position="stacked" color="vibrant" >Descripción</ion-label>
-						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.description+`" class="ion-text-wrap inputProductDescription">
+						  <ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.description+`" class="ion-text-wrap inputProductDescription">
 						</ion-item>
 						<ion-item>
 						  <ion-label position="stacked"  color="vibrant">Precio</ion-label>
-						  <ion-input onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
+						  <ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
 						</ion-item>
 					</ion-list>
 				  </ion-col>
@@ -275,16 +275,16 @@ function setMenuInfo(menuInfo){
 			</ion-button>
 	  </ion-buttons>
 
-		<ion-input onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
-		</ion-input>
+		<ion-textarea onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
+		</ion-textarea>
   </ion-item>`;
 	});
 	categoryHTML = categoryHTML + `<ion-item id="newCategoryItem">
 	<ion-button color="vibrant" onclick="addNewCategory('newCategoryId')" slot="end">
 		Añadir
 	  </ion-button>          		
-		<ion-input id="newCategoryId" value="" placeholder="Escriba nombre de la categoría" class="ion-text-wrap">
-		</ion-input>
+		<ion-textarea id="newCategoryId" value="" placeholder="Escriba nombre de la categoría" class="ion-text-wrap">
+		</ion-textarea>
 	</ion-item>`;
 	listCategories.innerHTML = categoryHTML;	
 };
@@ -299,11 +299,11 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 	  <ion-list>
 	  <ion-item>
 		  <ion-label color="vibrant" position="floating">Sugerencias</ion-label>
-		  <ion-input id="idSugerencias" color="dark"></ion-input>
+		  <ion-textarea id="idSugerencias" color="dark"></ion-textarea>
 		</ion-item>
 	  <ion-item>
 		  <ion-label color="vibrant" position="floating">Nota</ion-label>
-			 <ion-input id="idNota" color="dark"></ion-input>
+			 <ion-textarea id="idNota" color="dark"></ion-textarea>
 		</ion-item>
 		</ion-list>
 		
@@ -352,15 +352,15 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		  <ion-list inset>
 			<ion-item>
 				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
-				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
+				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
 				</ion-item>
 			  <ion-item>
 				<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
-				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.description+`" class="ion-text-wrap inputProductDescription">
+				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.description+`" class="ion-text-wrap inputProductDescription">
 			  </ion-item>
 			  <ion-item>
 				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
-				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
+				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
 			  </ion-item>
 		  </ion-list>
 		</ion-col>
@@ -384,8 +384,8 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			</ion-button>
 	  </ion-buttons>
 
-		<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
-		</ion-input>
+		<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
+		</ion-textarea>
   </ion-item>`;*/
 
 
@@ -396,16 +396,16 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		<ion-list inset>
 		  <ion-item>
 			  <ion-label position="stacked"  color="vibrant" >Título</ion-label>
-			  <ion-input id="newProductTitleId" value=""  class="ion-text-wrap inputProductTitle">
-		  </ion-input>
+			  <ion-textarea id="newProductTitleId" value=""  class="ion-text-wrap inputProductTitle">
+		  </ion-textarea>
 			</ion-item>
 			<ion-item>
 			  <ion-label position="stacked" color="vibrant" >Descripción</ion-label>
-			  <ion-input id="newProductDescriptionId" value=""  class="ion-text-wrap inputProductDescription">
+			  <ion-textarea id="newProductDescriptionId" value=""  class="ion-text-wrap inputProductDescription">
 			</ion-item>
 			<ion-item>
 			  <ion-label position="stacked"  color="vibrant">Precio</ion-label>
-			  <ion-input id="newProductPvpId" value=""  class="ion-text-wrap inputProductPvp">
+			  <ion-textarea id="newProductPvpId" value=""  class="ion-text-wrap inputProductPvp">
 			</ion-item>
 		</ion-list>
 	  </ion-col>
