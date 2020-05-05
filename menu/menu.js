@@ -63,7 +63,7 @@ getPropertyInfo = function (idProperty) {
 setPropertyInfo = function (idProperty, object){
     propertyInfo = object;
 	document.getElementById("propertyName").innerHTML = object.propertyName;
-	document.getElementById("callButton").href = "tel:"+object.phoneNumber;
+	//document.getElementById("callButton").href = "tel:"+object.phoneNumber;
 	var text = "Ver carta de "+object.propertyName+" ";
 	shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
@@ -72,6 +72,11 @@ setMenuInfo = function (object){
     propertyMenu = object;
 	updateMenuInfo(propertyMenu);
 	 
+};
+
+refresh = function (){
+	showLoading("Cargando la carta");
+    getPropertyInfo(localId);
 };
 
 updateMenuInfo = function (menu){

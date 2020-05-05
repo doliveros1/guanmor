@@ -44,13 +44,14 @@ addNewCategory = function (id) {
 	var categoryObject = {};
 	categoryObject.title = value;
 	categoryObject.products = [];
+	categoryObject.enable = true;
 	MAP_CATEGORIES_ID.set(category, categoryObject);
 
     elem.innerHTML = `<ion-buttons slot="end">
         			<ion-button color="vibrant" onclick="removeCategory('`+category+`')">
       					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         			</ion-button>
-					<ion-button color="vibrant" onclick="checkEnableCategory('`+idCategory+`')" >        		
+					<ion-button color="vibrant" onclick="checkEnableCategory('`+category+`')" >        		
 						<ion-icon class="inputEnableCategory" slot="icon-only"  name="heart-outline"></ion-icon>
   					</ion-button>
   					<ion-button color="vibrant" onclick="showCategoryDetail('`+category+`')">        		
@@ -85,7 +86,9 @@ addNewProduct= function (idCategory, idProduct) {
 	var productObject = {};
 	productObject.title = valueTitle;
 	productObject.description =valueDescription;
-	productObject.pvp = valuePvp;;
+	productObject.pvp = valuePvp;
+	productObject.enable = true;
+
 	MAP_CATEGORIES_ID.get(idCategory).products.push(productObject);
 	MAP_PRODUCTS_ID.set(product, productObject);
 
