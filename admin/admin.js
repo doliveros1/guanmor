@@ -46,13 +46,12 @@ addNewCategory = function (id) {
 	categoryObject.products = [];
 	MAP_CATEGORIES_ID.set(category, categoryObject);
 
-
     elem.innerHTML = `<ion-buttons slot="end">
         			<ion-button color="vibrant" onclick="removeCategory('`+category+`')">
       					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         			</ion-button>
-        			<ion-button color="vibrant">        		
-        				<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+					<ion-button color="vibrant" onclick="checkEnableCategory('`+idCategory+`')" >        		
+						<ion-icon class="inputEnableCategory" slot="icon-only"  name="heart-outline"></ion-icon>
   					</ion-button>
   					<ion-button color="vibrant" onclick="showCategoryDetail('`+category+`')">        		
         				<ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
@@ -112,8 +111,8 @@ addNewProduct= function (idCategory, idProduct) {
 				<ion-button color="vibrant" onclick="removeProduct('`+idCategory+`','`+product+`')" >
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 				  </ion-button>
-				  <ion-button color="vibrant">        		
-					  <ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+				  <ion-button color="vibrant" onclick="checkEnableProduct('`+idCategory+`','`+product+`')" >        		
+				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="heart-outline"></ion-icon>
 					</ion-button>
 			  </ion-buttons>  
 			 `;
@@ -128,13 +127,32 @@ removeCategory = function (id) {
 	document.getElementById(id).remove();
 	MAP_CATEGORIES_ID.delete(id);
 };  
+updateCategory = function (idCategory) {
+	var valueTitle = document.getElementById(idCategory).getElementsByClassName("inputCategoryTitle")[0].value;
+	var category = MAP_CATEGORIES_ID.get(idCategory);
+	category.title = valueTitle;
+	
+};  
+checkEnableCategory = function (idCategory) {
+	var inputEnable = document.getElementById(idCategory).getElementsByClassName("inputEnableCategory");
+	var enable;
+	if(inputEnable[0].name === "heart-dislike-outline"){
+		enable = true;
+		inputEnable[0].name = "heart-outline";
+	} else if(inputEnable[0].name === "heart-outline"){
+		enable = false;
+		inputEnable[0].name = "heart-dislike-outline";
+	}
+	var category = MAP_CATEGORIES_ID.get(idCategory);
+	category.enable = enable;
+};  
+
 removeProduct = function (idCategory, idProduct) {
 	document.getElementById(idProduct).remove();
 	var products = MAP_CATEGORIES_ID.get(idCategory).products;
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	products = products.filter(item => item.title !== product.title);
 	MAP_CATEGORIES_ID.get(idCategory).products = products;
-	console.info(products);
 };  
 updateProduct = function (idCategory, idProduct) {
 	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
@@ -146,13 +164,28 @@ updateProduct = function (idCategory, idProduct) {
 	product.pvp = valuePvp;
 };  
 
+checkEnableProduct = function (idCategory, idProduct) {
+	var inputEnable = document.getElementById(idProduct).getElementsByClassName("inputEnableProduct");
+	var enable;
+	if(inputEnable[0].name === "heart-dislike-outline"){
+		enable = true;
+		inputEnable[0].name = "heart-outline";
+	} else if(inputEnable[0].name === "heart-outline"){
+		enable = false;
+		inputEnable[0].name = "heart-dislike-outline";
+	}
+	var product = MAP_PRODUCTS_ID.get(idProduct);
+	product.enable = enable;
+}; 
+
 selectConfiguration = function (idConfiguration) {
 	page = idConfiguration;
 	if(idConfiguration === "local"){
 		document.getElementById("local").style.display="block";
 		document.getElementById("carta").style.display="none";	
 		document.getElementById("code").style.display="none";		
-		document.getElementById("mainTitle").innerHTML="Configurar local";	
+		document.getElementById("mainTitle").innerHTML="Configurar local";
+	
 	} else if(idConfiguration === "carta"){
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="block";
@@ -163,11 +196,26 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="none";
 		document.getElementById("code").style.display="block";		
-		document.getElementById("mainTitle").innerHTML="Comparte tu carta";			
+		document.getElementById("mainTitle").innerHTML="Comparte tu carta";	
+		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+localId;
 	} else if(idConfiguration === "exit"){
 		goToLogin();		
 	}
 	closeMenu();
+
+};
+
+copyLink = function () {
+	 /* Get the text field */
+	 var copyText = document.getElementById("linkCarta");
+
+	 /* Select the text field */
+	 copyText.select();
+	 copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+   
+	 /* Copy the text inside the text field */
+	 document.execCommand("copy");
+	 presentToast("Enlace copiado");
 
 };
 
@@ -184,6 +232,7 @@ function setLocalInfo(localInfo){
 	LOCAL_INFO = localInfo;
 	document.getElementById("id").value = localInfo.id;
 	document.getElementById("propertyName").value = localInfo.propertyName;
+	document.getElementById("locationTitle").innerHTML = localInfo.propertyName;
 	document.getElementById("shortName").value = localInfo.shortName;
 	document.getElementById("latitude").value = localInfo.latitude;
 	document.getElementById("longitude").value = localInfo.longitude;
@@ -200,26 +249,33 @@ function setMenuInfo(menuInfo){
 	MAP_CATEGORIES_ID = new Map();
 	var categoryHTML = "";
 	MENU_INFO = menuInfo;
+	document.getElementById("idSugerencias").value = menuInfo[0].sugerencias;
+	document.getElementById("idNota").value = menuInfo[0].nota;
 	var listCategories = document.getElementById("listCategories");
-			  
+	var iconHeart="";
 	menuInfo[0].categories.forEach(category=>{
 		indexCategory = indexCategory +1;
 		var idCategory = "category"+indexCategory;
 		MAP_CATEGORIES_ID.set(idCategory,category);
+		if(category.enable){
+			iconHeart = "heart-outline";
+		} else{
+			iconHeart = "heart-dislike-outline";
+		}
 		categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
 		<ion-buttons slot="end">
 		  <ion-button color="vibrant" onclick="removeCategory('`+idCategory+`')" >
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 		  </ion-button>
-		  <ion-button color="vibrant">        		
-			  <ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+		  <ion-button color="vibrant" onclick="checkEnableCategory('`+idCategory+`')" >        		
+			  <ion-icon class="inputEnableCategory" slot="icon-only" name="`+iconHeart+`"></ion-icon>
 			</ion-button>
 			<ion-button color="vibrant" onclick="showCategoryDetail('`+idCategory+`')">        		
 			  <ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
 			</ion-button>
 	  </ion-buttons>
 
-		<ion-input class="inputProductTitle" value="`+category.title+`" class="ion-text-wrap">
+		<ion-input onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
 		</ion-input>
   </ion-item>`;
 	});
@@ -238,12 +294,24 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 	  var categoryHTML = "";
 
 	  categoryHTML = `
+	  <ion-content fullscreen>
+
+	  <ion-list>
+	  <ion-item>
+		  <ion-label color="vibrant" position="floating">Sugerencias</ion-label>
+		  <ion-input id="idSugerencias" color="dark"></ion-input>
+		</ion-item>
+	  <ion-item>
+		  <ion-label color="vibrant" position="floating">Nota</ion-label>
+			 <ion-input id="idNota" color="dark"></ion-input>
+		</ion-item>
+		</ion-list>
+		
 		<ion-header translucent>
 		  <ion-toolbar>
 			<ion-title>Categorías</ion-title>
 		  </ion-toolbar>
 		</ion-header>
-		<ion-content fullscreen>
 		  <ion-list id="listCategories"></ion-list>
 		</ion-content>
 	  `;
@@ -270,6 +338,12 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		<ion-list id="listProducts">
 	  `;
 	  this.categoryProduct.value.products.forEach(product=>{
+		var iconHeart;
+		if(product.enable){
+			iconHeart = "heart-outline";
+		} else{
+			iconHeart = "heart-dislike-outline";
+		}
 		indexProduct = indexProduct +1;
 		var idProduct = "product"+indexProduct;
 		MAP_PRODUCTS_ID.set(idProduct, product);
@@ -295,8 +369,8 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 	  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
 	  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 		</ion-button>
-		<ion-button color="vibrant">        		
-			<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
+		<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
+		<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
 		  </ion-button>
 	</ion-buttons>  
 	</ion-item>`;
@@ -385,7 +459,9 @@ function saveMenuInfo(){
 	});
 
 	menuInfo[0].categories = newCategories;
-	sendMenuInfo(localId, menuInfo);
+	menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
+	menuInfo[0].nota = document.getElementById("idNota").value;
+	sendMenuInfo(localId, menuInfo[0]);
 }
 
 function saveSettings() {

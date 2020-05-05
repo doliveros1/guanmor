@@ -19,6 +19,7 @@ var isToHome =  false;
 var currentPopover;
 
 var searchbar;
+var shareHref = "";
 
 
 // Check that service workers are supported
@@ -63,7 +64,7 @@ setPropertyInfo = function (idProperty, object){
 	document.getElementById("propertyName").innerHTML = object.propertyName;
 	document.getElementById("callButton").href = "tel:"+object.phoneNumber;
 	var text = "Ver carta de "+object.propertyName+" ";
-	document.getElementById("shareButton").href = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
+	shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
 };
 
 setMenuInfo = function (object){
@@ -77,34 +78,45 @@ updateMenuInfo = function (menu){
 	var inner = "";
 	
 	menu[0].categories.forEach(category => {
-		inner = inner + `<ion-list><ion-list-header class="categoryTitle">`;
-		inner = inner + category.title + `</ion-list-header>`;
-		inner = inner + updateCategoryProducts(category.products);
-		inner = inner + `</ion-list>`;
+		if(category.enable){
+			inner = inner + `<ion-list><ion-list-header class="categoryTitle">`;
+			inner = inner + category.title + `</ion-list-header>`;
+			inner = inner + updateCategoryProducts(category.products);
+			inner = inner + `</ion-list>`;
+		}
 	});
 	
 	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 	inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
 	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 	inner = inner + menu[0].nota + `</ion-label></ion-item>`;
+
+	inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+	<ion-fab-button href="`+shareHref+` "color="vibrant">
+	  <ion-icon name="share-social-outline"></ion-icon>
+	</ion-fab-button>
+  </ion-fab>`;
+  
 	menuContent.innerHTML = inner;
 };
 
 updateCategoryProducts = function(categoryProducts){
 	var products = "";
 	categoryProducts.forEach(prod =>{
-		var idInput = "pvpInput"+inputCon;
-	    inputCon = inputCon + 1;
-		var product = `<ion-item class="productItem"><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
-		product = product + `<p>`+prod.description+`</p>`;
-		product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>`;
-		product = product + `<div><ion-button color="vibrant" onclick="decrement('`+idInput+`')">`;	
-		product = product + `<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon></ion-button>`;
-		product = product + `<ion-button color="vibrant" onclick="increment('`+idInput+`')">`;	
-		product = product + `<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button></div></ion-label>`;
-		product = product + `<p class="price">`+prod.pvp+`</p>`;
-		product = product + `</ion-item>`;
-		products = products + product;
+		if(prod.enable){
+			var idInput = "pvpInput"+inputCon;
+			inputCon = inputCon + 1;
+			var product = `<ion-item class="productItem"><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
+			product = product + `<p>`+prod.description+`</p>`;
+			product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>`;
+			product = product + `<div><ion-button color="vibrant" onclick="decrement('`+idInput+`')">`;	
+			product = product + `<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon></ion-button>`;
+			product = product + `<ion-button color="vibrant" onclick="increment('`+idInput+`')">`;	
+			product = product + `<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button></div></ion-label>`;
+			product = product + `<p class="price">`+prod.pvp+`</p>`;
+			product = product + `</ion-item>`;
+			products = products + product;
+		}
 	});
 	
 	return products;
@@ -266,8 +278,8 @@ getCurrentOrderInner = function () {
 					  currentOrder.push(value+" "+productName);
 					  carritoProductIndex = carritoProductIndex + 1;
 					  var idProduct = "carritoProduct"+carritoProductIndex;
-					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`<button onclick="removeCarritoItem('`+idProduct+`')" ion-button  float-right><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
-      					</ion-icon></button></ion-label></ion-item>`;
+					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`</ion-label><ion-buttons slot="start"><ion-button onclick="removeCarritoItem('`+idProduct+`')"><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
+      					</ion-icon></ion-button></ion-buttons></ion-item>`;
 					}			
 					
 				}
