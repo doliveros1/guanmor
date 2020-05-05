@@ -71,25 +71,13 @@ setPropertyInfo = function (idProperty, object){
 setMenuInfo = function (object){
     propertyMenu = object;
 	updateMenuInfo(propertyMenu);
-	refresher = document.getElementById('refresher');
-	refresher.addEventListener('ionRefresh', () => {
-		setTimeout(() => {
-			getPropertyInfo(localId);
-			refresher.complete();
-		}, 2000);
-	  })
-  
-  
+	 
 };
 
 updateMenuInfo = function (menu){
 	var menuContent = document.getElementById("menuContent");
 
 	var inner = "";
-
-	inner = inner + `<ion-refresher slot="fixed" id="refresher">
-	<ion-refresher-content></ion-refresher-content>
-  </ion-refresher>`;
 	
 	menu[0].categories.forEach(category => {
 		if(category.enable){
