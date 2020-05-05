@@ -126,9 +126,30 @@ addNewProduct= function (idCategory, idProduct) {
 
 };
 
-removeCategory = function (id) {
-	document.getElementById(id).remove();
-	MAP_CATEGORIES_ID.delete(id);
+removeCategory = async function (id) {
+		var alert = await alertController.create({
+		  header: '¿Quieres eliminar el elemento '+MAP_CATEGORIES_ID.get(id).title+"?",
+		  message: 'Si eliminas no podrás recuperarlo',
+		  buttons: [
+			{
+			  text: 'Cancelar',
+			  role: 'cancel',
+			  handler: () => {
+				console.log('Cancel clicked');
+			  }
+			},
+			{
+			  text: 'Aceptar',
+			  handler: () => {
+				document.getElementById(id).remove();
+				MAP_CATEGORIES_ID.delete(id);
+			  }
+			}
+		  ]
+		});
+	
+		await alert.present();
+
 };  
 updateCategory = function (idCategory) {
 	var valueTitle = document.getElementById(idCategory).getElementsByClassName("inputCategoryTitle")[0].value;
@@ -150,12 +171,33 @@ checkEnableCategory = function (idCategory) {
 	category.enable = enable;
 };  
 
-removeProduct = function (idCategory, idProduct) {
-	document.getElementById(idProduct).remove();
-	var products = MAP_CATEGORIES_ID.get(idCategory).products;
-	var product = MAP_PRODUCTS_ID.get(idProduct);
-	products = products.filter(item => item.title !== product.title);
-	MAP_CATEGORIES_ID.get(idCategory).products = products;
+removeProduct = async function (idCategory, idProduct) {
+	var alert = await alertController.create({
+		header: '¿Quieres eliminar el elemento '+MAP_PRODUCTS_ID.get(idProduct).title+"?",
+		message: 'Si eliminas no podrás recuperarlo',
+		buttons: [
+		  {
+			text: 'Cancelar',
+			role: 'cancel',
+			handler: () => {
+			  console.log('Cancel clicked');
+			}
+		  },
+		  {
+			text: 'Aceptar',
+			handler: () => {
+				document.getElementById(idProduct).remove();
+				var products = MAP_CATEGORIES_ID.get(idCategory).products;
+				var product = MAP_PRODUCTS_ID.get(idProduct);
+				products = products.filter(item => item.title !== product.title);
+				MAP_CATEGORIES_ID.get(idCategory).products = products;
+			}
+		  }
+		]
+	  });
+  
+	  await alert.present();
+
 };  
 updateProduct = function (idCategory, idProduct) {
 	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
@@ -180,6 +222,7 @@ checkEnableProduct = function (idCategory, idProduct) {
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	product.enable = enable;
 }; 
+
 
 selectConfiguration = function (idConfiguration) {
 	page = idConfiguration;
@@ -311,7 +354,7 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 		</ion-list>
 		
 		<ion-header translucent>
-		  <ion-toolbar>
+		  <ion-toolbar color="vibrant">
 			<ion-title>Categorías</ion-title>
 		  </ion-toolbar>
 		</ion-header>

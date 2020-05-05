@@ -10,10 +10,11 @@
   <script src="../config.js"></script>
   <script src="./admin.js"></script>  
 
-
   <script type="module">
     import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
-    window.menuController = menuController;
+	window.menuController = menuController;
+	import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.alertController = alertController;
   </script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -213,7 +214,7 @@
         </ion-fab-list>
       </ion-fab>
 		</ion-content>
-    </div>
+	</div>
   </ion-app>
 
   <script>
