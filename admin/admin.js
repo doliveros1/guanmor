@@ -283,12 +283,12 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("carta").style.display="none";
 		document.getElementById("code").style.display="block";		
 		document.getElementById("mainTitle").innerHTML="Comparte tu carta";	
-		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+localId;
+		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId);
 		if(qrcode !== null){
 			qrcode.clear(); // clear the code.
-			qrcode.makeCode("https://www.ilovemenu.es/menu/menu.html?property="+localId); // make another code.
+			qrcode.makeCode("https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId)); // make another code.
 		} else{
-			qrcode = new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+localId);
+			qrcode = new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId));
 		}
 	} else if(idConfiguration === "exit"){
 		goToLogin();		

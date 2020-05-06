@@ -76,5 +76,5 @@ function isEmpty(obj) {
 }
 
 function goToCarta(idLocal){
-	window.location.href = MENU+"?property="+idLocal;
+	window.location.href = MENU+"?property="+window.btoa(idLocal);
 }

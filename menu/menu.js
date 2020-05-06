@@ -37,7 +37,8 @@ window.onload = (e) => {
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
     });
-    localId = GetURLParameter('property');
+	localId = window.atob(GetURLParameter('property'));
+	
     searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
     showLoading("Cargando la carta");
@@ -65,7 +66,7 @@ setPropertyInfo = function (idProperty, object){
 	document.getElementById("propertyName").innerHTML = object.propertyName;
 	//document.getElementById("callButton").href = "tel:"+object.phoneNumber;
 	var text = "Ver carta de "+object.propertyName+" ";
-	shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+idProperty;
+	shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+window.btoa(idProperty);
 };
 
 setMenuInfo = function (object){
