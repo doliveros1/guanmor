@@ -283,6 +283,8 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("code").style.display="block";		
 		document.getElementById("mainTitle").innerHTML="Comparte tu carta";	
 		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+localId;
+		new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+localId);
+
 	} else if(idConfiguration === "exit"){
 		goToLogin();		
 	}
@@ -473,47 +475,6 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
           </ion-col>          
 		</ion-row>
 		</ion-grid></ion-item>`;
-
-
-		/*`<ion-col>
-		  <ion-list inset>
-			<ion-item>
-				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
-				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
-				</ion-item>
-			  <ion-item>
-				<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
-				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.description+`" class="ion-text-wrap inputProductDescription">
-			  </ion-item>
-			  <ion-item>
-				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
-				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
-			  </ion-item>
-		  </ion-list>
-		</ion-col>
-	  </ion-row>
-	  <ion-buttons slot="end">
-	  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
-	  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-		</ion-button>
-		<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
-		<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
-		  </ion-button>
-	</ion-buttons>  
-	</ion-item>`;*/
-		/*productHTML = productHTML + `<ion-item id="`+idProduct+`">
-		<ion-buttons slot="end">
-		  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
-				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-		  </ion-button>
-		  <ion-button color="vibrant">        		
-			  <ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
-			</ion-button>
-	  </ion-buttons>
-
-		<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
-		</ion-textarea>
-  </ion-item>`;*/
 
 
 	  });

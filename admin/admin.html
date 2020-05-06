@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
   <script src="../config.js"></script>
   <script src="./admin.js"></script>  
+  <script src="./qrcode.js"></script>  
 
   <script type="module">
     import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
@@ -198,13 +199,24 @@
 		<ion-nav root="nav-categories"></ion-nav>
       </ion-content>
       <ion-content id="code" class="ion-padding">
-		<ion-grid>
+		<ion-grid style="padding-bottom:20px">
 			<ion-row>
-			  <ion-label color="vibrant" >Enlace a tu carta</ion-label>
+			  <ion-label style="padding:20px" color="vibrant" >Enlace a tu carta</ion-label>
 			</ion-row>
-				<input style="width:100%;" width="100%" type="text" value="" id="linkCarta"/>
+				<input style="width:100%;padding:20px" width="100%" type="text" value="" id="linkCarta"/>
 		  </ion-grid>
 			<ion-button onclick="copyLink()" expand="full" color="vibrant">Copiar enlace</ion-button>
+
+			<ion-grid style="padding:20px">
+				<ion-row>
+				  <ion-label color="vibrant" >Tu código QR</ion-label>
+				</ion-row>
+				<div align="center">
+					<div style="padding:20px" id="qrcode"></div>
+				</div>
+			  </ion-grid>
+			
+
 		<ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="vibrant">
           <ion-icon name="share-social-outline"></ion-icon>
