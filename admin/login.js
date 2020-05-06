@@ -45,10 +45,21 @@ function validateLogin() {
 
 }
 
+showLoading = function (text) {
+	loading = document.createElement('ion-loading');
+  	loading.message = text;
+  	document.body.appendChild(loading);
+    loading.present();
+}
+hideLoading = function () {
+	loading.dismiss();
+}
+
 
 //DATA
 
 const fetchLogin = (pUser, pPassword) => {
+	showLoading("Autenticando");
 	var postData = {
       user: pUser,
       password: pPassword
@@ -61,14 +72,15 @@ const fetchLogin = (pUser, pPassword) => {
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader('Content-type','application/json');
 	xhr.onload = function () {
-	var response = JSON.parse(xhr.responseText);
-	if (xhr.readyState == 4 && xhr.status == "200") {
-		localStorage.setItem('jwt-token', response.token);
-		localStorage.setItem('localId', response.user);
-		goToAdmin();
-	} else {
-		presentToast(response.message)
-	}
+		hideLoading();
+		var response = JSON.parse(xhr.responseText);
+		if (xhr.readyState == 4 && xhr.status == "200") {		
+			localStorage.setItem('jwt-token', response.token);
+			localStorage.setItem('localId', response.user);
+			goToAdmin();
+		} else {
+			presentToast(response.message)
+		}
 	}
 	xhr.send(json);
 };

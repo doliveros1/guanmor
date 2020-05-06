@@ -47,7 +47,7 @@ addNewCategory = function (id) {
 	categoryObject.enable = true;
 	MAP_CATEGORIES_ID.set(category, categoryObject);
 
-    elem.innerHTML = `<ion-buttons slot="end">
+    elem.innerHTML = `<div slot="end">
         			<ion-button color="vibrant" onclick="removeCategory('`+category+`')">
       					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         			</ion-button>
@@ -57,7 +57,7 @@ addNewCategory = function (id) {
   					<ion-button color="vibrant" onclick="showCategoryDetail('`+category+`')">        		
         				<ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
   					</ion-button>
-        		</ion-buttons>        		
+        		</div>        		
           		<ion-textarea value="`+value+`" class="ion-text-wrap">
           		</ion-textarea>`;
     document.getElementById("listCategories").insertBefore(elem,lastNode);		
@@ -92,7 +92,46 @@ addNewProduct= function (idCategory, idProduct) {
 	MAP_CATEGORIES_ID.get(idCategory).products.push(productObject);
 	MAP_PRODUCTS_ID.set(product, productObject);
 
-				  elem.innerHTML = `
+	elem.innerHTML = `
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-item class="productItem" >
+					<ion-label position="stacked"  color="vibrant" >Título</ion-label>
+					<ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.title+`" class="ion-text-wrap inputProductTitle">
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-item class="productItem" >
+					<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+					<ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.description+`" class="ion-text-wrap inputProductDescription">
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-item class="productItem" >
+					<ion-label position="stacked"  color="vibrant">Precio</ion-label>
+					<ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
+				</ion-item>
+			</ion-col>
+			<ion-col>
+				<div align="right">
+				<ion-button color="vibrant" onclick="removeProduct('`+idCategory+`','`+product+`')" >
+				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+				  </ion-button>
+				  <ion-button color="vibrant" onclick="checkEnableProduct('`+idCategory+`','`+product+`')" >        		
+				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="heart-outline"></ion-icon>
+					</ion-button>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	`;
+
+				 /* elem.innerHTML = `
 				  <ion-col>
 					<ion-list inset>
 					  <ion-item>
@@ -118,7 +157,7 @@ addNewProduct= function (idCategory, idProduct) {
 				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="heart-outline"></ion-icon>
 					</ion-button>
 			  </ion-buttons>  
-			 `;
+			 `;*/
 				  
 	document.getElementById("listProducts").insertBefore(elem,lastNode);
 
@@ -309,7 +348,7 @@ function setMenuInfo(menuInfo){
 			iconHeart = "heart-dislike-outline";
 		}
 		categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
-		<ion-buttons slot="end">
+		<div slot="end">
 		  <ion-button color="vibrant" onclick="removeCategory('`+idCategory+`')" >
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 		  </ion-button>
@@ -319,7 +358,7 @@ function setMenuInfo(menuInfo){
 			<ion-button color="vibrant" onclick="showCategoryDetail('`+idCategory+`')">        		
 			  <ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
 			</ion-button>
-	  </ion-buttons>
+	  </div>
 
 		<ion-textarea onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
 		</ion-textarea>
@@ -341,24 +380,27 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 
 	  categoryHTML = `
 	  <ion-content fullscreen>
-
-	  <ion-list>
-	  <ion-item>
-		  <ion-label color="vibrant" position="floating">Sugerencias</ion-label>
-		  <ion-textarea id="idSugerencias" color="dark"></ion-textarea>
-		</ion-item>
-	  <ion-item>
-		  <ion-label color="vibrant" position="floating">Nota</ion-label>
-			 <ion-textarea id="idNota" color="dark"></ion-textarea>
-		</ion-item>
-		</ion-list>
 		
 		<ion-header translucent>
 		  <ion-toolbar color="vibrant">
 			<ion-title>Categorías</ion-title>
 		  </ion-toolbar>
 		</ion-header>
-		  <ion-list id="listCategories"></ion-list>
+		  <ion-list id="listCategories"></ion-list>	  
+		  
+		  <ion-list>
+		  <ion-list-header color="vibrant">
+		  <ion-title>Sugerencias y nota</ion-title>       
+		   </ion-list-header>
+			<ion-item>
+				<ion-label color="vibrant" position="floating">Sugerencias</ion-label>
+				<ion-textarea id="idSugerencias" color="dark"></ion-textarea>
+				</ion-item>
+			<ion-item>
+		  <ion-label color="vibrant" position="floating">Nota</ion-label>
+			 <ion-textarea id="idNota" color="dark"></ion-textarea>
+			</ion-item>
+		</ion-list>
 		</ion-content>
 	  `;
 	  this.innerHTML = categoryHTML;
@@ -373,7 +415,7 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 	  var productHTML = "";
 	  productHTML = productHTML +  `
 		<ion-header translucent>
-		  <ion-toolbar>
+		  <ion-toolbar color="vibrant">
 			<ion-buttons slot="start">
 			  <ion-back-button defaultHref="/"></ion-back-button>
 			</ion-buttons>
@@ -394,7 +436,46 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		var idProduct = "product"+indexProduct;
 		MAP_PRODUCTS_ID.set(idProduct, product);
 		productHTML = productHTML + `<ion-item id="`+idProduct+`">
+
+		<ion-grid>
+        <ion-row>
+          <ion-col>
+			<ion-item class="productItem" >
+				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
+				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
+			</ion-item>
+          </ion-col>          
+		</ion-row>
+		<ion-row>
 		<ion-col>
+		<ion-item class="productItem" >
+			<ion-label position="stacked" color="vibrant" >Descripción</ion-label>
+			<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.description+`" class="ion-text-wrap inputProductDescription">
+	  	</ion-item>
+		</ion-col>          
+	  </ion-row>
+	  <ion-row>
+          <ion-col>
+			<ion-item class="productItem" >
+				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
+				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
+			</ion-item>
+		  </ion-col> 
+		  <ion-col>
+		  <div align="right">
+			<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
+			<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+				</ion-button>
+				<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
+				<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
+				</ion-button>
+			</div>
+          </ion-col>          
+		</ion-row>
+		</ion-grid></ion-item>`;
+
+
+		/*`<ion-col>
 		  <ion-list inset>
 			<ion-item>
 				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
@@ -419,7 +500,7 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
 		  </ion-button>
 	</ion-buttons>  
-	</ion-item>`;
+	</ion-item>`;*/
 		/*productHTML = productHTML + `<ion-item id="`+idProduct+`">
 		<ion-buttons slot="end">
 		  <ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
