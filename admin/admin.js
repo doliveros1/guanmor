@@ -11,6 +11,7 @@ var LOCAL_INFO = {};
 var MAP_CATEGORIES_ID = new Map();
 var MAP_PRODUCTS_ID = new Map();
 var nav;
+var qrcode = null;
 
 var page;
 
@@ -283,8 +284,12 @@ selectConfiguration = function (idConfiguration) {
 		document.getElementById("code").style.display="block";		
 		document.getElementById("mainTitle").innerHTML="Comparte tu carta";	
 		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+localId;
-		new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+localId);
-
+		if(qrcode !== null){
+			qrcode.clear(); // clear the code.
+			qrcode.makeCode("https://www.ilovemenu.es/menu/menu.html?property="+localId); // make another code.
+		} else{
+			qrcode = new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+localId);
+		}
 	} else if(idConfiguration === "exit"){
 		goToLogin();		
 	}

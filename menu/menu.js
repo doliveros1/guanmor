@@ -86,7 +86,7 @@ updateMenuInfo = function (menu){
 	
 	menu[0].categories.forEach(category => {
 		if(category.enable){
-			inner = inner + `<ion-list><ion-list-header class="categoryTitle">`;
+			inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
 			inner = inner + category.title + `</ion-list-header>`;
 			inner = inner + updateCategoryProducts(category.products);
 			inner = inner + `</ion-list>`;

@@ -235,13 +235,13 @@ body, html {
 </div>
 
 <!-- Work Section -->
-<div class="w3-container" style="padding:128px 16px" id="work">
+<!--div class="w3-container" style="padding:128px 16px" id="work">
   <div style="background-color:#3ed7ca">
 	
   <h3 class="w3-center">GRATIS HASTA EL 31 DE MAYO</h3>
   <p class="w3-center w3-large">Sin compromiso</p>
 
-  <!--div class="w3-row-padding" style="margin-top:64px">
+  <div class="w3-row-padding" style="margin-top:64px">
     <div class="w3-col l3 m6">
       <img src="./images/tech_mic.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A microphone">
     </div>
@@ -269,9 +269,9 @@ body, html {
     <div class="w3-col l3 m6">
       <img src="./images/tech_tableturner.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tableturner">
     </div>
-  </div-->
   </div>
-</div>
+  </div>
+</div-->
 
 <!-- Modal for full size images on click-->
 <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
@@ -319,21 +319,70 @@ body, html {
   		<p style="color:black" class="w3-center w3-large">Sin compromiso</p>
   	</div>
   
-  <div class="w3-row-padding" style="margin-top:64px">
-    <div class="w3-third w3-section">
+  <div style="margin-top:64px">
+    <div class="w3-third">
       <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
+        <li class="w3-aqua w3-xlarge w3-padding-48">Basic</li>
         <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>SIN</b> Cambios (Se cobra por cada cambio solicitado)</li>
-        <!--li class="w3-padding-16"><b>COÌAS DE SEGURIDAD</b> Mensuales</li-->
+        <li class="w3-padding-16"><b>Cambia tu carta las veces que quieras</li>
         <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
-        <li class="w3-padding-16"><b>SIN</b> pedido por whatsapp</li>
+        <li class="w3-padding-16"><b>SIN</b> pedidos por whatsapp</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">4,99€</h2>
+          <h2 class="w3-wide">4,90€</h2>
           <span class="w3-opacity">al mes</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
-          <button><a href="javascript:void(0)" data-billsby-type="checkout">Subscribe</a></button>
+          <button onclick="window.location.href='#contact'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-black w3-xlarge w3-padding-48">Pro</li>
+        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
+        <li class="w3-padding-16"><b>Cambia tu carta las veces que quieras</li>
+        <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
+        <li class="w3-padding-16"><b>CON</b> pedidos por whatsapp</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">9,90€</h2>
+          <span class="w3-opacity">al mes</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button  onclick="window.location.href='#contact'"  class="w3-button w3-black w3-padding-large">CONTRATA</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-third">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-aqua w3-xlarge w3-padding-48">Premium</li>
+        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
+        <li class="w3-padding-16"><b>¿Necesitas algo en especial?</li>
+        <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
+        <li class="w3-padding-16"><b>CON</b> todo lo que incluye Pro</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">HABLAMOS</h2>
+          <span class="w3-opacity">Contacta con nosotros</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button  onclick="window.location.href='#contact'"  class="w3-button w3-black w3-padding-large">CONTRATA</button>
+        </li>
+      </ul>
+    </div>
+    <!--div class="w3-third">
+      <ul class="w3-ul w3-white w3-hover-shadow">
+        <li class="w3-aqua w3-xlarge w3-padding-48">Pro</li>
+        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
+        <li class="w3-padding-16"><b>Cambia tu carta las veces que quieras</li>
+        <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
+        <li class="w3-padding-16"><b>CON</b> pedidos por whatsapp</li>
+        <li class="w3-padding-16">
+          <h2 class="w3-wide">9,90€</h2>
+          <span class="w3-opacity">al mes</span>
+        </li>
+        <li class="w3-light-grey w3-padding-24">
+          <button onclick="window.location.href='tel:+34619048731'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
         </li>
       </ul>
     </div>
@@ -341,36 +390,18 @@ body, html {
       <ul class="w3-ul w3-white w3-hover-shadow">
         <li class="w3-aqua w3-xlarge w3-padding-48">Pro</li>
         <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>2 CAMBIOS</b> al mes</li>
-        <!--li class="w3-padding-16"><b>COPIAS DE SEGURIDAD</b> Semanales</li-->
+        <li class="w3-padding-16"><b>Cambia tu carta las veces que quieras</li>
         <li class="w3-padding-16"><b>SOPORTE</b> por mail</li>
-        <li class="w3-padding-16"><b>CON</b> pedido por whatsapp</li>
+        <li class="w3-padding-16"><b>CON</b> pedidos por whatsapp</li>
         <li class="w3-padding-16">
-          <h2 class="w3-wide">9,99€</h2>
+          <h2 class="w3-wide">9,90€</h2>
           <span class="w3-opacity">al mes</span>
         </li>
         <li class="w3-light-grey w3-padding-24">
           <button onclick="window.location.href='tel:+34619048731'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
         </li>
       </ul>
-    </div>
-    <div class="w3-third w3-section">
-      <ul class="w3-ul w3-white w3-hover-shadow">
-        <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
-        <li class="w3-padding-16"><b>SIN</b> Permanencia</li>
-        <li class="w3-padding-16"><b>4 CAMBIOS</b> al mes</li>
-        <!--li class="w3-padding-16"><b>COPIAS DE SEGURIDAD</b> Diarias</li-->
-        <li class="w3-padding-16"><b>SOPORTE</b> por mail (respuesta antes de 24 horas)</li>
-        <li class="w3-padding-16"><b>CON</b> pedido por whatsapp</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide">14,99€</h2>
-          <span class="w3-opacity">al mes</span>
-        </li>
-        <li class="w3-light-grey w3-padding-24">
-          <button onclick="window.location.href='tel:+34619048731'" class="w3-button w3-black w3-padding-large">CONTRATA</button>
-        </li>
-      </ul>
-    </div>
+    </div-->
   </div>
 </div>
 
