@@ -114,7 +114,7 @@ addNewProduct= function (idCategory, idProduct) {
 			<ion-col>
 				<ion-item class="productItem" >
 					<ion-label position="stacked"  color="vibrant">Precio</ion-label>
-					<ion-textarea onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
+					<ion-input type="number" onfocusout="updateProduct('`+idCategory+`','`+idProduct+`')" value="`+productObject.pvp+`" class="ion-text-wrap inputProductPvp">
 				</ion-item>
 			</ion-col>
 			<ion-col>
@@ -458,7 +458,7 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
           <ion-col>
 			<ion-item class="productItem" >
 				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
-				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
+				<ion-input type="number" onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
 			</ion-item>
 		  </ion-col> 
 		  <ion-col>

@@ -199,6 +199,11 @@ increment = function(id){
 	updateBadge();
 };
 
+resetBadge = function(){
+	numProductos = 0;
+	updateBadge();
+};
+
 decrement = function(id){
 	var inputValue = document.getElementById(id).value;
 	if(inputValue==="0"){
@@ -266,9 +271,13 @@ hacerPedido = function () {
 }; 
 
 getCurrentOrderInner = function () {
+	var notPriceProduct = false;
 	var cartaContent = document.getElementById("menuContent").children;
 	var currentOrder = [];
-	var innerHTML = "";
+	var total = 0;
+	var innerHTML = `<ion-item>
+        			<ion-label class="ion-text-wrap">[TAG_PVP]</ion-label>
+     	 		</ion-item>`;
 
 	for(var i=0;i<cartaContent.length;i++){
 		if(cartaContent[i].tagName === "ION-LIST"){
@@ -277,6 +286,7 @@ getCurrentOrderInner = function () {
 			for(var j=0;j<productsContent.length;j++){
 				if(productsContent[j].tagName === "ION-ITEM"){
 					var product = productsContent[j].children[0];
+					var price = productsContent[j].children[1].innerText;
 					var value = product.children[2].value;
 					var productName = product.children[0].textContent;
 					if(value === "" || value === "0"){
@@ -284,14 +294,27 @@ getCurrentOrderInner = function () {
 					  empty = false;
 					  currentOrder.push(value+" "+productName);
 					  carritoProductIndex = carritoProductIndex + 1;
+					  var numberPrice = Number(price.replace("€",""));
+					  var numberValue = Number(value);
+					  if(!isNaN(numberPrice)){
+						total = total + (numberPrice*numberValue);
+					  }	else{
+						notPriceProduct = true;
+					  }		  
+
 					  var idProduct = "carritoProduct"+carritoProductIndex;
 					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`</ion-label><ion-buttons slot="start"><ion-button onclick="removeCarritoItem('`+idProduct+`')"><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
       					</ion-icon></ion-button></ion-buttons></ion-item>`;
-					}			
+					}	
 					
 				}
 			}
 		}
+	}
+	if(!notPriceProduct){
+		innerHTML = innerHTML.replace("[TAG_PVP]","TOTAL: "+total+"€");
+	} else {
+		innerHTML = innerHTML.replace("[TAG_PVP]","TOTAL: "+total+"€ - No incluye todo el pedido. Consultar con el establecimiento");
 	}
 	return innerHTML;
 	
@@ -362,6 +385,7 @@ const fetchMenu = (local) => {
     return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
         .then(response => {
 			hideLoading();
+			resetBadge();
 			if(isEmpty(response.data)){
 				hideLoading();
 				//Toast no hay carta		
@@ -418,9 +442,7 @@ function goToHome(){
 				<ion-item>
   					<ion-textarea id="freeText" placeholder="Coméntanos lo que quieras"></ion-textarea>
 				</ion-item>
-				<ion-item>
-        			<ion-title>Pedido</ion-title>
-     	 		</ion-item>`+currentOrder+`</ion-list>
+				`+currentOrder+`</ion-list>
           </ion-content>
           <ion-footer>
 		<div class="horizontal div1">
