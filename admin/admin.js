@@ -1,4 +1,6 @@
 var API_PATH_ADMIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+//var API_PATH_ADMIN = "http://localhost:8080/api/guanmor/1.0.0";
+
 var indexCategory = 0;
 var indexProduct = 0;
 
@@ -24,7 +26,6 @@ window.onload = (e) => {
 	} else {
 		localId = localStorage.getItem("localId");
 		selectConfiguration("local");  
-		fetchLocal(localId);	
 	} 
 }
 
@@ -269,19 +270,23 @@ selectConfiguration = function (idConfiguration) {
 	if(idConfiguration === "local"){
 		document.getElementById("local").style.display="block";
 		document.getElementById("carta").style.display="none";	
-		document.getElementById("code").style.display="none";		
-		document.getElementById("mainTitle").innerHTML="Configurar local";
-	
+		document.getElementById("code").style.display="none";	
+		document.getElementById("settings").style.display="none";	
+		document.getElementById("mainTitle").innerHTML="Configura tu local";
+		fetchLocal(localId);		
+
 	} else if(idConfiguration === "carta"){
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="block";
-		document.getElementById("code").style.display="none";		
-		document.getElementById("mainTitle").innerHTML="Configurar carta";	
+		document.getElementById("code").style.display="none";	
+		document.getElementById("settings").style.display="none";		
+		document.getElementById("mainTitle").innerHTML="Configura tu carta";	
 		fetchMenu(localId);		
 	} else if(idConfiguration === "code"){
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="none";
 		document.getElementById("code").style.display="block";		
+		document.getElementById("settings").style.display="none";	
 		document.getElementById("mainTitle").innerHTML="Comparte tu carta";	
 		document.getElementById("linkCarta").value = "https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId);
 		if(qrcode !== null){
@@ -290,6 +295,13 @@ selectConfiguration = function (idConfiguration) {
 		} else{
 			qrcode = new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId));
 		}
+	} else if(idConfiguration === "settings"){
+		document.getElementById("local").style.display="none";
+		document.getElementById("carta").style.display="none";
+		document.getElementById("code").style.display="none";		
+		document.getElementById("settings").style.display="block";		
+		document.getElementById("mainTitle").innerHTML="Configura tu cuenta";	
+		fetchPreferences(localId);	
 	} else if(idConfiguration === "exit"){
 		goToLogin();		
 	}
@@ -311,6 +323,70 @@ copyLink = function () {
 
 };
 
+function changePassword(){
+	const alert = document.createElement('ion-alert');
+	alert.header = 'Cambiar password';
+	alert.inputs = [
+	  {
+		placeholder: 'Password actual',
+		name: 'oldPassword',
+		type: 'password'
+	  },
+	  {
+		placeholder: 'Password nueva',
+		name: 'newPassword',
+		type: 'password'
+	  }
+	];
+	alert.buttons = [
+	  {
+		text: 'Cancelar',
+		role: 'cancel',
+		cssClass: 'secondary',
+		handler: () => {
+		  console.log('Confirm Cancel')
+		}
+	  }, {
+		text: 'Cambiar',
+		handler: (data) => {
+			preferences = {};
+			preferences.type = "password";
+			preferences.oldPassword = data.oldPassword;
+			preferences.newPassword = data.newPassword;
+			sendPreferences(localId, preferences);
+		}
+	  }
+	];
+  
+	document.body.appendChild(alert);
+	return alert.present();
+}
+
+unRegister = async function (id) {
+	var alert = await alertController.create({
+	  header: '¿Seguro que deseas darte de baja?',
+	  message: 'Perderás toda la información de tu local y carta',
+	  buttons: [
+		{
+		  text: 'Cancelar',
+		  role: 'cancel',
+		  handler: () => {
+			console.log('Cancel clicked');
+		  }
+		},
+		{
+		  text: 'Aceptar',
+		  handler: () => {
+			doDeregister(localId);
+		  }
+		}
+	  ]
+	});
+
+	await alert.present();
+
+};  
+
 async function closeMenu() {
       await menuController.close();
     }
@@ -326,7 +402,8 @@ function setLocalInfo(localInfo){
 	document.getElementById("propertyName").value = localInfo.propertyName;
 	document.getElementById("locationTitle").innerHTML = localInfo.propertyName;
 	document.getElementById("shortName").value = localInfo.shortName;
-	document.getElementById("latitude").value = localInfo.latitude;
+	document.getElementById("codPostal").value = localInfo.codPostal;
+	document.getElementById("latitude").value = localInfo.latitude;	
 	document.getElementById("longitude").value = localInfo.longitude;
 	document.getElementById("description").value = localInfo.description;
 	document.getElementById("phoneNumber").value = localInfo.phoneNumber;
@@ -380,6 +457,11 @@ function setMenuInfo(menuInfo){
 	</ion-item>`;
 	listCategories.innerHTML = categoryHTML;	
 };
+
+function setPreferencesInfo(preferencesInfo){
+	document.getElementById("idSettingsUser").value = preferencesInfo.username;
+	document.getElementById("idSettingsEmail").value = preferencesInfo.email;
+}
 
 customElements.define('nav-categories', class NavHome extends HTMLElement {
 	connectedCallback() {
@@ -524,11 +606,11 @@ function showCategoryDetail(category) {
 };
 
 function saveLocalInfo(){
-	showLoading("Guardando datos del local");
 	var localInfo = {};
 	localInfo.id = document.getElementById("id").value;
 	localInfo.propertyName = document.getElementById("propertyName").value;
 	localInfo.shortName = document.getElementById("shortName").value;
+	localInfo.codPostal = document.getElementById("codPostal").value;
 	localInfo.latitude = document.getElementById("latitude").value;
 	localInfo.longitude = document.getElementById("longitude").value;
 	localInfo.description = document.getElementById("description").value;
@@ -543,7 +625,6 @@ function saveLocalInfo(){
 }
 
 function saveMenuInfo(){
-	showLoading("Guardando datos de la carta");
 	var menuInfo = MENU_INFO;
 	var arrayCategories = Array.from(MAP_CATEGORIES_ID);
 	var newCategories = [];
@@ -557,11 +638,20 @@ function saveMenuInfo(){
 	sendMenuInfo(localId, menuInfo[0]);
 }
 
+function savePreferencesInfo(){
+	preferences = {};
+	preferences.type = "email";
+	preferences.email = document.getElementById("idSettingsEmail").value;
+	sendPreferences(localId, preferences);
+}
+
 function saveSettings() {
 	if (page === "local"){
 		saveLocalInfo();
 	} else if (page === "carta"){
 		saveMenuInfo();
+	} else if (page === "settings"){
+		savePreferencesInfo();
 	}
 };
 
@@ -593,7 +683,8 @@ const fetchLocal = (idLocal) => {
         	hideLoading();
         })
         .catch(error => {
-        	hideLoading();
+			hideLoading();
+			presentToast(error.response.data.message)
         	goToLogin();
         });
 };
@@ -606,14 +697,29 @@ const fetchMenu = (idLocal) => {
         	hideLoading();
         })
         .catch(error => {
+			hideLoading();
+			presentToast(error.response.data.message)
+        	goToLogin();
+        });
+};
+
+const fetchPreferences = (idLocal) => {
+	showLoading("Obteniendo preferencias del usuario"); 
+    return axios.get(API_PATH_ADMIN+"/settings/?access_token="+jwtToken,{ crossdomain: true })
+        .then(response => {
+        	setPreferencesInfo(response.data);
         	hideLoading();
+        })
+        .catch(error => {
+			hideLoading();
+			presentToast(error.response.data.message)
         	goToLogin();
         });
 };
 
 
 const sendLocalInfo = (idLocal, localPostData) => {
-
+	showLoading("Guardando datos del local"); 
 	var url = API_PATH_ADMIN+"/local/"+idLocal+"?access_token="+jwtToken;
 	var json = JSON.stringify(localPostData);
 
@@ -628,6 +734,8 @@ const sendLocalInfo = (idLocal, localPostData) => {
 		hideLoading();
 		goToLogin();
 	}else {
+		hideLoading();
+		presentToast("Fallo al actualizar preferencias");
 		fetchLocal(idLocal);
 	}
 }
@@ -635,7 +743,7 @@ const sendLocalInfo = (idLocal, localPostData) => {
 };
 
 const sendMenuInfo = (idLocal, menuPostData) => {
-
+	showLoading("Guardando datos de la carta"); 
 	var url = API_PATH_ADMIN+"/local/"+idLocal+"/menu?access_token="+jwtToken;
 	var json = JSON.stringify(menuPostData);
 
@@ -650,10 +758,47 @@ const sendMenuInfo = (idLocal, menuPostData) => {
 		hideLoading();
 		goToLogin();
 	}else {
-		fetchLocal(idLocal);
+		hideLoading();
+		presentToast("Fallo al actualizar preferencias");
+		fetchMenu(idLocal);
 	}
 }
 	xhr.send(json);
+};
+
+const sendPreferences = (idLocal, preferencesInfo) => {
+	showLoading("Guardando preferencias"); 
+	var url = API_PATH_ADMIN+"/settings/?access_token="+jwtToken;
+	var json = JSON.stringify(preferencesInfo);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("PUT", url, true);
+	xhr.setRequestHeader('Content-type','application/json');
+	xhr.onload = function () {
+		var response = JSON.parse(xhr.responseText);
+		hideLoading();
+		if (xhr.readyState == 4 && xhr.status == "200") {
+			localStorage.setItem('jwt-token', response.token);
+			presentToast("Datos guardados correctamente");
+		} else if(xhr.status == "403"){
+			goToLogin();
+		}else {
+			presentToast(response.message)
+			fetchPreferences(idLocal);
+		}
+	}	
+	xhr.send(json);
+};
+
+const doDeregister = (idLocal) => {
+	showLoading("Dando de baja al usuario"); 
+    return axios.get(API_PATH_ADMIN+"/deregister/?access_token="+jwtToken,{ crossdomain: true })
+        .then(response => {
+			goToLogin();
+        })
+        .catch(error => {
+			presentToast(error.response.data.message)
+        });
 };
 
 

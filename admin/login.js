@@ -1,5 +1,8 @@
 const ADMIN = "./admin.html";
-const API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+const REGISTER = "./register.html";
+
+var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+//var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -19,10 +22,47 @@ login = function () {
 	validateLogin();
 };  
 
+register = function () {
+	goToRegister();
+};  
+
+function recover() {
+  const alert = document.createElement('ion-alert');
+  alert.header = 'Recuperar contraseña';
+  alert.inputs = [
+    {
+	  placeholder: 'email',
+	  name: 'email'
+    }
+  ];
+  alert.buttons = [
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      cssClass: 'secondary',
+      handler: () => {
+        console.log('Confirm Cancel')
+      }
+    }, {
+      text: 'Enviar por correo',
+      handler: (data) => {
+        sendMail(data.email);
+      }
+    }
+  ];
+
+  document.body.appendChild(alert);
+  return alert.present();
+};
+
 
 goToAdmin = function(){
 	window.location.href = ADMIN;
 
+};
+
+goToRegister = function(){
+	window.location.href = REGISTER;
 };
 
 function presentToast(text) {
@@ -83,5 +123,16 @@ const fetchLogin = (pUser, pPassword) => {
 		}
 	}
 	xhr.send(json);
+};
+
+const sendMail = (email) => {
+    return axios.get(API_PATH_LOGIN+"/recoverPassword/?mail="+email,{ crossdomain: true })
+        .then(response => {
+			presentToast("Se ha enviado un correo a la dirección: "+email);
+        })
+        .catch(error => {
+			presentToast(error.response.data.message)
+
+        });
 };
 

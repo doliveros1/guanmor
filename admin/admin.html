@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+		<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165918831-1');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love Menu</title>
@@ -102,24 +112,24 @@
       <ion-content>
         <ion-list>
           <ion-item onclick="selectConfiguration('local')">
-            <ion-icon name="home-outline" slot="start"></ion-icon>
-            <ion-label>Configurar local</ion-label>
+            <ion-icon color="vibrant" name="home-outline" slot="start"></ion-icon>
+            <ion-label color="dark" >Configura tu local</ion-label>
           </ion-item>
           <ion-item onclick="selectConfiguration('carta')">
-            <ion-icon name="fast-food-outline" slot="start"></ion-icon>
-            <ion-label>Configurar carta</ion-label>
+            <ion-icon color="vibrant" name="fast-food-outline" slot="start"></ion-icon>
+            <ion-label color="dark">Configura tu carta</ion-label>
           </ion-item>
           <ion-item onclick="selectConfiguration('code')">
-            <ion-icon name="qr-code-outline" slot="start"></ion-icon>
-            <ion-label>Comparte tu carta</ion-label>
+            <ion-icon color="vibrant" name="qr-code-outline" slot="start"></ion-icon>
+            <ion-label color="dark">Comparte tu carta</ion-label>
 		  </ion-item>
-		  <ion-item onclick="selectConfiguration('cuenta')">
-            <ion-icon name="settings-outline" slot="start"></ion-icon>
-            <ion-label>Configurar cuenta</ion-label>
+		  <ion-item onclick="selectConfiguration('settings')">
+            <ion-icon color="vibrant" name="settings-outline" slot="start"></ion-icon>
+            <ion-label color="dark">Configura tu cuenta</ion-label>
           </ion-item>
           <ion-item onclick="selectConfiguration('exit')">
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
-            <ion-label>Salir</ion-label>
+            <ion-icon color="vibrant" name="log-out-outline" slot="start"></ion-icon>
+            <ion-label color="dark">Salir</ion-label>
           </ion-item>        
         </ion-list>
       </ion-content>
@@ -132,10 +142,13 @@
             <ion-menu-button></ion-menu-button>
 		  </ion-buttons>
 		  <ion-buttons slot="end">
-			<ion-button id="SaveButton" onclick="saveSettings()" >
-				<ion-icon size="large" slot="icon-only" color="vibrant" name="save-outline">
-				</ion-icon>
-		  </ion-button>
+				<ion-button id="helpButton" href="../MANUAL_USUARIO_PROFESIONAL.pdf" target="_blank" >
+					<ion-icon size="large" slot="icon-only" color="vibrant" name="help-outline"></ion-icon>
+					</ion-button>
+		  		<ion-button id="SaveButton" onclick="saveSettings()" >
+					<ion-icon size="large" slot="icon-only" color="vibrant" name="save-outline">
+					</ion-icon>
+		 	 </ion-button>
 	  </ion-buttons>
           <ion-title id="mainTitle">Configurar local</ion-title>
         </ion-toolbar>
@@ -144,7 +157,7 @@
         <ion-list>
         	<ion-item>
         	    <ion-label color="vibrant" >Id:</ion-label>
-        		<ion-input id="id" value="sanblas0" disabled></ion-input>
+        		<ion-input id="id" value="" disabled></ion-input>
         	</ion-item>
             <ion-item>
             	<ion-label color="vibrant" position="floating" >Nombre del local</ion-label>
@@ -169,6 +182,10 @@
           	<ion-item>
             	<ion-label color="vibrant" position="floating">Teléfono de contacto</ion-label>
            		<ion-input id="phoneNumber" color="dark" placeholder="Ej: 900600600"></ion-input>
+			</ion-item>
+			<ion-item>
+            	<ion-label color="vibrant" position="floating">Código Postal</ion-label>
+           		<ion-input id="codPostal" color="dark" placeholder="Ej: 45880"></ion-input>
           	</ion-item>
           	<ion-item>
             	<ion-label color="vibrant" position="floating">Latitud</ion-label>
@@ -235,6 +252,22 @@
         </ion-fab-list>
       </ion-fab>
 		</ion-content>
+		<ion-content id="settings" class="ion-padding">
+			<ion-list>
+				<ion-item>
+					<ion-label class="ion-text-wrap" color="vibrant" >Usuario:</ion-label>
+					<ion-input id="idSettingsUser" value="" disabled></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label color="vibrant" position="floating" >Correo electrónico</ion-label>
+					<ion-input id="idSettingsEmail" color="dark" ></ion-input>
+				</ion-item>
+				<ion-button expand="full" onclick="changePassword()" color="vibrant">Cambiar contraseña</ion-button>
+			</ion-list>
+			<div align="center" style="padding-top: 50px;" >
+				<a href="#" onclick="unRegister()">Darme de baja</a>
+			</div>
+		</ion-content>	
 	</div>
   </ion-app>
 

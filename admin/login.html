@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+		<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165918831-1');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love Menu</title>
@@ -17,7 +27,9 @@
 
   <script type="module">
     import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
-    window.menuController = menuController;
+	window.menuController = menuController;
+	import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.alertController = alertController;
   </script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -99,8 +111,10 @@
 			<input type="text" id="loginUser" placeholder="Usuario ILoveMenu">
 			<input type="password" id="loginPassword" placeholder="Password">
 			<button type="button" onclick="login()">Login</button>
-			<div style="padding:10px;" id="text" onClick="alert()">Regístrate</div>		
+			<div style="padding:20px;" id="text" onClick="recover()"><a href="#">¿Olvidó su usuario y/o contraseña?<a></a></div>		
+			<button style="margin-top:30px;"  type="button" onclick="register()">Registrarme</button>
 
+		
 		</form>
 
 	</div>
