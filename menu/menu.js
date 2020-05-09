@@ -36,8 +36,12 @@ let deferredPrompt;
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
-    });
-	localId = window.atob(GetURLParameter('property'));
+	});
+	try{
+		localId = window.atob(GetURLParameter('property'));
+	} catch(e){
+		goToHome();
+	}
 	
     searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
@@ -52,7 +56,9 @@ GetURLParameter = function (sParam) {
 	for (var i = 0; i < sURLVariables.length; i++){
 		var sParameterName = sURLVariables[i].split('=');
 		if (sParameterName[0] == sParam){
-            return sParameterName[1];
+			var code = sParameterName[1];
+			code = code.replace("%3D","");
+            return code;
 		}
 	}
 };   
