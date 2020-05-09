@@ -57,7 +57,6 @@ GetURLParameter = function (sParam) {
 		var sParameterName = sURLVariables[i].split('=');
 		if (sParameterName[0] == sParam){
 			var code = sParameterName[1];
-			code = code.replace("%3D","");
             return code;
 		}
 	}
@@ -71,7 +70,7 @@ setPropertyInfo = function (idProperty, object){
     propertyInfo = object;
 	document.getElementById("propertyName").innerHTML = object.propertyName;
 	//document.getElementById("callButton").href = "tel:"+object.phoneNumber;
-	var text = "Ver carta de "+object.propertyName+" ";
+	var text = "Ver carta de "+object.propertyName;
 	shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+window.btoa(idProperty);
 };
 
