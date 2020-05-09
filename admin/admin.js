@@ -412,6 +412,8 @@ function setLocalInfo(localInfo){
 	document.getElementById("card").checked = localInfo.card;
 	document.getElementById("cash").checked = localInfo.cash;
 	document.getElementById("homeDelivery").checked = localInfo.homeDelivery;	
+	document.getElementById("whatsappOrder").checked = localInfo.orderEnabled;	
+
 }
 
 function setMenuInfo(menuInfo){
@@ -620,6 +622,8 @@ function saveLocalInfo(){
 	localInfo.card = document.getElementById("card").checked;
 	localInfo.cash = document.getElementById("cash").checked;
 	localInfo.homeDelivery = document.getElementById("homeDelivery").checked;	
+	localInfo.orderEnabled = document.getElementById("whatsappOrder").checked;
+
 	LOCAL_INFO = localInfo;
 	sendLocalInfo(localId, localInfo);
 }
