@@ -61,6 +61,7 @@ GetURLParameter = function (sParam) {
 		var sParameterName = sURLVariables[i].split('=');
 		if (sParameterName[0] == sParam){
 			var code = sParameterName[1];
+			code = replace("%3D","");
             return code;
 		}
 	}
@@ -349,9 +350,7 @@ hacerPedido = function () {
 	} else {
 		dismissModal();
 		var encodedPedido = window.encodeURIComponent(pedido);
-		//alert('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp);
-		console.info('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp);
-		//window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
+		window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
 	}
 }; 
 
