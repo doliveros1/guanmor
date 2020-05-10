@@ -8,20 +8,22 @@ var propertyInfo;
 var clientAddress;
 
 var loading;
-
-
+var searchBar;
 let deferredPrompt;
 
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
-    });
-    showLoading("Cargando cartas de restaurantes");
-    getLocalesInfo();
+	});
+	
+	searchbar = document.querySelector('ion-searchbar');
+    searchbar.addEventListener('ionInput', handleInputSearchBar);
+    //showLoading("Cargando cartas de restaurantes");
+    //getLocalesInfo();
 }
 
-getLocalesInfo = function () {
-	fetchLocales();
+getLocalesInfo = function (query) {
+	fetchLocales(query);
 }; 
 
 setLocalesInfo = function (locales){
@@ -56,15 +58,12 @@ hideLoading = function () {
 
 //DATA
 
-const fetchLocales = () => {
-    return axios.get(API_PATH,{ crossdomain: true })
+const fetchLocales = (zipCode) => {
+    return axios.get(API_PATH+"?zipCode="+zipCode,{ crossdomain: true })
         .then(response => {
 			hideLoading();
-			if(isEmpty(response.data)){
-				alert("No hay bares");		
-			} else{
-        		setLocalesInfo(response.data);			
-			}
+			setLocalesInfo(response.data);	
+			
         })
         .catch(error => {
 			hideLoading();
@@ -77,4 +76,16 @@ function isEmpty(obj) {
 
 function goToCarta(idLocal){
 	window.location.href = MENU+"?property="+window.btoa(idLocal);
+}
+
+
+function handleInputSearchBar(event) {
+	var query = event.target.value.toLowerCase();
+	if(query.length === 5){
+		showLoading("Buscando cartas de restaurantes");
+    	getLocalesInfo(query);
+	} else if(query.length === 0){
+		showLoading("Buscando cartas de restaurantes");
+    	getLocalesInfo(query);
+	}
 }
