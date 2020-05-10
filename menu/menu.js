@@ -349,7 +349,8 @@ hacerPedido = function () {
 	} else {
 		dismissModal();
 		var encodedPedido = window.encodeURIComponent(pedido);
-		window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
+		alert('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp);
+		//window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
 	}
 }; 
 
