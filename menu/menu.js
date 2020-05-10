@@ -159,7 +159,7 @@ updateCategoryProducts = function(categoryProducts){
 
 					if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
 						var alerg = prod.alergenos.toString();
-						alerg = alerg.replace(",","|");
+						alerg = alerg.replace(/,/g,'|');
 
 						product = product + `<ion-button onclick="showAllergen('`+prod.title+`','`+alerg+`')" size="small" color="danger"">
 						Alérgenos</ion-button>`;

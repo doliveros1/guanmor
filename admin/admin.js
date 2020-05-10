@@ -130,27 +130,103 @@ addNewProduct= function (idCategory, idProduct) {
 				</div>
 			</ion-col>
 		</ion-row>
-		<ion-row>		
-			<ion-item>
-				<ion-label>Alérgenos</ion-label>
-				<ion-select ionChange="{e => alert(e.detail.value)}" class="inputSelectAlergenos" multiple value="alergenos" interface="alert">
-					<ion-select-option value="altramuces">Altramuces</ion-select-option>
-					<ion-select-option value="apio">Apio</ion-select-option>
-					<ion-select-option value="cacahuetes">Cacahuetes</ion-select-option>
-					<ion-select-option value="cascara">Cáscara</ion-select-option>
-					<ion-select-option value="crustaceos">Crustáceos</ion-select-option>
-					<ion-select-option value="gluten">Gluten</ion-select-option>
-					<ion-select-option value="huevos">Huevos</ion-select-option>
-					<ion-select-option value="lacteos">Lácteos</ion-select-option>
-					<ion-select-option value="moluscos">Moluscos</ion-select-option>
-					<ion-select-option value="mostaza">Mostaza</ion-select-option>
-					<ion-select-option value="pescado">Pescado</ion-select-option>
-					<ion-select-option value="sesamo">Sésamo</ion-select-option>
-					<ion-select-option value="soja">Soja</ion-select-option>
-					<ion-select-option value="sulfitos">Sulfitos</ion-select-option>
-				</ion-select>
-	  		</ion-item>
-		</ion-row>
+		<ion-row>
+		<ion-label color="vibrant">Alérgenos</ion-label>
+	</ion-row>
+	<ion-row>		
+		<ion-col>
+			<div class="row" >
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputAltramuces" onclick="updateAllergen('altramuces','`+product+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
+						<ion-label>Altramuces</ion-label>
+					  </ion-item>
+				  </div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputApio"  onclick="updateAllergen('apio','`+product+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
+						<ion-label>Apio</ion-label>
+					</ion-item>					
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('cacahuetes','`+product+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
+						<ion-label>Cacahuetes</ion-label>
+					</ion-item>	
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputCascara" onclick="updateAllergen('cascara','`+product+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
+						<ion-label>Cáscara</ion-label>
+					</ion-item>	
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('crustaceos','`+product+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
+						<ion-label>Crustáceos</ion-label>
+					</ion-item>	
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputGluten" onclick="updateAllergen('gluten','`+product+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
+						<ion-label>Gluten</ion-label>
+					</ion-item>						
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputHuevos" onclick="updateAllergen('huevos','`+product+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
+						<ion-label>Huevos</ion-label>
+					</ion-item>							
+				</div>
+			</div>
+		</ion-col>	
+		<ion-col>
+			<div class="row" >
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputLacteos" onclick="updateAllergen('lacteos','`+product+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
+						<ion-label>Lácteos</ion-label>
+					</ion-item>						
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputMoluscos" onclick="updateAllergen('moluscos','`+product+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
+						<ion-label>Moluscos</ion-label>
+					</ion-item>						
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputMostaza" onclick="updateAllergen('mostaza','`+product+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
+						<ion-label>Mostaza</ion-label>
+					</ion-item>	
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputPescado" onclick="updateAllergen('pescado','`+product+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
+						<ion-label>Pescado</ion-label>
+					</ion-item>						
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputSesamo" onclick="updateAllergen('sesamo','`+product+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
+						<ion-label>Sésamo</ion-label>
+					</ion-item>							
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputSoja" onclick="updateAllergen('soja','`+product+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
+						<ion-label>Soja</ion-label>
+					</ion-item>						
+				</div>
+				<div class="col">
+					<ion-item>
+						<ion-checkbox class="inputSulfitos" onclick="updateAllergen('sulfitos','`+product+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
+						<ion-label>Sulfitos</ion-label>
+					</ion-item>							
+				</div>
+			</div>
+		</ion-col>		
+	</ion-row>
 	</ion-grid>
 	`;
 
@@ -270,6 +346,58 @@ updateProduct = function (idCategory, idProduct) {
 	product.description = valueDescription;
 	product.pvp = valuePvp;
 };  
+
+updateAllergen = function(allergen, idProduct){
+	//alert(allergen+" "+idProduct);
+	var listAllergens = [];
+	var product = MAP_PRODUCTS_ID.get(idProduct);
+	var docProduct = document.getElementById(idProduct);
+	if(docProduct.getElementsByClassName("inputAltramuces")[0].checked){
+		listAllergens.push("altramuces");
+	}
+	if(docProduct.getElementsByClassName("inputApio")[0].checked){
+		listAllergens.push("apio");
+	}	
+	if(docProduct.getElementsByClassName("inputCacahuetes")[0].checked){
+		listAllergens.push("cacahuetes");
+	}	
+	if(docProduct.getElementsByClassName("inputCascara")[0].checked){
+		listAllergens.push("cascara");
+	}	
+	if(docProduct.getElementsByClassName("inputCrustaceos")[0].checked){
+		listAllergens.push("crustaceos");
+	}	
+	if(docProduct.getElementsByClassName("inputGluten")[0].checked){
+		listAllergens.push("gluten");
+	}	
+	if(docProduct.getElementsByClassName("inputHuevos")[0].checked){
+		listAllergens.push("huevos");
+	}	
+	if(docProduct.getElementsByClassName("inputLacteos")[0].checked){
+		listAllergens.push("lacteos");
+	}
+	if(docProduct.getElementsByClassName("inputMostaza")[0].checked){
+		listAllergens.push("moluscos");
+	}
+	if(docProduct.getElementsByClassName("inputMostaza")[0].checked){
+		listAllergens.push("mostaza");
+	}
+	if(docProduct.getElementsByClassName("inputPescado")[0].checked){
+		listAllergens.push("pescado");
+	}
+	if(docProduct.getElementsByClassName("inputSesamo")[0].checked){
+		listAllergens.push("sesamo");
+	}
+	if(docProduct.getElementsByClassName("inputSoja")[0].checked){
+		listAllergens.push("soja");
+	}
+	if(docProduct.getElementsByClassName("inputSulfitos")[0].checked){
+		listAllergens.push("sulfitos");
+	}
+	//var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].che;
+	product.alergenos = listAllergens;
+
+}
 
 checkEnableProduct = function (idCategory, idProduct) {
 	var inputEnable = document.getElementById(idProduct).getElementsByClassName("inputEnableProduct");
@@ -547,16 +675,26 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		indexProduct = indexProduct +1;
 		var idProduct = "product"+indexProduct;
 		MAP_PRODUCTS_ID.set(idProduct, product);
-		productHTML = productHTML + `<ion-item id="`+idProduct+`">
+		productHTML = productHTML + `<ion-item class="allProductItem" id="`+idProduct+`">
 
 		<ion-grid>
-        <ion-row>
-          <ion-col>
-			<ion-item class="productItem" >
+        <ion-row >
+          <ion-col size=8>
+			<ion-item color="light" class="productItem" >
 				<ion-label position="stacked"  color="vibrant" >Título</ion-label>
 				<ion-textarea onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.title+`" class="ion-text-wrap inputProductTitle">
 			</ion-item>
-          </ion-col>          
+		  </ion-col>  
+		  <ion-col size=4>
+		  <div align="right">
+			<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
+			<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+				</ion-button>
+				<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
+				<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
+				</ion-button>
+			</div>
+          </ion-col>            
 		</ion-row>
 		<ion-row>
 		<ion-col>
@@ -572,43 +710,104 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 				<ion-label position="stacked"  color="vibrant">Precio</ion-label>
 				<ion-input type="number" onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
 			</ion-item>
-		  </ion-col> 
-		  <ion-col>
-		  <div align="right">
-			<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
-			<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-				</ion-button>
-				<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
-				<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
-				</ion-button>
-			</div>
-          </ion-col>          
+		  </ion-col> 		       
 		</ion-row>
 		<ion-row>
-			<ion-item class="productItem" >
-				<ion-label  color="vibrant" >Alérgenos</ion-label>
-			</ion-item>
+			<ion-label color="vibrant">Alérgenos</ion-label>
 		</ion-row>
 		<ion-row>		
-			<ion-item>
-				<ion-label>Alérgenos</ion-label>
-				<ion-select ionChange="alert(event)" class="inputSelectAlergenos" multiple value="alergenos" interface="alert">
-					<ion-select-option value="altramuces">Altramuces</ion-select-option>
-					<ion-select-option value="apio">Apio</ion-select-option>
-					<ion-select-option value="cacahuetes">Cacahuetes</ion-select-option>
-					<ion-select-option value="cascara">Cáscara</ion-select-option>
-					<ion-select-option value="crustaceos">Crustáceos</ion-select-option>
-					<ion-select-option value="gluten">Gluten</ion-select-option>
-					<ion-select-option value="huevos">Huevos</ion-select-option>
-					<ion-select-option value="lacteos">Lácteos</ion-select-option>
-					<ion-select-option value="moluscos">Moluscos</ion-select-option>
-					<ion-select-option value="mostaza">Mostaza</ion-select-option>
-					<ion-select-option value="pescado">Pescado</ion-select-option>
-					<ion-select-option value="sesamo">Sésamo</ion-select-option>
-					<ion-select-option value="soja">Soja</ion-select-option>
-					<ion-select-option value="sulfitos">Sulfitos</ion-select-option>
-				</ion-select>
-	  		</ion-item>
+			<ion-col>
+				<div class="row" >
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputAltramuces" onclick="updateAllergen('altramuces','`+idProduct+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
+							<ion-label>Altramuces</ion-label>
+				  		</ion-item>
+				  	</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputApio"  onclick="updateAllergen('apio','`+idProduct+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
+							<ion-label>Apio</ion-label>
+						</ion-item>					
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('cacahuetes','`+idProduct+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
+							<ion-label>Cacahuetes</ion-label>
+						</ion-item>	
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputCascara" onclick="updateAllergen('cascara','`+idProduct+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
+							<ion-label>Cáscara</ion-label>
+						</ion-item>	
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('crustaceos','`+idProduct+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
+							<ion-label>Crustáceos</ion-label>
+						</ion-item>	
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputGluten" onclick="updateAllergen('gluten','`+idProduct+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
+							<ion-label>Gluten</ion-label>
+						</ion-item>						
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputHuevos" onclick="updateAllergen('huevos','`+idProduct+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
+							<ion-label>Huevos</ion-label>
+						</ion-item>							
+					</div>
+				</div>
+			</ion-col>	
+			<ion-col>
+				<div class="row" >
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputLacteos" onclick="updateAllergen('lacteos','`+idProduct+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
+							<ion-label>Lácteos</ion-label>
+						</ion-item>						
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputMoluscos" onclick="updateAllergen('moluscos','`+idProduct+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
+							<ion-label>Moluscos</ion-label>
+						</ion-item>						
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputMostaza" onclick="updateAllergen('mostaza','`+idProduct+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
+							<ion-label>Mostaza</ion-label>
+						</ion-item>	
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputPescado" onclick="updateAllergen('pescado','`+idProduct+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
+							<ion-label>Pescado</ion-label>
+						</ion-item>						
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputSesamo" onclick="updateAllergen('sesamo','`+idProduct+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
+							<ion-label>Sésamo</ion-label>
+						</ion-item>							
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputSoja" onclick="updateAllergen('soja','`+idProduct+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
+							<ion-label>Soja</ion-label>
+						</ion-item>						
+					</div>
+					<div class="col">
+						<ion-item>
+							<ion-checkbox class="inputSulfitos" onclick="updateAllergen('sulfitos','`+idProduct+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
+							<ion-label>Sulfitos</ion-label>
+						</ion-item>							
+					</div>
+				</div>
+			</ion-col>		
 		</ion-row>
 
 
@@ -658,6 +857,14 @@ function showCategoryDetail(category) {
 
 function onChange($event){
 	console.log($event.target.value);
+}
+
+function isAllergenChecked(allergen, product){
+	if(product.hasOwnProperty("alergenos") && product.alergenos.includes(allergen)){
+		return "checked";
+	} else {
+		return "";
+	}
 }
 
 function saveLocalInfo(){
