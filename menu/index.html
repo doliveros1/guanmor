@@ -74,16 +74,22 @@
 	.toolBar {
 		border-bottom:1px solid #3ed7ca;
 	}
-	
-	//window.encodeURIComponent("My title"+"\r\n\r\n"+"My description and link")
 
+	ion-content{
+   	 --background:url('background.jpeg') no-repeat center center / cover;
+	}
+	
   </style>
 </head>
 <body>
   <ion-app>
 	<ion-toolbar color="dark" class="toolBar">
+		<ion-title id="propertyName" mode=ios>Cartas disponibles</ion-title> 
+	</ion-toolbar>
+	<ion-toolbar class="searchBar" color="dark">
+		<ion-searchbar placeholder="Buscar cartas por código postal">	
 
-        <ion-title id="propertyName" mode=ios>Cartas disponibles</ion-title>
+		</ion-searchbar>    
 	</ion-toolbar>
 
     <ion-content id="propertiesList" fullscreen>
