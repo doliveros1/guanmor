@@ -3,8 +3,31 @@ var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 
 window.onload = (e) => { 
-
+	window.addEventListener('beforeinstallprompt', (e) => {
+		deferredPrompt = e;
+	});
+	try{
+		var plan = GetURLParameter('suscription');
+		document.getElementById("suscription").value = plan;
+	} catch(e){
+	}
+    
 }
+
+GetURLParameter = function (sParam) {
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	var code = "basic";
+	for (var i = 0; i < sURLVariables.length; i++){
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam){
+			if(sParameterName[1]==="basic"||sParameterName[1]==="pro"){
+				code = sParameterName[1];
+			}
+		}
+	}
+	return code;
+};  
 register = function (){
 	validateRegister();
 };

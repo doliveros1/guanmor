@@ -222,3 +222,30 @@ form button:hover {
             transform: translateY(-700px) rotate(600deg);
   }
 }
+
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 5px;
+  width: 250px;
+}
+
+form select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 250px;
+  border-radius: 3px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+  font-weight: 300;
+}

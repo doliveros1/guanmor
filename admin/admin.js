@@ -130,6 +130,27 @@ addNewProduct= function (idCategory, idProduct) {
 				</div>
 			</ion-col>
 		</ion-row>
+		<ion-row>		
+			<ion-item>
+				<ion-label>Alérgenos</ion-label>
+				<ion-select ionChange="{e => alert(e.detail.value)}" class="inputSelectAlergenos" multiple value="alergenos" interface="alert">
+					<ion-select-option value="altramuces">Altramuces</ion-select-option>
+					<ion-select-option value="apio">Apio</ion-select-option>
+					<ion-select-option value="cacahuetes">Cacahuetes</ion-select-option>
+					<ion-select-option value="cascara">Cáscara</ion-select-option>
+					<ion-select-option value="crustaceos">Crustáceos</ion-select-option>
+					<ion-select-option value="gluten">Gluten</ion-select-option>
+					<ion-select-option value="huevos">Huevos</ion-select-option>
+					<ion-select-option value="lacteos">Lácteos</ion-select-option>
+					<ion-select-option value="moluscos">Moluscos</ion-select-option>
+					<ion-select-option value="mostaza">Mostaza</ion-select-option>
+					<ion-select-option value="pescado">Pescado</ion-select-option>
+					<ion-select-option value="sesamo">Sésamo</ion-select-option>
+					<ion-select-option value="soja">Soja</ion-select-option>
+					<ion-select-option value="sulfitos">Sulfitos</ion-select-option>
+				</ion-select>
+	  		</ion-item>
+		</ion-row>
 	</ion-grid>
 	`;
 
@@ -563,6 +584,34 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			</div>
           </ion-col>          
 		</ion-row>
+		<ion-row>
+			<ion-item class="productItem" >
+				<ion-label  color="vibrant" >Alérgenos</ion-label>
+			</ion-item>
+		</ion-row>
+		<ion-row>		
+			<ion-item>
+				<ion-label>Alérgenos</ion-label>
+				<ion-select ionChange="alert(event)" class="inputSelectAlergenos" multiple value="alergenos" interface="alert">
+					<ion-select-option value="altramuces">Altramuces</ion-select-option>
+					<ion-select-option value="apio">Apio</ion-select-option>
+					<ion-select-option value="cacahuetes">Cacahuetes</ion-select-option>
+					<ion-select-option value="cascara">Cáscara</ion-select-option>
+					<ion-select-option value="crustaceos">Crustáceos</ion-select-option>
+					<ion-select-option value="gluten">Gluten</ion-select-option>
+					<ion-select-option value="huevos">Huevos</ion-select-option>
+					<ion-select-option value="lacteos">Lácteos</ion-select-option>
+					<ion-select-option value="moluscos">Moluscos</ion-select-option>
+					<ion-select-option value="mostaza">Mostaza</ion-select-option>
+					<ion-select-option value="pescado">Pescado</ion-select-option>
+					<ion-select-option value="sesamo">Sésamo</ion-select-option>
+					<ion-select-option value="soja">Soja</ion-select-option>
+					<ion-select-option value="sulfitos">Sulfitos</ion-select-option>
+				</ion-select>
+	  		</ion-item>
+		</ion-row>
+
+
 		</ion-grid></ion-item>`;
 
 
@@ -606,6 +655,10 @@ function showCategoryDetail(category) {
 	categoryProduct.value = MAP_CATEGORIES_ID.get(category);
 	nav.push('nav-products', {categoryProduct});
 };
+
+function onChange($event){
+	console.log($event.target.value);
+}
 
 function saveLocalInfo(){
 	var localInfo = {};

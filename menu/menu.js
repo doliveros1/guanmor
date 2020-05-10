@@ -24,6 +24,8 @@ var shareHref = "";
 var refresher;
 
 var orderEnabled = false;
+var selectedAllergens = {};
+var selectedAllergenProduct = "";
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -122,18 +124,51 @@ updateCategoryProducts = function(categoryProducts){
 		if(prod.enable){
 			var idInput = "pvpInput"+inputCon;
 			inputCon = inputCon + 1;
-			var product = `<ion-item class="productItem"><ion-label class="ion-text-wrap"><h3>`+prod.title+`</h3>`;
-			product = product + `<p>`+prod.description+`</p>`;
+			var product = `<ion-item class="productItem">
+			<ion-grid>
+					<ion-row>
+						<ion-col size=9>
+							<div style="align:right;"><ion-label class="productItemTitle ion-text-wrap">`+prod.title+`
+							</ion-label></div>
+						</ion-col>
+						<ion-col  size="3">
+							<div align="right"><b class="productItemPVP">`+prod.pvp+`</b>€</div>						
+						</ion-col>
+					</ion-row>
+				<ion-row >
+					<ion-col>
+						<i class="productDescription">`+prod.description+`
+						</i>
+					</ion-col>
+				</ion-row>
+				<ion-row >
+					<ion-col>
+						<div>
+							<input class="productItemCantity" type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>
+						</div>
+						<ion-button color="vibrant" onclick="decrement('`+idInput+`')">
+							<ion-icon slot="icon-only" name="remove-circle-outline">
+							</ion-icon>
+						</ion-button>
+						<ion-button color="vibrant" onclick="increment('`+idInput+`')">
+							<ion-icon slot="icon-only" name="add-circle-outline">
+							</ion-icon>
+						</ion-button>
+					</ion-col>
+					<ion-col><div align="right">`;
 
-			if(orderEnabled){
-				product = product + `<input type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>`;
-				product = product + `<div><ion-button color="vibrant" onclick="decrement('`+idInput+`')">`;	
-				product = product + `<ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon></ion-button>`;
-				product = product + `<ion-button color="vibrant" onclick="increment('`+idInput+`')">`;	
-				product = product + `<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon></ion-button></div></ion-label>`;
-			}
-			product = product + `<p class="price">`+prod.pvp+`</p>`;
-			product = product + `</ion-item>`;
+					if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
+						var alerg = prod.alergenos.toString();
+						alerg = alerg.replace(",","|");
+
+						product = product + `<ion-button onclick="showAllergen('`+prod.title+`','`+alerg+`')" size="small" color="danger"">
+						Alérgenos</ion-button>`;
+					} ;
+					product = product + `</div>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			</ion-item>`;
 			products = products + product;
 		}
 	});
@@ -153,6 +188,40 @@ handleButtonClick = function () {
 	}
 };
 
+showAllergen = function (allergenProduct, allergens) {
+	selectedAllergenProduct = allergenProduct;
+	setSelectedAllergens(allergens.split("|"));
+	const popover = Object.assign(document.createElement('ion-popover'), {
+		component: 'popover-allergen-page',
+		translucent: true
+	  });
+	  document.body.appendChild(popover);
+	  return popover.present();
+};
+
+setSelectedAllergens = function (allergens){
+	selectedAllergens = {};
+	selectedAllergens.altramuces = "none";
+	selectedAllergens.apio = "none";
+	selectedAllergens.cacahuetes = "none";
+	selectedAllergens.cascara = "none";
+	selectedAllergens.crustaceos = "none";
+	selectedAllergens.gluten = "none";
+	selectedAllergens.huevos = "none";
+	selectedAllergens.lacteos = "none";
+	selectedAllergens.moluscos = "none";
+	selectedAllergens.mostaza = "none";
+	selectedAllergens.pescado = "none";
+	selectedAllergens.sesamo = "none";
+	selectedAllergens.soja = "none";
+	selectedAllergens.sulfitos = "none";
+
+	allergens.forEach(allergen=>{
+		selectedAllergens[allergen] = "block";
+	});
+	
+
+}
 showOrderDetail = function () {
   const alert = document.createElement('ion-alert');
   alert.header = 'Dirección de envío';
@@ -300,9 +369,9 @@ getCurrentOrderInner = function () {
 			for(var j=0;j<productsContent.length;j++){
 				if(productsContent[j].tagName === "ION-ITEM"){
 					var product = productsContent[j].children[0];
-					var price = productsContent[j].children[1].innerText;
-					var value = product.children[2].value;
-					var productName = product.children[0].textContent;
+					var price = product.getElementsByClassName("productItemPVP")[0].innerText;
+					var value = product.getElementsByClassName("productItemCantity")[0].value;
+					var productName = product.getElementsByClassName("productItemTitle")[0].innerText;
 					if(value === "" || value === "0"){
 					} else {
 					  empty = false;
@@ -340,7 +409,7 @@ function removeCarritoItem(id){
 
 handleButtonInfoClick = async function handleButtonInfoClick(ev) {
       popover = await popoverController.create({
-        component: 'popover-example-page',
+        component: 'popover-info-page',
         event: ev,
         translucent: true
       });
@@ -354,7 +423,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
       }
     };
 
- customElements.define('popover-example-page', class ModalContent extends HTMLElement {
+ customElements.define('popover-info-page', class ModalContent extends HTMLElement {
       connectedCallback() {
         var infoString = `<ion-list><ion-list-header>`+propertyInfo.propertyName+`- Información</ion-list-header>`;        
       	if(propertyInfo.homeDelivery){
@@ -375,7 +444,146 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 
         this.innerHTML = infoString;
       }
-    });
+	});
+
+	customElements.define('popover-allergen-page', class ModalContent extends HTMLElement {
+		connectedCallback() {
+
+		  var infoString = `<ion-list>
+		  <ion-list-header>
+			`+selectedAllergenProduct+`
+		  </ion-list-header>
+  
+		  	<ion-item lines="none" style="display:`+selectedAllergens.altramuces+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/altramuces.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Altramuces</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.apio+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/apio.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Apio</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.cacahuetes+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/cacahuetes.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Cacahuetes</h3>
+				</ion-label>
+			  </ion-item>
+				  
+			  <ion-item lines="none" style="display:`+selectedAllergens.cascara+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/cascara.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Cáscara</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.crustaceos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/crustaceos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Crustaceos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.gluten+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/gluten.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Gluten</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.huevos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/huevos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Huevos</h3>
+				</ion-label>
+			  </ion-item>
+
+			  <ion-item lines="none" style="display:`+selectedAllergens.lacteos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/lacteos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Lácteos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.moluscos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/moluscos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Moluscos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.mostaza+`">
+			  	<ion-avatar slot="start">
+					<img src="./images/mostaza.png">
+				</ion-avatar>
+				<ion-label>
+				  <h3>Mostaza</h3>
+				</ion-label>
+		  		</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.pescado+`">
+					<ion-avatar slot="start">
+						<img src="./images/pescado.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Pescado</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.sesamo+`">
+					<ion-avatar slot="start">
+						<img src="./images/sesamo.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Sésamo</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.soja+`">
+					<ion-avatar slot="start">
+						<img src="./images/soja.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Soja</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.sulfitos+`">
+					<ion-avatar slot="start">
+						<img src="./images/sulfitos.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Sulfittos</h3>
+					</ion-label>
+				</ion-item>
+		  
+		  </ion-list>`
+		  this.innerHTML = infoString;
+		}
+	  });
 
 //DATA
 
