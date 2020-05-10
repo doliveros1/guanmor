@@ -1,6 +1,6 @@
 const LOGIN = "./login.html";
-//var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
-var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+//var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 var stripe = Stripe('pk_test_P0kkd5z4cnJiRk4RciNGcOkP00HiaopImo');
 
 window.onload = (e) => { 
