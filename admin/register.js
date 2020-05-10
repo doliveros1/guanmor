@@ -1,6 +1,7 @@
 const LOGIN = "./login.html";
-var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
-//var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+//var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+var stripe = Stripe('pk_test_P0kkd5z4cnJiRk4RciNGcOkP00HiaopImo');
 
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
@@ -85,7 +86,9 @@ function validateRegister() {
 	} else if(!validateEmail(email)){
 		presentToast("Correo electrónico no válido");
 	} else {
-		fetchRegister(user,password,email,promocion);
+		var e = document.getElementById("suscription");
+		var value = e.options[e.selectedIndex].value;
+		getPayment(value);
 	}
 
 }
@@ -111,6 +114,26 @@ hideLoading = function () {
 
 
 //DATA
+
+const getPayment = (plan) => {
+    return axios.get(API_PATH_LOGIN+"/payment/?plan="+plan,{ crossdomain: true })
+        .then(response => {
+			stripe.redirectToCheckout({
+				// Make the id field from the Checkout Session creation API response
+				// available to this file, so you can provide it as parameter here
+				// instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+				sessionId: response.data.id
+			  }).then(function (result) {
+				  console.info(result);
+				// If `redirectToCheckout` fails due to a browser or network
+				// error, display the localized error message to your customer
+				// using `result.error.message`.
+			  });
+        })
+        .catch(error => {
+			presentToast(error.response.data.message)
+        });
+};
 
 const fetchRegister = (pUser, pPassword, pMail, pPromocion) => {
 	showLoading("Autenticando");
