@@ -33,6 +33,34 @@
   </script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+  <script>
+
+	window.onload = (e) => { 
+		window.addEventListener('beforeinstallprompt', (e) => {
+			deferredPrompt = e;
+		});
+		try{
+			var user = GetURLParameter('user');
+			document.getElementById("user").innerHTML = user;
+		} catch(e){
+		}
+		
+	}
+	GetURLParameter = function (sParam) {
+		var sPageURL = window.location.search.substring(1);
+		var sURLVariables = sPageURL.split('&');
+		var code = "basic";
+		for (var i = 0; i < sURLVariables.length; i++){
+			var sParameterName = sURLVariables[i].split('=');
+			if (sParameterName[0] == sParam){
+				if(sParameterName[1]==="basic"||sParameterName[1]==="pro"){
+					code = sParameterName[1];
+				}
+			}
+		}
+		return code;
+	}; 
+  </script>
   <style>
 
     
@@ -106,6 +134,7 @@
   <div class="wrapper">
 	<div class="container">
 		<h1>¡BIENVENIDO A I Love Menu!</h1>
+		<h2 id="user"></h2>
 		
 		<form >
 			<button type="button" onclick="location.href='./login.html'">IR AL LOGIN</button>
