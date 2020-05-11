@@ -121,7 +121,7 @@ const getPayment = (plan) => {
 				// Make the id field from the Checkout Session creation API response
 				// available to this file, so you can provide it as parameter here
 				// instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-				sessionId: response.id
+				sessionId: response.data.id
 			  }).then(function (result) {
 				  console.info(result);
 				// If `redirectToCheckout` fails due to a browser or network
@@ -158,7 +158,7 @@ const fetchRegister = (pUser, pPassword, pMail, pPlan) => {
 				// Make the id field from the Checkout Session creation API response
 				// available to this file, so you can provide it as parameter here
 				// instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-				sessionId: response.data.id
+				sessionId: response.id
 			  }).then(function (result) {
 				  console.info(result);
 				// If `redirectToCheckout` fails due to a browser or network
