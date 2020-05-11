@@ -75,7 +75,6 @@ function validateRegister() {
 	var password = document.getElementById("registerPassword").value;
 	var repassword = document.getElementById("registerRePassword").value;
 	var email = document.getElementById("registerMail").value;
-	var promocion = document.getElementById("registerCodPromocion").value;
 
 	if(user === "" || password ==="" || repassword ==="" || email===""){
 		presentToast("Introduzca un nombre de usuario, contraseña y correo electrónico");
