@@ -1,6 +1,6 @@
 const LOGIN = "./login.html";
-var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
-//var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+//var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 var stripe = Stripe('pk_test_P0kkd5z4cnJiRk4RciNGcOkP00HiaopImo');
 
 window.onload = (e) => { 
@@ -87,8 +87,8 @@ function validateRegister() {
 		presentToast("Correo electrónico no válido");
 	} else {
 		var e = document.getElementById("suscription");
-		var value = e.options[e.selectedIndex].value;
-		getPayment(value);
+		var plan = e.options[e.selectedIndex].value;
+		fetchRegister(user, password, email,plan);
 	}
 
 }
@@ -135,13 +135,13 @@ const getPayment = (plan) => {
         });
 };
 
-const fetchRegister = (pUser, pPassword, pMail, pPromocion) => {
-	showLoading("Autenticando");
+const fetchRegister = (pUser, pPassword, pMail, pPlan) => {
+	showLoading("Registrando");
 	var postData = {
       user: pUser,
 	  password: pPassword,
 	  email: pMail,
-	  promocion: pPromocion
+	  plan: pPlan
 	  
     };
     // Post a user
