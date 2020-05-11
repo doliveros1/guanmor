@@ -114,7 +114,7 @@ hideLoading = function () {
 
 //DATA
 
-const getPayment = (plan) => {
+const getPayment = (plan) => { 
     return axios.get(API_PATH_LOGIN+"/payment/?plan="+plan,{ crossdomain: true })
         .then(response => {
 			stripe.redirectToCheckout({
