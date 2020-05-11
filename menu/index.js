@@ -18,10 +18,28 @@ window.onload = (e) => {
 	
 	searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
-    //showLoading("Cargando cartas de restaurantes");
+	var zipCode = GetURLParameter("zipCode");
+	if(zipCode!==""){
+		showLoading("Buscando cartas de restaurantes");
+    	getLocalesInfo(zipCode);
+	}
+	//showLoading("Cargando cartas de restaurantes");
     //getLocalesInfo();
 }
 
+GetURLParameter = function (sParam) {
+	var code = "";
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++){
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam){
+			code = sParameterName[1];
+			code = code.replace("%3D","");
+		}
+	}
+	return code;
+};  
 getLocalesInfo = function (query) {
 	fetchLocales(query);
 }; 

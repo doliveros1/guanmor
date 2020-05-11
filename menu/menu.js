@@ -1,1 +1,730 @@
-var _0x2617=['get','\x22\x20target=\x22_blank\x22><ion-icon\x20name=\x22location-outline\x22></ion-icon><p>Ubicación</p></ion-item>','<ion-list\x20class=\x22bg-transparent\x22><ion-list-header\x20class=\x22categoryTitle\x22>','keys','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/cascara.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Cáscara</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','tagName','connectedCallback','timeTable','present','<ion-item>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09<ion-label\x20class=\x22ion-text-wrap\x22>[TAG_PVP]</ion-label>\x0a\x20\x20\x20\x20\x20\x09\x20\x09\x09</ion-item>','https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/','<ion-item\x20button\x20href=\x22https://www.google.com/maps/search/?api=1&query=','register','TOTAL:\x20','€\x20-\x20No\x20incluye\x20todo\x20el\x20pedido.\x20Consultar\x20con\x20el\x20establecimiento','<ion-item\x20class=\x22productItem\x22>\x0a\x09\x09\x09<ion-grid>\x0a\x09\x09\x09\x09\x09<ion-row>\x0a\x09\x09\x09\x09\x09\x09<ion-col\x20size=9>\x0a\x09\x09\x09\x09\x09\x09\x09<div\x20style=\x22align:right;\x22><ion-label\x20class=\x22productItemTitle\x20ion-text-wrap\x22>','getElementById','<ion-button\x20onclick=\x22showAllergen(\x27','toLowerCase','block','\x22>\x0a\x09\x09\x09\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x09\x09\x09\x09<img\x20src=\x22./images/pescado.png\x22>\x0a\x09\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x09\x09\x09<h3>Pescado</h3>\x0a\x09\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x09</ion-item>\x0a\x0a\x09\x09\x09\x09<ion-item\x20lines=\x22none\x22\x20style=\x22display:','className','atob','\x22>\x0a\x09\x09\x09\x20\x20\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x09\x09\x09<img\x20src=\x22./images/mostaza.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x09\x20\x20<h3>Mostaza</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x20\x20\x09\x09</ion-item>\x0a\x0a\x09\x09\x09\x09<ion-item\x20lines=\x22none\x22\x20style=\x22display:','substring','mostaza','remove','serviceWorker','inputs','ion-toast','cascara','ion-alert','from','categories','sulfitos','\x27)\x22><ion-icon\x20size=\x22large\x22\x20slot=\x22icon-only\x22\x20color=\x22vibrant\x22\x20name=\x22trash-outline\x22>\x0a\x20\x20\x20\x20\x20\x20\x09\x09\x09\x09\x09</ion-icon></ion-button></ion-buttons></ion-item>','propertyName','lacteos','Te\x20lo\x20llevamos','encodeURIComponent','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/moluscos.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Moluscos</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','data','ION-LIST','&phone=','latitude','value','moluscos','formAddressEnable','[TAG_PVP]','productItemTitle','<ion-item\x20text-center><ion-label\x20class=\x22ion-text-wrap\x22\x20color=\x22danger\x22>','none','children','<ion-item><ion-icon\x20name=\x22alarm-outline\x22></ion-icon><p>','Este\x20local\x20no\x20tiene\x20activados\x20los\x20pedidos','</ion-list>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ion-content>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-footer>\x0a\x09\x09<div\x20class=\x22horizontal\x20div1\x22>\x0a\x20\x20\x20\x20\x09\x09<div\x20class=\x22vertical\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x09<ion-button\x20expand=\x22block\x22\x20onclick=\x22hacerPedido()\x22\x20color=\x22vibrant\x22>Pedir\x20por\x20Whatsapp</ion-button>\x0a\x20\x20\x20\x09\x09\x09\x20</div>\x0a\x09\x09</div>\x0a\x0a\x09</ion-footer>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Cargando\x20la\x20carta','property','ionInput','message','freeText','longitude','\x0a\x09\x09\x09\x09\x09\x09\x09</ion-label></div>\x0a\x09\x09\x09\x09\x09\x09</ion-col>\x0a\x09\x09\x09\x09\x09\x09<ion-col\x20\x20size=\x223\x22>\x0a\x09\x09\x09\x09\x09\x09\x09<div\x20align=\x22right\x22><b\x20class=\x22productItemPVP\x22>','create','?property=','/menu/service-worker.js','soja','alergenos','homeDelivery','sesamo','cash','\x20\x22color=\x22vibrant\x22>\x0a\x09\x20\x20<ion-icon\x20name=\x22share-social-outline\x22></ion-icon>\x0a\x09</ion-fab-button>\x0a\x20\x20</ion-fab>','formAddress','Ver\x20carta\x20de\x20','%3D','https://www.ilovemenu.es/menu/menu.html','<ion-list><ion-list-header>','\x27)\x22>\x0a\x09\x09\x09\x09\x09\x09\x09<ion-icon\x20slot=\x22icon-only\x22\x20name=\x22remove-circle-outline\x22>\x0a\x09\x09\x09\x09\x09\x09\x09</ion-icon>\x0a\x09\x09\x09\x09\x09\x09</ion-button>\x0a\x09\x09\x09\x09\x09\x09<ion-button\x20color=\x22vibrant\x22\x20onclick=\x22increment(\x27','</ion-label><ion-buttons\x20slot=\x22start\x22><ion-button\x20onclick=\x22removeCarritoItem(\x27','Introduzca\x20una\x20dirección\x20de\x20envío','innerText','textContent','catch','modal-content','phoneNumber','open','<ion-item><ion-icon\x20name=\x22home-outline\x22></ion-icon><p>Envío\x20a\x20domicilio</p></ion-item>','\x22>\x0a\x09\x09\x09\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x09\x09\x09\x09<img\x20src=\x22./images/sulfitos.png\x22>\x0a\x09\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x09\x09\x09<h3>Sulfittos</h3>\x0a\x09\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x09</ion-item>\x0a\x09\x09\x20\x20\x0a\x09\x09\x20\x20</ion-list>','toString','</ion-list-header>','</b>€</div>\x09\x09\x09\x09\x09\x09\x0a\x09\x09\x09\x09\x09\x09</ion-col>\x0a\x09\x09\x09\x09\x09</ion-row>\x0a\x09\x09\x09\x09<ion-row\x20>\x0a\x09\x09\x09\x09\x09<ion-col>\x0a\x09\x09\x09\x09\x09\x09<i\x20class=\x22productDescription\x22>','replace','beforeinstallprompt','whatsapp://send?text=','Confirm\x20Ok','appendChild','card','carritoItem','display','pvp','Número','sugerencias','Para\x20recoger','hasOwnProperty','createElement','products','<ion-item><ion-icon\x20name=\x22cash-outline\x22></ion-icon><p>Pago\x20en\x20efectivo</p></ion-item>','stepDown','body','forEach','&abid=','dismiss','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/apio.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Apio</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','location','define','Calle','then','whatsapp','Indique\x20una\x20dirección\x20de\x20envío','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/crustaceos.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Crustaceos</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','enable','\x22>\x0a\x09\x09\x09\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x09\x09\x09\x09<img\x20src=\x22./images/sesamo.png\x22>\x0a\x09\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x09\x09\x09<h3>Sésamo</h3>\x0a\x09\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x09</ion-item>\x0a\x0a\x09\x09\x09\x09<ion-item\x20lines=\x22none\x22\x20style=\x22display:','pescado','streetId','\x27,\x27','huevos','header','ion-popover','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/altramuces.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Altramuces</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','getElementsByClassName','</ion-label></ion-item>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-header\x20translucent>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-toolbar\x20color=\x22dark\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-title>Mi\x20Pedido</ion-title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-buttons\x20slot=\x22end\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-button\x20onclick=\x22dismissModal()\x22>Cerrar</ion-button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ion-buttons>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ion-toolbar>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ion-header>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-content\x20fullscreen>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-list>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ion-radio-group\x20mode=md\x20value=\x22sendType\x22\x20>\x0a\x09\x09\x09\x09\x09<ion-item\x20class=\x22typeSendInput\x22\x20onclick=\x22pickUp()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09<ion-label\x20>Recoger\x20en\x20el\x20local</ion-label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09<ion-radio\x20slot=\x22start\x22\x20color=\x22vibrant\x22\x20value=\x22recoger\x22></ion-radio>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09</ion-item>\x0a\x09\x09\x09\x09\x09<ion-item\x20class=\x22typeSendInput\x22\x20onclick=\x22sendHome()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09<ion-label>Enviar\x20a\x20casa</ion-label>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09<ion-radio\x20slot=\x22start\x22\x20color=\x22vibrant\x22\x20value=\x22enviar\x22></ion-radio>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09</ion-item>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ion-radio-group>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09<form\x20class=\x22formAddressDisable\x22\x20id=\x22formAddress\x22>\x0a\x20\x20\x20\x20\x20\x20\x09\x09\x09\x09<ion-item>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09\x09<ion-label>Dirección</ion-label>\x0a\x20\x20\x20\x20\x20\x20\x20\x09\x09\x09\x20\x09\x09<ion-input\x20type=\x22text\x22\x20id=\x22streetId\x22\x20name=\x22title\x22></ion-input>\x0a\x20\x20\x20\x20\x20\x20\x09\x09\x09\x09</ion-item>\x0a\x20\x20\x20\x20\x09\x20\x20\x09\x09</form>\x0a\x09\x09\x09\x09<ion-item>\x0a\x20\x20\x09\x09\x09\x09\x09<ion-textarea\x20id=\x22freeText\x22\x20placeholder=\x22Coméntanos\x20lo\x20que\x20quieras\x22></ion-textarea>\x0a\x09\x09\x09\x09</ion-item>\x0a\x09\x09\x09\x09','log','cart-badge','productItemCantity','ION-ITEM','apio','gluten','split','\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/gluten.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Gluten</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:','\x22\x20value=\x220\x22\x20placeHolder=\x22Cdad.\x22\x20min=\x220\x22\x20max=\x2210000000\x22\x20id=\x22points\x22\x20name=\x22points\x22\x20step=\x221\x22\x20disabled>\x0a\x09\x09\x09\x09\x09\x09</div>\x0a\x09\x09\x09\x09\x09\x09<ion-button\x20color=\x22vibrant\x22\x20onclick=\x22decrement(\x27','style','menuContent','popover-allergen-page','\x27)\x22\x20size=\x22small\x22\x20color=\x22danger\x22\x22>\x0a\x09\x09\x09\x09\x09\x09Alérgenos</ion-button>','formAddressDisable','./index.html','<ion-item\x20button\x20href=\x22tel:','\x0d\x0a\x0d\x0a','href','\x27)\x22>\x0a\x09\x09\x09\x09\x09\x09\x09<ion-icon\x20slot=\x22icon-only\x22\x20name=\x22add-circle-outline\x22>\x0a\x09\x09\x09\x09\x09\x09\x09</ion-icon>\x0a\x09\x09\x09\x09\x09\x09</ion-button>\x0a\x09\x09\x09\x09\x09</ion-col>\x0a\x09\x09\x09\x09\x09<ion-col><div\x20align=\x22right\x22>','load','</div>\x0a\x09\x09\x09\x09\x09</ion-col>\x0a\x09\x09\x09\x09</ion-row>\x0a\x09\x09\x09</ion-grid>\x0a\x09\x09\x09</ion-item>','</p></ion-item>\x20','name3','<ion-fab\x20horizontal=\x22end\x22\x20vertical=\x22bottom\x22\x20slot=\x22fixed\x22>\x0a\x09<ion-fab-button\x20href=\x22','stepUp','title','innerHTML','assign','crustaceos','Indique\x20el\x20modo\x20de\x20envío/recogida','cacahuetes','</ion-list>','\x0a\x09\x09\x09\x09\x09\x09</i>\x0a\x09\x09\x09\x09\x09</ion-col>\x0a\x09\x09\x09\x09</ion-row>\x0a\x09\x09\x09\x09<ion-row\x20>\x0a\x09\x09\x09\x09\x09<ion-col>\x0a\x09\x09\x09\x09\x09\x09<div>\x0a\x09\x09\x09\x09\x09\x09\x09<input\x20class=\x22productItemCantity\x22\x20type=\x22number\x22\x20id=\x22','Dirección\x20de\x20envío','\x0a\x09\x09\x20\x20</ion-list-header>\x0a\x20\x20\x0a\x09\x09\x20\x20\x09<ion-item\x20lines=\x22none\x22\x20style=\x22display:','</p></ion-item>','length','ion-loading','numberId','altramuces','No\x20ha\x20seleccionado\x20ningún\x20producto','<ion-item\x20class=\x22carritoItem\x22\x20id=\x22','productItem','addEventListener','\x22><ion-label>','description'];(function(_0x4a3eb9,_0x261713){var _0x76ccba=function(_0x33c0fb){while(--_0x33c0fb){_0x4a3eb9['push'](_0x4a3eb9['shift']());}};_0x76ccba(++_0x261713);}(_0x2617,0x19c));var _0x76cc=function(_0x4a3eb9,_0x261713){_0x4a3eb9=_0x4a3eb9-0x0;var _0x76ccba=_0x2617[_0x4a3eb9];return _0x76ccba;};const HOME=_0x76cc('0x5a');const MENU_BASE_URL=_0x76cc('0x13');const SERVICE_WORKER=_0x76cc('0x9');const API_PATH=_0x76cc('0x84');var localId;var propertyInfo;var propertyMenu;var clientAddress;var inputCon=0x0;var loading;var numProductos=0x0;var isPickUp=![];var isToHome=![];var currentPopover;var searchbar;var shareHref='';var refresher;var orderEnabled=![];var selectedAllergens={};var selectedAllergenProduct='';if('serviceWorker'in navigator){window[_0x76cc('0x77')](_0x76cc('0x5f'),()=>{navigator[_0x76cc('0x95')][_0x76cc('0x86')](SERVICE_WORKER);});}let deferredPrompt;window['onload']=_0x5128ec=>{window[_0x76cc('0x77')](_0x76cc('0x24'),_0x3a58a0=>{deferredPrompt=_0x3a58a0;});try{localId=window[_0x76cc('0x90')](GetURLParameter(_0x76cc('0x1')));}catch(_0x42adc4){goToHome();}searchbar=document['querySelector']('ion-searchbar');searchbar['addEventListener'](_0x76cc('0x2'),handleInputSearchBar);showLoading(_0x76cc('0x0'));getPropertyInfo(localId);};GetURLParameter=function(_0x210593){var _0x2cf281=window[_0x76cc('0x39')]['search'][_0x76cc('0x92')](0x1);var _0xec034f=_0x2cf281[_0x76cc('0x52')]('&');for(var _0xe496ea=0x0;_0xe496ea<_0xec034f[_0x76cc('0x70')];_0xe496ea++){var _0x58ed4c=_0xec034f[_0xe496ea][_0x76cc('0x52')]('=');if(_0x58ed4c[0x0]==_0x210593){var _0x4e052c=_0x58ed4c[0x1];_0x4e052c=_0x4e052c[_0x76cc('0x23')](_0x76cc('0x12'),'');return _0x4e052c;}}};getPropertyInfo=function(_0x208173){fetchLocal(_0x208173);};setPropertyInfo=function(_0x46f0e7,_0x5c20c8){propertyInfo=_0x5c20c8;orderEnabled=propertyInfo['orderEnabled'];document[_0x76cc('0x8a')](_0x76cc('0x9e'))[_0x76cc('0x66')]=_0x5c20c8[_0x76cc('0x9e')];var _0xe0f5fc=_0x76cc('0x11')+_0x5c20c8[_0x76cc('0x9e')];shareHref=_0x76cc('0x25')+_0xe0f5fc+'\x20'+MENU_BASE_URL+_0x76cc('0x8')+window['btoa'](_0x46f0e7);};setMenuInfo=function(_0x555871){propertyMenu=_0x555871;updateMenuInfo(propertyMenu);};refresh=function(){showLoading(_0x76cc('0x0'));getPropertyInfo(localId);};updateMenuInfo=function(_0x5b85ad){var _0xa425b3=document[_0x76cc('0x8a')]('menuContent');var _0x4af1ec='';_0x5b85ad[0x0][_0x76cc('0x9b')][_0x76cc('0x35')](_0x2c5cd7=>{if(_0x2c5cd7['enable']){_0x4af1ec=_0x4af1ec+_0x76cc('0x7c');_0x4af1ec=_0x4af1ec+_0x2c5cd7['title']+_0x76cc('0x21');_0x4af1ec=_0x4af1ec+updateCategoryProducts(_0x2c5cd7[_0x76cc('0x31')]);_0x4af1ec=_0x4af1ec+_0x76cc('0x6b');}});_0x4af1ec=_0x4af1ec+'<ion-item\x20text-center><ion-label\x20class=\x22ion-text-wrap\x22\x20color=\x22danger\x22>';_0x4af1ec=_0x4af1ec+_0x5b85ad[0x0][_0x76cc('0x2d')]+_0x76cc('0x4a');_0x4af1ec=_0x4af1ec+_0x76cc('0xac');_0x4af1ec=_0x4af1ec+_0x5b85ad[0x0]['nota']+_0x76cc('0x4a');_0x4af1ec=_0x4af1ec+_0x76cc('0x63')+shareHref+_0x76cc('0xf');_0xa425b3[_0x76cc('0x66')]=_0x4af1ec;};updateCategoryProducts=function(_0x494c18){var _0x4c691e='';_0x494c18[_0x76cc('0x35')](_0x59ea0d=>{if(_0x59ea0d[_0x76cc('0x40')]){var _0x43004d='pvpInput'+inputCon;inputCon=inputCon+0x1;var _0x37a9a9=_0x76cc('0x89')+_0x59ea0d[_0x76cc('0x65')]+_0x76cc('0x6')+_0x59ea0d[_0x76cc('0x2b')]+_0x76cc('0x22')+_0x59ea0d[_0x76cc('0x79')]+_0x76cc('0x6c')+_0x43004d+_0x76cc('0x54')+_0x43004d+_0x76cc('0x15')+_0x43004d+_0x76cc('0x5e');if(_0x59ea0d[_0x76cc('0x2f')]('alergenos')&&_0x59ea0d[_0x76cc('0xb')]['length']){var _0x5b4aa7=_0x59ea0d[_0x76cc('0xb')][_0x76cc('0x20')]();_0x5b4aa7=_0x5b4aa7['replace'](/,/g,'|');_0x37a9a9=_0x37a9a9+_0x76cc('0x8b')+_0x59ea0d[_0x76cc('0x65')]+_0x76cc('0x44')+_0x5b4aa7+_0x76cc('0x58');};_0x37a9a9=_0x37a9a9+_0x76cc('0x60');_0x4c691e=_0x4c691e+_0x37a9a9;}});return _0x4c691e;};handleButtonClick=function(){if(!orderEnabled){presentToast(_0x76cc('0xb0'));}else if(numProductos===0x0){presentToast(_0x76cc('0x74'));}else{createModal();}};showAllergen=function(_0x2ceb0b,_0x2720f0){selectedAllergenProduct=_0x2ceb0b;setSelectedAllergens(_0x2720f0[_0x76cc('0x52')]('|'));const _0x34572b=Object[_0x76cc('0x67')](document[_0x76cc('0x30')](_0x76cc('0x47')),{'component':_0x76cc('0x57'),'translucent':!![]});document['body'][_0x76cc('0x27')](_0x34572b);return _0x34572b[_0x76cc('0x82')]();};setSelectedAllergens=function(_0x29917e){selectedAllergens={};selectedAllergens[_0x76cc('0x73')]=_0x76cc('0xad');selectedAllergens[_0x76cc('0x50')]='none';selectedAllergens['cacahuetes']=_0x76cc('0xad');selectedAllergens[_0x76cc('0x98')]=_0x76cc('0xad');selectedAllergens['crustaceos']='none';selectedAllergens[_0x76cc('0x51')]=_0x76cc('0xad');selectedAllergens[_0x76cc('0x45')]='none';selectedAllergens[_0x76cc('0x9f')]='none';selectedAllergens[_0x76cc('0xa8')]=_0x76cc('0xad');selectedAllergens['mostaza']='none';selectedAllergens[_0x76cc('0x42')]=_0x76cc('0xad');selectedAllergens[_0x76cc('0xd')]=_0x76cc('0xad');selectedAllergens[_0x76cc('0xa')]=_0x76cc('0xad');selectedAllergens[_0x76cc('0x9c')]=_0x76cc('0xad');_0x29917e[_0x76cc('0x35')](_0x267aeb=>{selectedAllergens[_0x267aeb]=_0x76cc('0x8d');});};showOrderDetail=function(){const _0x590994=document[_0x76cc('0x30')](_0x76cc('0x99'));_0x590994[_0x76cc('0x46')]=_0x76cc('0x6d');_0x590994[_0x76cc('0x96')]=[{'name':'name2','id':_0x76cc('0x43'),'placeholder':_0x76cc('0x3b')},{'name':_0x76cc('0x62'),'id':_0x76cc('0x72'),'placeholder':_0x76cc('0x2c')}];_0x590994['buttons']=[{'text':_0x76cc('0x2e'),'handler':()=>{var _0x569e6a=_0x76cc('0x2e');hacerPedido(_0x569e6a);console[_0x76cc('0x4c')](_0x76cc('0x26'));}},{'text':_0x76cc('0xa0'),'handler':()=>{var _0x88ca3=document[_0x76cc('0x8a')]('streetId')['value'];var _0x2b3b9e=document[_0x76cc('0x8a')](_0x76cc('0x72'))[_0x76cc('0xa7')];if(_0x88ca3===''||_0x2b3b9e===''){presentToast(_0x76cc('0x17'));}else{var _0x1e174a=_0x88ca3+',\x20'+_0x2b3b9e;hacerPedido(_0x1e174a);}console[_0x76cc('0x4c')](_0x76cc('0x26'));}}];document['body'][_0x76cc('0x27')](_0x590994);return _0x590994[_0x76cc('0x82')]();};presentToast=function(_0x5c0a3e){const _0x2fe227=document['createElement'](_0x76cc('0x97'));_0x2fe227[_0x76cc('0x3')]=_0x5c0a3e;_0x2fe227['duration']=0xbb8;document['body'][_0x76cc('0x27')](_0x2fe227);return _0x2fe227['present']();};increment=function(_0xb313bb){numProductos=numProductos+0x1;document[_0x76cc('0x8a')](_0xb313bb)[_0x76cc('0x64')](0x1);updateBadge();};resetBadge=function(){numProductos=0x0;updateBadge();};decrement=function(_0x21a312){var _0x26a11a=document['getElementById'](_0x21a312)[_0x76cc('0xa7')];if(_0x26a11a==='0'){}else{numProductos=numProductos-0x1;document[_0x76cc('0x8a')](_0x21a312)[_0x76cc('0x33')](0x1);updateBadge();}};updateBadge=function(){var _0xbcd3bb;if(numProductos===0x0){_0xbcd3bb='';}else{_0xbcd3bb=numProductos;}document['getElementById'](_0x76cc('0x4d'))['innerHTML']=_0xbcd3bb;};showLoading=function(_0xb423ca){loading=document[_0x76cc('0x30')](_0x76cc('0x71'));loading['message']=_0xb423ca;document[_0x76cc('0x34')][_0x76cc('0x27')](loading);loading[_0x76cc('0x82')]();};hideLoading=function(){loading[_0x76cc('0x37')]();};hacerPedido=function(){var _0x531fe7=_0x76cc('0x2e');var _0x1bde00=document[_0x76cc('0x8a')](_0x76cc('0x43'))[_0x76cc('0xa7')];if(isToHome){_0x531fe7=_0x1bde00;}var _0x16668c=document[_0x76cc('0x8a')](_0x76cc('0x56'))[_0x76cc('0xae')];var _0x4d5683=Array[_0x76cc('0x9a')](document[_0x76cc('0x49')](_0x76cc('0x29')));var _0x19777c='_Pedido_';_0x19777c=_0x19777c+'\x0d\x0a\x0d\x0a*Dirección\x20de\x20envío:\x20'+_0x531fe7+'*';var _0x4e04f8=!![];for(var _0x236e17=0x0;_0x236e17<_0x4d5683['length'];_0x236e17++){var _0x538b9f=_0x4d5683[_0x236e17][_0x76cc('0x19')];_0x19777c=_0x19777c+_0x76cc('0x5c')+'-\x20'+_0x538b9f;}var _0x7051bb=document['getElementById'](_0x76cc('0x4'))[_0x76cc('0xa7')];_0x19777c=_0x19777c+'\x0d\x0a\x0d\x0a_'+_0x7051bb+'_';if(!isPickUp&&!isToHome){presentToast(_0x76cc('0x69'));}else if(isToHome&&_0x1bde00===''){presentToast(_0x76cc('0x3e'));}else{dismissModal();var _0x2a5f6e=window[_0x76cc('0xa1')](_0x19777c);window[_0x76cc('0x1d')](_0x76cc('0x25')+_0x2a5f6e+_0x76cc('0xa5')+propertyInfo[_0x76cc('0x3d')]+_0x76cc('0x36')+propertyInfo['whatsapp']);}};getCurrentOrderInner=function(){var _0x4f3916=![];var _0x64a39f=document[_0x76cc('0x8a')](_0x76cc('0x56'))[_0x76cc('0xae')];var _0x4cb909=[];var _0x1617f5=0x0;var _0x350c62=_0x76cc('0x83');for(var _0x4e367c=0x0;_0x4e367c<_0x64a39f['length'];_0x4e367c++){if(_0x64a39f[_0x4e367c][_0x76cc('0x7f')]===_0x76cc('0xa4')){var _0x5dcf45=_0x64a39f[_0x4e367c][_0x76cc('0xae')];var _0x1a1bf8=0x0;for(var _0x3f0392=0x0;_0x3f0392<_0x5dcf45[_0x76cc('0x70')];_0x3f0392++){if(_0x5dcf45[_0x3f0392][_0x76cc('0x7f')]===_0x76cc('0x4f')){var _0x33235d=_0x5dcf45[_0x3f0392][_0x76cc('0xae')][0x0];var _0x1ead12=_0x33235d[_0x76cc('0x49')]('productItemPVP')[0x0][_0x76cc('0x18')];var _0x2b77d9=_0x33235d['getElementsByClassName'](_0x76cc('0x4e'))[0x0][_0x76cc('0xa7')];var _0x12aaee=_0x33235d[_0x76cc('0x49')](_0x76cc('0xab'))[0x0][_0x76cc('0x18')];if(_0x2b77d9===''||_0x2b77d9==='0'){}else{empty=![];_0x4cb909['push'](_0x2b77d9+'\x20'+_0x12aaee);_0x1a1bf8=_0x1a1bf8+0x1;var _0x400ab0=Number(_0x1ead12['replace']('€',''));var _0x597d2c=Number(_0x2b77d9);if(!isNaN(_0x400ab0)){_0x1617f5=_0x1617f5+_0x400ab0*_0x597d2c;}else{_0x4f3916=!![];}var _0x4c2a1f='carritoProduct'+_0x1a1bf8;_0x350c62=_0x350c62+_0x76cc('0x75')+_0x4c2a1f+_0x76cc('0x78')+_0x2b77d9+'\x20'+_0x12aaee+_0x76cc('0x16')+_0x4c2a1f+_0x76cc('0x9d');}}}}}if(!_0x4f3916){_0x350c62=_0x350c62[_0x76cc('0x23')](_0x76cc('0xaa'),_0x76cc('0x87')+_0x1617f5+'€');}else{_0x350c62=_0x350c62[_0x76cc('0x23')]('[TAG_PVP]',_0x76cc('0x87')+_0x1617f5+_0x76cc('0x88'));}return _0x350c62;};function removeCarritoItem(_0x3969d0){document[_0x76cc('0x8a')](_0x3969d0)[_0x76cc('0x94')]();}handleButtonInfoClick=async function handleButtonInfoClick(_0x15acd3){popover=await popoverController[_0x76cc('0x7')]({'component':'popover-info-page','event':_0x15acd3,'translucent':!![]});currentPopover=popover;return popover[_0x76cc('0x82')]();};function dismissPopover(){if(currentPopover){currentPopover[_0x76cc('0x37')]()[_0x76cc('0x3c')](()=>{currentPopover=null;});}};customElements[_0x76cc('0x3a')]('popover-info-page',class ModalContent extends HTMLElement{[_0x76cc('0x80')](){var _0x256fe6=_0x76cc('0x14')+propertyInfo[_0x76cc('0x9e')]+'-\x20Información</ion-list-header>';if(propertyInfo[_0x76cc('0xc')]){_0x256fe6=_0x256fe6+_0x76cc('0x1e');}if(propertyInfo[_0x76cc('0x28')]){_0x256fe6=_0x256fe6+'<ion-item><ion-icon\x20name=\x22card-outline\x22></ion-icon><p>Pago\x20con\x20tarjeta</p></ion-item>';}if(propertyInfo[_0x76cc('0xe')]){_0x256fe6=_0x256fe6+_0x76cc('0x32');}_0x256fe6=_0x256fe6+_0x76cc('0xaf')+propertyInfo[_0x76cc('0x81')]+_0x76cc('0x6f');var _0x275cf7=propertyInfo[_0x76cc('0x5')]+','+propertyInfo[_0x76cc('0xa6')];_0x256fe6=_0x256fe6+_0x76cc('0x85')+_0x275cf7+_0x76cc('0x7b');_0x256fe6=_0x256fe6+_0x76cc('0x5b')+propertyInfo[_0x76cc('0x1c')]+'\x22><ion-icon\x20name=\x22call-outline\x22></ion-icon><p>'+propertyInfo['phoneNumber']+_0x76cc('0x61');_0x256fe6=_0x256fe6+'<ion-item\x20lines=\x22none\x22\x20detail=\x22false\x22\x20button\x20onClick=\x22dismissPopover()\x22>Cerrar</ion-item></ion-list>';this[_0x76cc('0x66')]=_0x256fe6;}});customElements[_0x76cc('0x3a')](_0x76cc('0x57'),class ModalContent extends HTMLElement{[_0x76cc('0x80')](){var _0x344a2b='<ion-list>\x0a\x09\x09\x20\x20<ion-list-header>\x0a\x09\x09\x09'+selectedAllergenProduct+_0x76cc('0x6e')+selectedAllergens[_0x76cc('0x73')]+_0x76cc('0x48')+selectedAllergens[_0x76cc('0x50')]+_0x76cc('0x38')+selectedAllergens[_0x76cc('0x6a')]+'\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/cacahuetes.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Cacahuetes</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:'+selectedAllergens[_0x76cc('0x98')]+_0x76cc('0x7e')+selectedAllergens[_0x76cc('0x68')]+_0x76cc('0x3f')+selectedAllergens[_0x76cc('0x51')]+_0x76cc('0x53')+selectedAllergens['huevos']+'\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/huevos.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Huevos</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:'+selectedAllergens[_0x76cc('0x9f')]+'\x22>\x0a\x09\x09\x20\x20\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x20\x20\x09\x09\x09<img\x20src=\x22./images/lacteos.png\x22>\x0a\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x20\x20\x09\x09<h3>Lácteos</h3>\x0a\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x20\x20</ion-item>\x0a\x09\x09\x09\x20\x20\x0a\x09\x09\x09\x20\x20<ion-item\x20lines=\x22none\x22\x20style=\x22display:'+selectedAllergens['moluscos']+_0x76cc('0xa2')+selectedAllergens[_0x76cc('0x93')]+_0x76cc('0x91')+selectedAllergens[_0x76cc('0x42')]+_0x76cc('0x8e')+selectedAllergens[_0x76cc('0xd')]+_0x76cc('0x41')+selectedAllergens[_0x76cc('0xa')]+'\x22>\x0a\x09\x09\x09\x09\x09<ion-avatar\x20slot=\x22start\x22>\x0a\x09\x09\x09\x09\x09\x09<img\x20src=\x22./images/soja.png\x22>\x0a\x09\x09\x09\x09\x09</ion-avatar>\x0a\x09\x09\x09\x09\x09<ion-label>\x0a\x09\x09\x09\x09\x09\x09<h3>Soja</h3>\x0a\x09\x09\x09\x09\x09</ion-label>\x0a\x09\x09\x09\x09</ion-item>\x0a\x0a\x09\x09\x09\x09<ion-item\x20lines=\x22none\x22\x20style=\x22display:'+selectedAllergens['sulfitos']+_0x76cc('0x1f');this[_0x76cc('0x66')]=_0x344a2b;}});const fetchLocal=_0x314714=>{return axios[_0x76cc('0x7a')](API_PATH+_0x314714,{'crossdomain':!![]})['then'](_0x709859=>{if(isEmpty(_0x709859[_0x76cc('0xa3')])){hideLoading();goToHome();}else{setPropertyInfo(_0x314714,_0x709859[_0x76cc('0xa3')]);fetchMenu(_0x314714);}})['catch'](_0x45b65b=>{hideLoading();});};const fetchMenu=_0xe51e7f=>{return axios['get'](API_PATH+_0xe51e7f+'/menu',{'crossdomain':!![]})[_0x76cc('0x3c')](_0x31105a=>{hideLoading();resetBadge();if(isEmpty(_0x31105a[_0x76cc('0xa3')])){hideLoading();}else{setMenuInfo(_0x31105a[_0x76cc('0xa3')]);hideLoading();}})[_0x76cc('0x1a')](_0x44e05a=>{hideLoading();});};function isEmpty(_0x1679cc){return Object[_0x76cc('0x7d')](_0x1679cc)['length']===0x0;};function goToHome(){window[_0x76cc('0x39')][_0x76cc('0x5d')]=HOME;};customElements[_0x76cc('0x3a')](_0x76cc('0x1b'),class ModalContent extends HTMLElement{[_0x76cc('0x80')](){var _0x5185cf=getCurrentOrderInner();this[_0x76cc('0x66')]=_0x76cc('0x4b')+_0x5185cf+_0x76cc('0xb1');}});var currentModal=null;async function createModal(){const _0x4c347d=await modalController[_0x76cc('0x7')]({'component':_0x76cc('0x1b')});await _0x4c347d[_0x76cc('0x82')]();currentModal=_0x4c347d;};function dismissModal(){if(currentModal){currentModal[_0x76cc('0x37')]()[_0x76cc('0x3c')](()=>{currentModal=null;});}};function sendHome(){isToHome=!![];isPickUp=![];document[_0x76cc('0x8a')](_0x76cc('0x10'))[_0x76cc('0x8f')]=_0x76cc('0xa9');};function pickUp(){isToHome=![];isPickUp=!![];document[_0x76cc('0x8a')]('formAddress')[_0x76cc('0x8f')]=_0x76cc('0x59');};function handleInputSearchBar(_0x174c64){var _0x50baac=Array[_0x76cc('0x9a')](document[_0x76cc('0x49')](_0x76cc('0x76')));var _0xbbdaa6=_0x174c64['target'][_0x76cc('0xa7')][_0x76cc('0x8c')]();requestAnimationFrame(()=>{_0x50baac[_0x76cc('0x35')](_0x1e06c2=>{var _0x4f28de=_0x1e06c2[_0x76cc('0xae')][0x0]['children'][0x0][_0x76cc('0x19')];var _0x4725c5=_0x4f28de[_0x76cc('0x8c')]()['indexOf'](_0xbbdaa6)>-0x1;_0x1e06c2[_0x76cc('0x55')][_0x76cc('0x2a')]=_0x4725c5?'block':_0x76cc('0xad');});});}
+const HOME = "./index.html"
+const MENU_BASE_URL = "https://www.ilovemenu.es/menu/menu.html";
+const SERVICE_WORKER = '/menu/service-worker.js';
+const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
+
+var localId;
+var propertyInfo;
+var propertyMenu;
+
+var clientAddress;
+
+var inputCon = 0;
+var loading;
+var numProductos=0;
+
+var isPickUp = false;
+var isToHome =  false;
+
+var currentPopover;
+
+var searchbar;
+var shareHref = "";
+
+var refresher;
+
+var orderEnabled = false;
+var selectedAllergens = {};
+var selectedAllergenProduct = "";
+
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(SERVICE_WORKER);
+  });
+}
+
+let deferredPrompt;
+
+window.onload = (e) => { 
+	window.addEventListener('beforeinstallprompt', (e) => {
+		deferredPrompt = e;
+	});
+	try{
+		localId = window.atob(GetURLParameter('property'));
+	} catch(e){
+		goToHome();
+	}
+	
+    searchbar = document.querySelector('ion-searchbar');
+    searchbar.addEventListener('ionInput', handleInputSearchBar);
+    showLoading("Cargando la carta");
+    getPropertyInfo(localId);
+    
+}
+
+GetURLParameter = function (sParam) {
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++){
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam){
+			var code = sParameterName[1];
+			code = code.replace("%3D","");
+            return code;
+		}
+	}
+};   
+
+getPropertyInfo = function (idProperty) {
+	fetchLocal(idProperty);
+}; 
+
+setPropertyInfo = function (idProperty, object){
+	propertyInfo = object;
+	orderEnabled = propertyInfo.orderEnabled;
+	document.getElementById("propertyName").innerHTML = object.propertyName;
+	//document.getElementById("callButton").href = "tel:"+object.phoneNumber;
+	var text = "Ver carta de "+object.propertyName;
+    shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+window.btoa(idProperty);
+    document.getElementById("shareButton").href=shareHref;
+    document.getElementById("backButton").href=HOME+"?zipCode="+propertyInfo.codPostal;
+    
+};
+
+setMenuInfo = function (object){
+    propertyMenu = object;
+	updateMenuInfo(propertyMenu);
+	 
+};
+
+refresh = function (){
+	showLoading("Cargando la carta");
+    getPropertyInfo(localId);
+};
+
+updateMenuInfo = function (menu){
+	var menuContent = document.getElementById("menuContent");
+
+	var inner = "";
+	
+	menu[0].categories.forEach(category => {
+		if(category.enable){
+			inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
+			inner = inner + category.title + `</ion-list-header>`;
+			inner = inner + updateCategoryProducts(category.products);
+			inner = inner + `</ion-list>`;
+		}
+	});
+	
+	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
+	inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
+	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
+	inner = inner + menu[0].nota + `</ion-label></ion-item>`;
+
+	inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+	<ion-fab-button onclick="handleButtonClick()" color="vibrant">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge id="cart-badge2" color="danger"></ion-badge>
+
+	</ion-fab-button>
+  </ion-fab>`;
+  
+	menuContent.innerHTML = inner;
+};
+
+updateCategoryProducts = function(categoryProducts){
+	var products = "";
+	categoryProducts.forEach(prod =>{
+		if(prod.enable){
+			var idInput = "pvpInput"+inputCon;
+			inputCon = inputCon + 1;
+			var product = `<ion-item class="productItem">
+			<ion-grid>
+					<ion-row>
+						<ion-col size=9>
+							<div style="align:right;"><ion-label class="productItemTitle ion-text-wrap">`+prod.title+`
+							</ion-label></div>
+						</ion-col>
+						<ion-col  size="3">
+							<div align="right"><b class="productItemPVP">`+prod.pvp+`</b>€</div>						
+						</ion-col>
+					</ion-row>
+				<ion-row >
+					<ion-col>
+						<i class="productDescription">`+prod.description+`
+						</i>
+					</ion-col>
+				</ion-row>
+				<ion-row >
+					<ion-col>
+						<div>
+							<input class="productItemCantity" type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>
+						</div>
+						<ion-button color="vibrant" onclick="decrement('`+idInput+`')">
+							<ion-icon slot="icon-only" name="remove-circle-outline">
+							</ion-icon>
+						</ion-button>
+						<ion-button color="vibrant" onclick="increment('`+idInput+`')">
+							<ion-icon slot="icon-only" name="add-circle-outline">
+							</ion-icon>
+						</ion-button>
+					</ion-col>
+					<ion-col><div align="right">`;
+
+					if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
+						var alerg = prod.alergenos.toString();
+						alerg = alerg.replace(/,/g,'|');
+
+						product = product + `<ion-button onclick="showAllergen('`+prod.title+`','`+alerg+`')" size="small" color="danger"">
+						Alérgenos</ion-button>`;
+					} ;
+					product = product + `</div>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+			</ion-item>`;
+			products = products + product;
+		}
+	});
+	
+	return products;
+        
+};
+
+handleButtonClick = function () {
+	if(!orderEnabled){
+		presentToast("Este local no tiene activados los pedidos");    		
+	} else if(numProductos === 0){
+		presentToast("No ha seleccionado ningún producto");    		
+	} else {
+		//showOrderDetail();
+		createModal();
+	}
+};
+
+showAllergen = function (allergenProduct, allergens) {
+	selectedAllergenProduct = allergenProduct;
+	setSelectedAllergens(allergens.split("|"));
+	const popover = Object.assign(document.createElement('ion-popover'), {
+		component: 'popover-allergen-page',
+		translucent: true
+	  });
+	  document.body.appendChild(popover);
+	  return popover.present();
+};
+
+setSelectedAllergens = function (allergens){
+	selectedAllergens = {};
+	selectedAllergens.altramuces = "none";
+	selectedAllergens.apio = "none";
+	selectedAllergens.cacahuetes = "none";
+	selectedAllergens.cascara = "none";
+	selectedAllergens.crustaceos = "none";
+	selectedAllergens.gluten = "none";
+	selectedAllergens.huevos = "none";
+	selectedAllergens.lacteos = "none";
+	selectedAllergens.moluscos = "none";
+	selectedAllergens.mostaza = "none";
+	selectedAllergens.pescado = "none";
+	selectedAllergens.sesamo = "none";
+	selectedAllergens.soja = "none";
+	selectedAllergens.sulfitos = "none";
+
+	allergens.forEach(allergen=>{
+		selectedAllergens[allergen] = "block";
+	});
+	
+
+}
+showOrderDetail = function () {
+  const alert = document.createElement('ion-alert');
+  alert.header = 'Dirección de envío';
+  alert.inputs = [
+    {
+      name: 'name2',
+      id: 'streetId',
+      placeholder: 'Calle'
+    },
+     {
+      name: 'name3',
+      id: 'numberId',
+      placeholder: 'Número'
+    }
+  ];
+  alert.buttons = [
+
+    {
+      text: 'Para recoger',
+      handler: () => {
+        var clientAddress = "Para recoger"; 
+		hacerPedido(clientAddress);
+        console.log('Confirm Ok')
+      }
+    }, {
+      text: 'Te lo llevamos',
+      handler: () => {
+      	var street = document.getElementById("streetId").value;
+      	var number = document.getElementById("numberId").value;
+      	
+      	if(street === "" || number === ""){
+			presentToast("Introduzca una dirección de envío");      	
+      	} else {
+			var clientAddress = street + ", "+number; 
+			hacerPedido(clientAddress);      	
+      	}
+        console.log('Confirm Ok')
+      }
+    }
+  ];
+
+  document.body.appendChild(alert);
+  return alert.present();
+};
+
+presentToast = function (text) {
+  const toast = document.createElement('ion-toast');
+  toast.message = text;
+  toast.duration = 3000;
+
+  document.body.appendChild(toast);
+  return toast.present();
+}
+
+increment = function(id){
+	numProductos = numProductos+1;
+	document.getElementById(id).stepUp(1);
+	updateBadge();
+};
+
+resetBadge = function(){
+	numProductos = 0;
+	updateBadge();
+};
+
+decrement = function(id){
+	var inputValue = document.getElementById(id).value;
+	if(inputValue==="0"){
+		//
+	} else {
+		numProductos = numProductos-1;
+		document.getElementById(id).stepDown(1);
+		updateBadge();
+	}
+
+};
+
+updateBadge = function () {
+	var badgeContent;
+	if(numProductos === 0){
+		badgeContent = "";
+	} else{
+		badgeContent = numProductos;
+    }
+    var cartBadge = document.getElementById("cart-badge2");
+    if(cartBadge !== null){
+        cartBadge.innerHTML = badgeContent;
+    }
+}
+
+showLoading = function (text) {
+	loading = document.createElement('ion-loading');
+  	loading.message = text;
+  	document.body.appendChild(loading);
+    loading.present();
+}
+hideLoading = function () {
+	loading.dismiss();
+}
+
+hacerPedido = function () {
+       
+    var address = "Para recoger";
+    var street = document.getElementById("streetId").value;
+    if(isToHome){    	
+    	address = street;
+    }
+	var cartaContent = document.getElementById("menuContent").children;
+	var itemsPedido = Array.from(document.getElementsByClassName("carritoItem"));
+
+	var pedido = "_Pedido_";
+	pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
+	var empty = true;
+	
+	for(var i=0;i<itemsPedido.length;i++){
+		var productName = itemsPedido[i].textContent;
+		pedido = pedido + "\r\n\r\n"+"- "+productName;
+			
+	}
+	
+	var freeText = document.getElementById("freeText").value;
+	pedido = pedido + "\r\n\r\n_"+freeText+"_";
+
+	if(!isPickUp && !isToHome) {
+		presentToast("Indique el modo de envío/recogida");    	
+	}else if(isToHome && (street === "")) {
+		presentToast("Indique una dirección de envío");    	
+	} else {
+		dismissModal();
+		var encodedPedido = window.encodeURIComponent(pedido);
+		window.open('whatsapp://send?text='+encodedPedido+'&phone='+propertyInfo.whatsapp+'&abid='+propertyInfo.whatsapp)
+	}
+}; 
+
+getCurrentOrderInner = function () {
+	var notPriceProduct = false;
+	var cartaContent = document.getElementById("menuContent").children;
+	var currentOrder = [];
+	var total = 0;
+	var innerHTML = `<ion-item>
+        			<ion-label class="ion-text-wrap">[TAG_PVP]</ion-label>
+     	 		</ion-item>`;
+
+	for(var i=0;i<cartaContent.length;i++){
+		if(cartaContent[i].tagName === "ION-LIST"){
+			var productsContent = cartaContent[i].children;
+			var carritoProductIndex = 0;
+			for(var j=0;j<productsContent.length;j++){
+				if(productsContent[j].tagName === "ION-ITEM"){
+					var product = productsContent[j].children[0];
+					var price = product.getElementsByClassName("productItemPVP")[0].innerText;
+					var value = product.getElementsByClassName("productItemCantity")[0].value;
+					var productName = product.getElementsByClassName("productItemTitle")[0].innerText;
+					if(value === "" || value === "0"){
+					} else {
+					  empty = false;
+					  currentOrder.push(value+" "+productName);
+					  carritoProductIndex = carritoProductIndex + 1;
+					  var numberPrice = Number(price.replace("€",""));
+					  var numberValue = Number(value);
+					  if(!isNaN(numberPrice)){
+						total = total + (numberPrice*numberValue);
+					  }	else{
+						notPriceProduct = true;
+					  }		  
+
+					  var idProduct = "carritoProduct"+carritoProductIndex;
+					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`</ion-label><ion-buttons slot="start"><ion-button onclick="removeCarritoItem('`+idProduct+`')"><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
+      					</ion-icon></ion-button></ion-buttons></ion-item>`;
+					}	
+					
+				}
+			}
+		}
+	}
+	if(!notPriceProduct){
+		innerHTML = innerHTML.replace("[TAG_PVP]","TOTAL: "+total+"€");
+	} else {
+		innerHTML = innerHTML.replace("[TAG_PVP]","TOTAL: "+total+"€ - No incluye todo el pedido. Consultar con el establecimiento");
+	}
+	return innerHTML;
+	
+}
+
+function removeCarritoItem(id){
+	document.getElementById(id).remove();
+}
+
+handleButtonInfoClick = async function handleButtonInfoClick(ev) {
+      popover = await popoverController.create({
+        component: 'popover-info-page',
+        event: ev,
+        translucent: true
+      });
+      currentPopover = popover;
+      return popover.present();
+    }
+
+    function dismissPopover() {
+      if (currentPopover) {
+        currentPopover.dismiss().then(() => { currentPopover = null; });
+      }
+    };
+
+ customElements.define('popover-info-page', class ModalContent extends HTMLElement {
+      connectedCallback() {
+        var infoString = `<ion-list><ion-list-header>`+propertyInfo.propertyName+`- Información</ion-list-header>`;        
+      	if(propertyInfo.homeDelivery){
+			infoString = infoString +  `<ion-item><ion-icon name="home-outline"></ion-icon><p>Envío a domicilio</p></ion-item>`;     	
+      	}
+      	if(propertyInfo.card){
+			infoString = infoString +  `<ion-item><ion-icon name="card-outline"></ion-icon><p>Pago con tarjeta</p></ion-item>`;     	   	
+      	}
+      	if(propertyInfo.cash){
+			infoString = infoString +  `<ion-item><ion-icon name="cash-outline"></ion-icon><p>Pago en efectivo</p></ion-item>`;     	   	
+      	}
+
+      	infoString = infoString+`<ion-item><ion-icon name="alarm-outline"></ion-icon><p>`+propertyInfo.timeTable+`</p></ion-item>`; 
+		var location = propertyInfo.longitude+","+propertyInfo.latitude;
+		infoString = infoString + `<ion-item button href="https://www.google.com/maps/search/?api=1&query=`+location+`" target="_blank"><ion-icon name="location-outline"></ion-icon><p>Ubicación</p></ion-item>`; 
+		infoString = infoString + `<ion-item button href="tel:`+propertyInfo.phoneNumber+`"><ion-icon name="call-outline"></ion-icon><p>`+propertyInfo.phoneNumber+`</p></ion-item> `
+		infoString = infoString+`<ion-item lines="none" detail="false" button onClick="dismissPopover()">Cerrar</ion-item></ion-list>`;
+
+        this.innerHTML = infoString;
+      }
+	});
+
+	customElements.define('popover-allergen-page', class ModalContent extends HTMLElement {
+		connectedCallback() {
+
+		  var infoString = `<ion-list>
+		  <ion-list-header>
+			`+selectedAllergenProduct+`
+		  </ion-list-header>
+  
+		  	<ion-item lines="none" style="display:`+selectedAllergens.altramuces+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/altramuces.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Altramuces</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.apio+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/apio.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Apio</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.cacahuetes+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/cacahuetes.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Cacahuetes</h3>
+				</ion-label>
+			  </ion-item>
+				  
+			  <ion-item lines="none" style="display:`+selectedAllergens.cascara+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/cascara.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Cáscara</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.crustaceos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/crustaceos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Crustaceos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.gluten+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/gluten.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Gluten</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.huevos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/huevos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Huevos</h3>
+				</ion-label>
+			  </ion-item>
+
+			  <ion-item lines="none" style="display:`+selectedAllergens.lacteos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/lacteos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Lácteos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.moluscos+`">
+		  		<ion-avatar slot="start">
+		  			<img src="./images/moluscos.png">
+				</ion-avatar>
+				<ion-label>
+			  		<h3>Moluscos</h3>
+				</ion-label>
+			  </ion-item>
+			  
+			  <ion-item lines="none" style="display:`+selectedAllergens.mostaza+`">
+			  	<ion-avatar slot="start">
+					<img src="./images/mostaza.png">
+				</ion-avatar>
+				<ion-label>
+				  <h3>Mostaza</h3>
+				</ion-label>
+		  		</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.pescado+`">
+					<ion-avatar slot="start">
+						<img src="./images/pescado.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Pescado</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.sesamo+`">
+					<ion-avatar slot="start">
+						<img src="./images/sesamo.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Sésamo</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.soja+`">
+					<ion-avatar slot="start">
+						<img src="./images/soja.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Soja</h3>
+					</ion-label>
+				</ion-item>
+
+				<ion-item lines="none" style="display:`+selectedAllergens.sulfitos+`">
+					<ion-avatar slot="start">
+						<img src="./images/sulfitos.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>Sulfittos</h3>
+					</ion-label>
+				</ion-item>
+		  
+		  </ion-list>`
+		  this.innerHTML = infoString;
+		}
+	  });
+
+//DATA
+
+const fetchLocal = (local) => {
+    return axios.get(API_PATH+local,{ crossdomain: true })
+        .then(response => {
+			if(isEmpty(response.data)){
+				hideLoading();
+				goToHome();		
+			} else{
+        		setPropertyInfo(local, response.data);	
+        		fetchMenu(local);
+			}
+        })
+        .catch(error => {
+			hideLoading();
+		});
+};
+
+const fetchMenu = (local) => {
+    return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
+        .then(response => {
+			hideLoading();
+			resetBadge();
+			if(isEmpty(response.data)){
+				hideLoading();
+				//Toast no hay carta		
+			} else{
+        		setMenuInfo(response.data);	   
+        		hideLoading();     				
+			}
+        })
+        .catch(error => {
+        	hideLoading();
+		});
+};
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+};
+
+function goToHome(){
+	window.location.href = HOME;
+};
+
+
+    customElements.define('modal-content', class ModalContent extends HTMLElement {
+      connectedCallback() {
+      	var currentOrder = getCurrentOrderInner();
+   
+        this.innerHTML = `
+          <ion-header translucent>
+            <ion-toolbar color="dark">
+              <ion-title>Mi Pedido</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="dismissModal()">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content fullscreen>
+            <ion-list>
+                 <ion-radio-group mode=md value="sendType" >
+					<ion-item class="typeSendInput" onclick="pickUp()">
+            			<ion-label >Recoger en el local</ion-label>
+            			<ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
+          			</ion-item>
+					<ion-item class="typeSendInput" onclick="sendHome()">
+            			<ion-label>Enviar a casa</ion-label>
+            			<ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
+          			</ion-item>
+                  </ion-radio-group>
+         		<form class="formAddressDisable" id="formAddress">
+      				<ion-item>
+        				<ion-label>Dirección</ion-label>
+       			 		<ion-input type="text" id="streetId" name="title"></ion-input>
+      				</ion-item>
+    	  		</form>
+				<ion-item>
+  					<ion-textarea id="freeText" placeholder="Coméntanos lo que quieras"></ion-textarea>
+				</ion-item>
+				`+currentOrder+`</ion-list>
+          </ion-content>
+          <ion-footer>
+		<div class="horizontal div1">
+    		<div class="vertical">
+        	<ion-button expand="block" onclick="hacerPedido()" color="vibrant">Pedir por Whatsapp</ion-button>
+   			 </div>
+		</div>
+
+	</ion-footer>
+        `;
+      }
+    });
+
+var currentModal = null;
+
+async function createModal() {
+	const modal = await modalController.create({
+	component: 'modal-content'
+	});
+	await modal.present();
+	currentModal = modal;
+};
+
+function dismissModal() {
+	if (currentModal) {
+        currentModal.dismiss().then(() => { currentModal = null; });
+	}
+};
+
+function sendHome(){
+	isToHome =  true;
+	isPickUp = false;
+	document.getElementById("formAddress").className="formAddressEnable";
+};
+
+function pickUp(){
+	isToHome =  false;
+	isPickUp = true;
+	document.getElementById("formAddress").className="formAddressDisable";
+};
+
+
+    function handleInputSearchBar(event) {
+      var items = Array.from(document.getElementsByClassName("productItem"));
+
+      var query = event.target.value.toLowerCase();
+      requestAnimationFrame(() => {
+        items.forEach(item => {
+          var productLabel = item.children[0].children[0].textContent;
+          var shouldShow = productLabel.toLowerCase().indexOf(query) > -1;
+          item.style.display = shouldShow ? 'block' : 'none';
+        });
+      });
+    }
