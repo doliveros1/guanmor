@@ -1,7 +1,8 @@
 const MENU = "./menu.html"
 const MENU_BASE_URL = "https://www.ilovemenu.es/menu/menu.html";
 const SERVICE_WORKER = '/menu/service-worker.js';
-const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
+//const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
+const API_PATH = "http://localhost:8080/api/guanmor/1.0.0/local/";
 
 var localId;
 var propertyInfo;

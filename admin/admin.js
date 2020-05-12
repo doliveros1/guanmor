@@ -62,8 +62,13 @@ addNewCategory = function (id) {
         		</div>        		
           		<ion-textarea value="`+value+`" class="ion-text-wrap">
           		</ion-textarea>`;
-    document.getElementById("listCategories").insertBefore(elem,lastNode);		
+	document.getElementById("listCategories").insertBefore(elem,lastNode);	
+	
+	saveMenuInfo();
+
+	
 	}
+
 };
 
 addNewProduct= function (idCategory, idProduct) {
@@ -138,43 +143,43 @@ addNewProduct= function (idCategory, idProduct) {
 			<div class="row" >
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputAltramuces" onclick="updateAllergen('altramuces','`+product+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
+						<ion-checkbox class="inputAltramuces" onclick="updateAllergen('inputAltramuces','`+product+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
 						<ion-label>Altramuces</ion-label>
 					  </ion-item>
 				  </div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputApio"  onclick="updateAllergen('apio','`+product+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
+						<ion-checkbox class="inputApio"  onclick="updateAllergen('inputApio','`+product+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
 						<ion-label>Apio</ion-label>
 					</ion-item>					
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('cacahuetes','`+product+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
+						<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('inputCacahuetes','`+product+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
 						<ion-label>Cacahuetes</ion-label>
 					</ion-item>	
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputCascara" onclick="updateAllergen('cascara','`+product+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
+						<ion-checkbox class="inputCascara" onclick="updateAllergen('inputCascara','`+product+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
 						<ion-label>Cáscara</ion-label>
 					</ion-item>	
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('crustaceos','`+product+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
+						<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('inputCrustaceos','`+product+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
 						<ion-label>Crustáceos</ion-label>
 					</ion-item>	
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputGluten" onclick="updateAllergen('gluten','`+product+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
+						<ion-checkbox class="inputGluten" onclick="updateAllergen('inputGluten','`+product+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
 						<ion-label>Gluten</ion-label>
 					</ion-item>						
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputHuevos" onclick="updateAllergen('huevos','`+product+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
+						<ion-checkbox class="inputHuevos" onclick="updateAllergen('inputHuevos','`+product+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
 						<ion-label>Huevos</ion-label>
 					</ion-item>							
 				</div>
@@ -184,43 +189,43 @@ addNewProduct= function (idCategory, idProduct) {
 			<div class="row" >
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputLacteos" onclick="updateAllergen('lacteos','`+product+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
+						<ion-checkbox class="inputLacteos" onclick="updateAllergen('inputLacteos','`+product+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
 						<ion-label>Lácteos</ion-label>
 					</ion-item>						
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputMoluscos" onclick="updateAllergen('moluscos','`+product+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
+						<ion-checkbox class="inputMoluscos" onclick="updateAllergen('inputMoluscos','`+product+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
 						<ion-label>Moluscos</ion-label>
 					</ion-item>						
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputMostaza" onclick="updateAllergen('mostaza','`+product+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
+						<ion-checkbox class="inputMostaza" onclick="updateAllergen('inputMostaza','`+product+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
 						<ion-label>Mostaza</ion-label>
 					</ion-item>	
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputPescado" onclick="updateAllergen('pescado','`+product+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
+						<ion-checkbox class="inputPescado" onclick="updateAllergen('inputPescado','`+product+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
 						<ion-label>Pescado</ion-label>
 					</ion-item>						
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputSesamo" onclick="updateAllergen('sesamo','`+product+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
+						<ion-checkbox class="inputSesamo" onclick="updateAllergen('inputSesamo','`+product+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
 						<ion-label>Sésamo</ion-label>
 					</ion-item>							
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputSoja" onclick="updateAllergen('soja','`+product+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
+						<ion-checkbox class="inputSoja" onclick="updateAllergen('inputSoja','`+product+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
 						<ion-label>Soja</ion-label>
 					</ion-item>						
 				</div>
 				<div class="col">
 					<ion-item>
-						<ion-checkbox class="inputSulfitos" onclick="updateAllergen('sulfitos','`+product+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
+						<ion-checkbox class="inputSulfitos" onclick="updateAllergen('inputSulfitos','`+product+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
 						<ion-label>Sulfitos</ion-label>
 					</ion-item>							
 				</div>
@@ -259,6 +264,8 @@ addNewProduct= function (idCategory, idProduct) {
 			 `;*/
 				  
 	document.getElementById("listProducts").insertBefore(elem,lastNode);
+
+	saveMenuInfo();
 
 	}
 
@@ -352,6 +359,13 @@ updateAllergen = function(allergen, idProduct){
 	var listAllergens = [];
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	var docProduct = document.getElementById(idProduct);
+
+	if(docProduct.getElementsByClassName(allergen)[0].checked){
+		docProduct.getElementsByClassName(allergen)[0].checked = false;
+	} else {
+		docProduct.getElementsByClassName(allergen)[0].checked = true;
+	}
+
 	if(docProduct.getElementsByClassName("inputAltramuces")[0].checked){
 		listAllergens.push("altramuces");
 	}
@@ -394,7 +408,13 @@ updateAllergen = function(allergen, idProduct){
 	if(docProduct.getElementsByClassName("inputSulfitos")[0].checked){
 		listAllergens.push("sulfitos");
 	}
-	//var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].che;
+
+	if(docProduct.getElementsByClassName(allergen)[0].checked){
+		docProduct.getElementsByClassName(allergen)[0].checked = false;
+	} else {
+		docProduct.getElementsByClassName(allergen)[0].checked = true;
+	}
+
 	product.alergenos = listAllergens;
 
 }
@@ -720,43 +740,43 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 				<div class="row" >
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputAltramuces" onclick="updateAllergen('altramuces','`+idProduct+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
+							<ion-checkbox class="inputAltramuces" onclick="updateAllergen('inputAltramuces','`+idProduct+`')" id="altramuces" color="vibrant" slot="start" `+isAllergenChecked('altramuces',product)+`></ion-checkbox>
 							<ion-label>Altramuces</ion-label>
 				  		</ion-item>
 				  	</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputApio"  onclick="updateAllergen('apio','`+idProduct+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
+							<ion-checkbox class="inputApio"  onclick="updateAllergen('inputApio','`+idProduct+`')" id="apio" color="vibrant" slot="start" `+isAllergenChecked('apio',product)+`></ion-checkbox>
 							<ion-label>Apio</ion-label>
 						</ion-item>					
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('cacahuetes','`+idProduct+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
+							<ion-checkbox class="inputCacahuetes" onclick="updateAllergen('inputCacahuetes','`+idProduct+`')" id="cacahuetes" color="vibrant" slot="start" `+isAllergenChecked('cacahuetes',product)+`></ion-checkbox>
 							<ion-label>Cacahuetes</ion-label>
 						</ion-item>	
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputCascara" onclick="updateAllergen('cascara','`+idProduct+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
+							<ion-checkbox class="inputCascara" onclick="updateAllergen('inputCascara','`+idProduct+`')" id="cascara" color="vibrant" slot="start" `+isAllergenChecked('cascara',product)+`></ion-checkbox>
 							<ion-label>Cáscara</ion-label>
 						</ion-item>	
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('crustaceos','`+idProduct+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
+							<ion-checkbox class="inputCrustaceos" onclick="updateAllergen('inputCrustaceos','`+idProduct+`')" id="crustaceos" color="vibrant" slot="start" `+isAllergenChecked('crustaceos',product)+`></ion-checkbox>
 							<ion-label>Crustáceos</ion-label>
 						</ion-item>	
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputGluten" onclick="updateAllergen('gluten','`+idProduct+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
+							<ion-checkbox class="inputGluten" onclick="updateAllergen('inputGluten','`+idProduct+`')" id="gluten" color="vibrant" slot="start" `+isAllergenChecked('gluten',product)+`></ion-checkbox>
 							<ion-label>Gluten</ion-label>
 						</ion-item>						
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputHuevos" onclick="updateAllergen('huevos','`+idProduct+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
+							<ion-checkbox class="inputHuevos" onclick="updateAllergen('inputHuevos','`+idProduct+`')" id="huevos" color="vibrant" slot="start" `+isAllergenChecked('huevos',product)+`></ion-checkbox>
 							<ion-label>Huevos</ion-label>
 						</ion-item>							
 					</div>
@@ -766,43 +786,43 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 				<div class="row" >
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputLacteos" onclick="updateAllergen('lacteos','`+idProduct+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
+							<ion-checkbox class="inputLacteos" onclick="updateAllergen('inputLacteos','`+idProduct+`')" id="lacteos" color="vibrant" slot="start" `+isAllergenChecked('lacteos',product)+`></ion-checkbox>
 							<ion-label>Lácteos</ion-label>
 						</ion-item>						
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputMoluscos" onclick="updateAllergen('moluscos','`+idProduct+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
+							<ion-checkbox class="inputMoluscos" onclick="updateAllergen('inputMoluscos','`+idProduct+`')" id="moluscos" color="vibrant" slot="start" `+isAllergenChecked('moluscos',product)+`></ion-checkbox>
 							<ion-label>Moluscos</ion-label>
 						</ion-item>						
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputMostaza" onclick="updateAllergen('mostaza','`+idProduct+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
+							<ion-checkbox class="inputMostaza" onclick="updateAllergen('inputMostaza','`+idProduct+`')" id="mostaza" color="vibrant" slot="start"`+isAllergenChecked('mostaza',product)+`></ion-checkbox>
 							<ion-label>Mostaza</ion-label>
 						</ion-item>	
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputPescado" onclick="updateAllergen('pescado','`+idProduct+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
+							<ion-checkbox class="inputPescado" onclick="updateAllergen('inputPescado','`+idProduct+`')" id="pescado" color="vibrant" slot="start"`+isAllergenChecked('pescado',product)+`></ion-checkbox>
 							<ion-label>Pescado</ion-label>
 						</ion-item>						
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputSesamo" onclick="updateAllergen('sesamo','`+idProduct+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
+							<ion-checkbox class="inputSesamo" onclick="updateAllergen('inputSesamo','`+idProduct+`')" id="sesamo" color="vibrant" slot="start" `+isAllergenChecked('sesamo',product)+`></ion-checkbox>
 							<ion-label>Sésamo</ion-label>
 						</ion-item>							
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputSoja" onclick="updateAllergen('soja','`+idProduct+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
+							<ion-checkbox class="inputSoja" onclick="updateAllergen('inputSoja','`+idProduct+`')" id="soja" color="vibrant" slot="start" `+isAllergenChecked('soja',product)+`></ion-checkbox>
 							<ion-label>Soja</ion-label>
 						</ion-item>						
 					</div>
 					<div class="col">
 						<ion-item>
-							<ion-checkbox class="inputSulfitos" onclick="updateAllergen('sulfitos','`+idProduct+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
+							<ion-checkbox class="inputSulfitos" onclick="updateAllergen('inputSulfitos','`+idProduct+`')" id="sulfitos" color="vibrant" slot="start" `+isAllergenChecked('sulfitos',product)+`></ion-checkbox>
 							<ion-label>Sulfitos</ion-label>
 						</ion-item>							
 					</div>
