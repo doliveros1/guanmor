@@ -1,8 +1,8 @@
 const ADMIN = "./admin.html";
 const REGISTER = "./register.html";
 
-//var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
-var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
+//var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {

@@ -66,7 +66,7 @@ addNewCategory = function (id) {
 	
 	saveMenuInfo();
 
-	
+
 	}
 
 };
