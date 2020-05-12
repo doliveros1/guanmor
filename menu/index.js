@@ -28,7 +28,7 @@ window.onload = (e) => {
 }
 
 GetURLParameter = function (sParam) {
-	var code = "";
+	var code = "45880";
 	var sPageURL = window.location.search.substring(1);
 	var sURLVariables = sPageURL.split('&');
 	for (var i = 0; i < sURLVariables.length; i++){

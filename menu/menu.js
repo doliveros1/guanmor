@@ -343,9 +343,9 @@ hacerPedido = function () {
 	var empty = true;
 	
 	for(var i=0;i<itemsPedido.length;i++){
-		var productName = itemsPedido[i].textContent;
-		pedido = pedido + "\r\n\r\n"+"- "+productName;
-			
+		var productName = itemsPedido[i].getElementsByClassName("lineaPedidoItem")[0].innerHTML;
+		var indicaciones = itemsPedido[i].getElementsByClassName("indicacionesItem")[0].value;
+		pedido = pedido + "\r\n\r\n"+"- "+productName+" _ ("+indicaciones+") _";			
 	}
 	
 	var freeText = document.getElementById("freeText").value;
@@ -395,8 +395,19 @@ getCurrentOrderInner = function () {
 					  }		  
 
 					  var idProduct = "carritoProduct"+carritoProductIndex;
-					  innerHTML = innerHTML + `<ion-item class="carritoItem" id="`+idProduct+`"><ion-label>`+value+" "+productName+`</ion-label><ion-buttons slot="start"><ion-button onclick="removeCarritoItem('`+idProduct+`')"><ion-icon size="large" slot="icon-only" color="vibrant" name="trash-outline">
-      					</ion-icon></ion-button></ion-buttons></ion-item>`;
+
+
+						  innerHTML = innerHTML + `<ion-item class="carritoItem"  id="`+idProduct+`">
+						  <ion-grid>
+								<ion-row>
+								  <h4 class="lineaPedidoItem">`+value+" "+productName+`</h4>
+							  	</ion-row>
+							  	<ion-row>
+							  		<ion-input class="indicacionesItem" placeholder="Indicaciones"></ion-input>
+							  	</ion-row>
+							</ion-grid>
+						</ion-item>`;
+
 					}	
 					
 				}
