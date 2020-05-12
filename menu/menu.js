@@ -345,7 +345,7 @@ hacerPedido = function () {
 	for(var i=0;i<itemsPedido.length;i++){
 		var productName = itemsPedido[i].getElementsByClassName("lineaPedidoItem")[0].innerHTML;
 		var indicaciones = itemsPedido[i].getElementsByClassName("indicacionesItem")[0].value;
-		pedido = pedido + "\r\n\r\n"+"- "+productName+" _ ("+indicaciones+") _";			
+		pedido = pedido + "\r\n\r\n"+"- "+productName+" _("+indicaciones+")_";			
 	}
 	
 	var freeText = document.getElementById("freeText").value;
