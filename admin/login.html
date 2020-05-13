@@ -104,15 +104,20 @@
 
 <ion-content color="dark" padding>
   <div class="wrapper">
-	<div class="container">
-		<h1>Login</h1>
-		
+	<div>		
 		<form>
-			<input type="text" id="loginUser" placeholder="Usuario ILoveMenu">
-			<input type="password" id="loginPassword" placeholder="Password">
-			<button type="button" onclick="login()">Login</button>
-			<div style="padding:20px;" id="text" onClick="recover()"><a href="#">¿Olvidó su usuario y/o contraseña?<a></a></div>		
-			<button style="margin-top:30px;"  type="button" onclick="register()">Registrarme</button>
+			<div class="container">
+				<h2 style="color:black;">Login</h2>
+
+				<input type="text" id="loginUser" placeholder="Usuario ILoveMenu" required>
+		  
+				<input type="password" id="loginPassword" placeholder="Password">
+				  
+				<button type="button" onclick="login()">Login</button>
+
+				<div style="padding:20px;" id="text" onClick="recover()"><a href="#">¿Olvidó su usuario y/o contraseña?<a></a></div>		
+				<button style="margin-top:30px;"  type="button" onclick="register()">Registrarme</button>
+			</div>	
 
 		
 		</form>

@@ -104,21 +104,25 @@
 
 <ion-content color="dark" padding>
   <div class="wrapper">
-	<div class="container">
-		<h1>Registro</h1>
+	<div >
 		
 		<form >
+			<div class="container">
+
+			<h2 style="color:black;">Registro</h2>
+
 			<input type="text" id="registerUser" placeholder="Crea tu nombre de usuario">
 			<input type="password" id="registerPassword" placeholder="Password">
 			<input type="password" id="registerRePassword" placeholder="Repetir Password">
-			<input type="email" id="registerMail" placeholder="E-mail">
+			<input type="text" id="registerMail" placeholder="E-mail">
 			<select id="suscription">
-				<option value="basic">Basic (4.90€/mes)</option>
-				<option value="pro">Pro (9.90€/mes)</option>
+				<option value="basic">Basic (4.99€/mes)</option>
+				<option value="pro">Pro (9.99€/mes)</option>
 			</select>
 			<button type="button" onclick="register()">Registrar</button>
 			<div style="padding:10px;" id="text" onClick="login()"><a href="#">Volver al login</a></div>		
-
+			</form>
+		</div>
 		</form>
 
 	</div>
