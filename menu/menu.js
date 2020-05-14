@@ -102,7 +102,8 @@ updateMenuInfo = function (menu){
 
 	if(menu[0].categories.length===0 && menu[0].documentoUrl){
 		var url = "https://docs.google.com/viewer?url="+menu[0].documentoUrl;
-		inner = inner +`<iframe src="`+menu[0].documentoUrl+`" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
+		window.location.href = url;
+		//inner = inner +`<iframe src="`+menu[0].documentoUrl+`" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
 	} else {
 		menu[0].categories.forEach(category => {
 			if(category.enable){
