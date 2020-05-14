@@ -101,7 +101,7 @@ updateMenuInfo = function (menu){
 	var inner = "";
 
 	if(menu[0].categories.length===0 && menu[0].documentoUrl){
-		var url = "https://docs.google.com/viewer?url="+menu[0].documentoUrl;
+		var url = menu[0].documentoUrl;
 		window.location.href = url;
 		//inner = inner +`<iframe src="`+menu[0].documentoUrl+`" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
 	} else {
