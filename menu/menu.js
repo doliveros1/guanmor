@@ -99,29 +99,41 @@ updateMenuInfo = function (menu){
 	var menuContent = document.getElementById("menuContent");
 
 	var inner = "";
-	
-	menu[0].categories.forEach(category => {
-		if(category.enable){
-			inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
-			inner = inner + category.title + `</ion-list-header>`;
-			inner = inner + updateCategoryProducts(category.products);
-			inner = inner + `</ion-list>`;
+
+	if(menu[0].categories.length===0 && menu[0].documentoUrl){
+		var url = "https://docs.google.com/viewer?url="+menu[0].documentoUrl;
+		inner = inner +`<iframe src="`+menu[0].documentoUrl+`" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
+	} else {
+		menu[0].categories.forEach(category => {
+			if(category.enable){
+				inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
+				inner = inner + category.title + `</ion-list-header>`;
+				inner = inner + updateCategoryProducts(category.products);
+				inner = inner + `</ion-list>`;
+			}
+		});
+		
+		inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
+		inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
+		inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
+		inner = inner + menu[0].nota + `</ion-label></ion-item>`;
+		if(menu[0].documentoUrl){
+			inner = inner + `<section class="full-width">
+			<ion-button href="`+menu[0].documentoUrl+`" target="_blank" expand="full" color="vibrant">ABRIR CARTA EN PDF</ion-button>
+		  </section>`;
+			  inner = inner + `<ion-item></ion-item><ion-item></ion-item>`;
 		}
-	});
 	
-	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
-	inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
-	inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
-	inner = inner + menu[0].nota + `</ion-label></ion-item>`;
+		inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+		<ion-fab-button onclick="handleButtonClick()" color="vibrant">
+		  <ion-icon name="cart-outline"></ion-icon>
+		  <ion-badge id="cart-badge2" color="danger"></ion-badge>
+	
+		</ion-fab-button>
+	  </ion-fab>`;
+	  
+	}
 
-	inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
-	<ion-fab-button onclick="handleButtonClick()" color="vibrant">
-      <ion-icon name="cart-outline"></ion-icon>
-      <ion-badge id="cart-badge2" color="danger"></ion-badge>
-
-	</ion-fab-button>
-  </ion-fab>`;
-  
 	menuContent.innerHTML = inner;
 };
 

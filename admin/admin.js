@@ -657,8 +657,12 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 				<ion-textarea id="idSugerencias" color="dark"></ion-textarea>
 				</ion-item>
 			<ion-item>
-		  <ion-label color="vibrant" position="floating">Nota</ion-label>
+		  	<ion-label color="vibrant" position="floating">Nota</ion-label>
 			 <ion-textarea id="idNota" color="dark"></ion-textarea>
+			</ion-item>
+			<ion-item>
+		  	<ion-label color="vibrant" position="floating">Enlace a tu documento</ion-label>
+			 <ion-textarea id="idDocumento" color="dark"></ion-textarea>
 			</ion-item>
 		</ion-list>
 		</ion-content>
@@ -919,6 +923,7 @@ function saveMenuInfo(){
 	menuInfo[0].categories = newCategories;
 	menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
 	menuInfo[0].nota = document.getElementById("idNota").value;
+	menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
 	sendMenuInfo(localId, menuInfo[0]);
 }
 
