@@ -102,8 +102,15 @@ updateMenuInfo = function (menu){
 
 	if(menu[0].categories.length===0 && menu[0].documentoUrl){
 		var url = menu[0].documentoUrl;
-		window.location.href = url;
-		//inner = inner +`<iframe src="`+menu[0].documentoUrl+`" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>`;
+
+		if(url.endsWith("pdf")){
+			inner = inner +`<object width="100%" height="100%" data="`+url+`" type="application/pdf">
+			<iframe width="100%" height="100%" src="https://docs.google.com/viewer?url=`+url+`&embedded=true"></iframe>
+			</object>`;
+		} else {
+			window.location.href = url;
+		}		
+		
 	} else {
 		menu[0].categories.forEach(category => {
 			if(category.enable){

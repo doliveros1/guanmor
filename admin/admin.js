@@ -591,6 +591,8 @@ function setMenuInfo(menuInfo){
 	MENU_INFO = menuInfo;
 	document.getElementById("idSugerencias").value = menuInfo[0].sugerencias;
 	document.getElementById("idNota").value = menuInfo[0].nota;
+	document.getElementById("idDocumento").value = menuInfo[0].documentoUrl;
+
 	var listCategories = document.getElementById("listCategories");
 	var iconHeart="";
 	menuInfo[0].categories.forEach(category=>{
