@@ -74,7 +74,11 @@ getPropertyInfo = function (idProperty) {
 
 setPropertyInfo = function (idProperty, object){
 	propertyInfo = object;
-	orderEnabled = propertyInfo.orderEnabled;
+	if(propertyInfo.orderEnabled && propertyInfo.plan==="pro"){
+		orderEnabled = true;
+	} else {
+		orderEnabled = false;
+	}
 	document.getElementById("propertyName").innerHTML = object.propertyName;
 	//document.getElementById("callButton").href = "tel:"+object.phoneNumber;
 	var text = "Ver carta de "+object.propertyName;
@@ -100,16 +104,9 @@ updateMenuInfo = function (menu){
 
 	var inner = "";
 
-	if(menu[0].categories.length===0 && menu[0].documentoUrl){
+	if(propertyInfo.plan==="lowcost"){
 		var url = menu[0].documentoUrl;
-
-		if(url.endsWith("pdf")){
-			inner = inner +`<object width="100%" height="100%" data="`+url+`" type="application/pdf">
-			<iframe width="100%" height="100%" src="https://docs.google.com/viewer?url=`+url+`&embedded=true"></iframe>
-			</object>`;
-		} else {
-			window.location.href = url;
-		}		
+		window.location.href = url;	
 		
 	} else {
 		menu[0].categories.forEach(category => {

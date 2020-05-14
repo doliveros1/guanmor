@@ -3,6 +3,7 @@ const REGISTER = "./register.html";
 
 var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
+var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -118,7 +119,21 @@ const fetchLogin = (pUser, pPassword) => {
 			localStorage.setItem('jwt-token', response.token);
 			localStorage.setItem('localId', response.user);
 			goToAdmin();
-		} else {
+    } else if(xhr.status == "403"){
+			var response = JSON.parse(xhr.responseText);
+			stripe.redirectToCheckout({
+				// Make the id field from the Checkout Session creation API response
+				// available to this file, so you can provide it as parameter here
+				// instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+				sessionId: JSON.parse(response.message).id
+			  }).then(function (result) {
+				  console.info(result);
+				// If `redirectToCheckout` fails due to a browser or network
+				// error, display the localized error message to your customer
+				// using `result.error.message`.
+			  });
+		} 
+     else {
 			presentToast(response.message)
 		}
 	}
