@@ -11,6 +11,8 @@
 
   gtag('config', 'UA-165918831-1');
 </script>
+<script src="https://js.stripe.com/v3/"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I Love Menu</title>
@@ -182,11 +184,11 @@
           	</ion-item>
           	<ion-item>
             	<ion-label color="vibrant" position="floating">Whatsapp (Donde llegarán los pedidos)</ion-label>
-           		<ion-input id="whatsapp" color="dark" placeholder="Ej: 600600600"></ion-input>
+           		<ion-input id="whatsapp" color="dark" placeholder="Ej: 34 600600600"></ion-input>
           	</ion-item>
           	<ion-item>
             	<ion-label color="vibrant" position="floating">Teléfono de contacto</ion-label>
-           		<ion-input id="phoneNumber" color="dark" placeholder="Ej: 900600600"></ion-input>
+           		<ion-input id="phoneNumber" color="dark" placeholder="Ej: 34 900600600"></ion-input>
 			</ion-item>
 			<ion-item>
             	<ion-label color="vibrant" position="floating">Código Postal</ion-label>
@@ -268,13 +270,22 @@
 					<ion-input id="idSettingsUser" value="" disabled></ion-input>
 				</ion-item>
 				<ion-item>
+					<ion-label class="ion-text-wrap" color="vibrant" >Tu plan:</ion-label>
+					<ion-input id="idPlan" value="" disabled></ion-input>
+				</ion-item>
+				<ion-item>
 					<ion-label color="vibrant" position="floating" >Correo electrónico</ion-label>
 					<ion-input id="idSettingsEmail" color="dark" ></ion-input>
 				</ion-item>
 				<ion-button expand="full" onclick="changePassword()" color="vibrant">Cambiar contraseña</ion-button>
 			</ion-list>
 			<div align="center" style="padding-top: 50px;" >
-				<a href="#" onclick="unRegister()">Darme de baja</a>
+				<form method="POST" action="/create_billing_portal">
+					<ion-button expand="full" onclick="manageSubscription()" color="vibrant">Gestionar Mi Subscripción</ion-button>
+
+				</form>
+				<!--ion-button expand="full" onclick="unRegister()" color="vibrant">Gestionar Mi Subscripción</ion-button-->
+				<!--a href="#" onclick="unRegister()">Darme de baja</a-->
 			</div>
 		</ion-content>	
 	</div>

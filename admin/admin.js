@@ -1,5 +1,6 @@
 var API_PATH_ADMIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_ADMIN = "http://localhost:8080/api/guanmor/1.0.0";
+var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
 
 var indexCategory = 0;
 var indexProduct = 0;
@@ -15,6 +16,7 @@ var MAP_PRODUCTS_ID = new Map();
 var nav;
 var qrcode = null;
 
+var firstTime = true;
 var page;
 
 window.onload = (e) => { 
@@ -531,7 +533,7 @@ function changePassword(){
 	return alert.present();
 }
 
-unRegister = async function (id) {
+manageSubscription = async function () {
 	var alert = await alertController.create({
 	  header: '¿Seguro que deseas darte de baja?',
 	  message: 'Perderás toda la información de tu local y carta',
@@ -546,7 +548,7 @@ unRegister = async function (id) {
 		{
 		  text: 'Aceptar',
 		  handler: () => {
-			doDeregister(localId);
+			doDeregister();
 		  }
 		}
 	  ]
@@ -583,97 +585,126 @@ function setLocalInfo(localInfo){
 	document.getElementById("homeDelivery").checked = localInfo.homeDelivery;	
 	document.getElementById("whatsappOrder").checked = localInfo.orderEnabled;	
 
+	if(firstTime){
+		createNavCategories();
+		firstTime = false;
+	}
+
 }
 
 function setMenuInfo(menuInfo){
 	MAP_CATEGORIES_ID = new Map();
 	var categoryHTML = "";
 	MENU_INFO = menuInfo;
-	document.getElementById("idSugerencias").value = menuInfo[0].sugerencias;
-	document.getElementById("idNota").value = menuInfo[0].nota;
-	document.getElementById("idDocumento").value = menuInfo[0].documentoUrl;
+	
+	if(LOCAL_INFO.plan==="lowcost") {
+		document.getElementById("idDocumento").value = menuInfo[0].documentoUrl;
+	} else {
+		document.getElementById("idSugerencias").value = menuInfo[0].sugerencias;
+		document.getElementById("idNota").value = menuInfo[0].nota;
+		var listCategories = document.getElementById("listCategories");
+		var iconHeart="";
+		menuInfo[0].categories.forEach(category=>{
+			indexCategory = indexCategory +1;
+			var idCategory = "category"+indexCategory;
+			MAP_CATEGORIES_ID.set(idCategory,category);
+			if(category.enable){
+				iconHeart = "heart-outline";
+			} else{
+				iconHeart = "heart-dislike-outline";
+			}
+			categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
+			<div slot="end">
+			  <ion-button color="vibrant" onclick="removeCategory('`+idCategory+`')" >
+					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+			  </ion-button>
+			  <ion-button color="vibrant" onclick="checkEnableCategory('`+idCategory+`')" >        		
+				  <ion-icon class="inputEnableCategory" slot="icon-only" name="`+iconHeart+`"></ion-icon>
+				</ion-button>
+				<ion-button color="vibrant" onclick="showCategoryDetail('`+idCategory+`')">        		
+				  <ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
+				</ion-button>
+		  </div>
+	
+			<ion-textarea onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
+			</ion-textarea>
+	  </ion-item>`;
+		});
+		categoryHTML = categoryHTML + `<ion-item id="newCategoryItem">
+		<ion-button color="vibrant" onclick="addNewCategory('newCategoryId')" slot="end">
+			Añadir
+		  </ion-button>          		
+			<ion-textarea id="newCategoryId" value="" placeholder="Escriba nombre de la categoría" class="ion-text-wrap">
+			</ion-textarea>
+		</ion-item>`;
+		listCategories.innerHTML = categoryHTML;
 
-	var listCategories = document.getElementById("listCategories");
-	var iconHeart="";
-	menuInfo[0].categories.forEach(category=>{
-		indexCategory = indexCategory +1;
-		var idCategory = "category"+indexCategory;
-		MAP_CATEGORIES_ID.set(idCategory,category);
-		if(category.enable){
-			iconHeart = "heart-outline";
-		} else{
-			iconHeart = "heart-dislike-outline";
-		}
-		categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
-		<div slot="end">
-		  <ion-button color="vibrant" onclick="removeCategory('`+idCategory+`')" >
-				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-		  </ion-button>
-		  <ion-button color="vibrant" onclick="checkEnableCategory('`+idCategory+`')" >        		
-			  <ion-icon class="inputEnableCategory" slot="icon-only" name="`+iconHeart+`"></ion-icon>
-			</ion-button>
-			<ion-button color="vibrant" onclick="showCategoryDetail('`+idCategory+`')">        		
-			  <ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
-			</ion-button>
-	  </div>
+	}
 
-		<ion-textarea onfocusout="updateCategory('`+idCategory+`')" value="`+category.title+`" class="ion-text-wrap inputCategoryTitle">
-		</ion-textarea>
-  </ion-item>`;
-	});
-	categoryHTML = categoryHTML + `<ion-item id="newCategoryItem">
-	<ion-button color="vibrant" onclick="addNewCategory('newCategoryId')" slot="end">
-		Añadir
-	  </ion-button>          		
-		<ion-textarea id="newCategoryId" value="" placeholder="Escriba nombre de la categoría" class="ion-text-wrap">
-		</ion-textarea>
-	</ion-item>`;
-	listCategories.innerHTML = categoryHTML;	
 };
 
 function setPreferencesInfo(preferencesInfo){
 	document.getElementById("idSettingsUser").value = preferencesInfo.username;
 	document.getElementById("idSettingsEmail").value = preferencesInfo.email;
+	document.getElementById("idPlan").value = preferencesInfo.plan;
+
 }
 
+function createNavCategories(){
 customElements.define('nav-categories', class NavHome extends HTMLElement {
 	connectedCallback() {
 	  var categoryHTML = "";
 
 	  categoryHTML = `
-	  <ion-content fullscreen>
+	  <ion-content fullscreen>`;
+	
+	  if(LOCAL_INFO.plan !== "lowcost"){
+		categoryHTML = categoryHTML+ `<ion-header translucent>
+		<ion-toolbar color="vibrant">
+		  <ion-title>Categorías</ion-title>
+		</ion-toolbar>
+	  </ion-header>
+		<ion-list id="listCategories"></ion-list>	  
 		
-		<ion-header translucent>
-		  <ion-toolbar color="vibrant">
-			<ion-title>Categorías</ion-title>
-		  </ion-toolbar>
-		</ion-header>
-		  <ion-list id="listCategories"></ion-list>	  
-		  
-		  <ion-list>
-		  <ion-list-header color="vibrant">
-		  <ion-title>Sugerencias y nota</ion-title>       
-		   </ion-list-header>
-			<ion-item>
-				<ion-label color="vibrant" position="floating">Sugerencias</ion-label>
-				<ion-textarea id="idSugerencias" color="dark"></ion-textarea>
-				</ion-item>
-			<ion-item>
-		  	<ion-label color="vibrant" position="floating">Nota</ion-label>
-			 <ion-textarea id="idNota" color="dark"></ion-textarea>
-			</ion-item>
-			<ion-item>
-		  	<ion-label color="vibrant" position="floating">Enlace a tu documento</ion-label>
-			 <ion-textarea id="idDocumento" color="dark"></ion-textarea>
-			</ion-item>
-		</ion-list>
-		</ion-content>
-	  `;
+		<ion-list>
+		<ion-list-header color="vibrant">
+		<ion-title>Sugerencias y nota</ion-title>       
+		 </ion-list-header>
+		  <ion-item>
+			  <ion-label color="vibrant" position="floating">Sugerencias</ion-label>
+			  <ion-textarea id="idSugerencias" color="dark"></ion-textarea>
+			  </ion-item>
+		  <ion-item>
+			<ion-label color="vibrant" position="floating">Nota</ion-label>
+		   <ion-textarea id="idNota" color="dark"></ion-textarea>
+		  </ion-item>
+		  <ion-item>
+			<ion-label color="vibrant" position="floating">Enlace a tu documento</ion-label>
+		   <ion-textarea id="idDocumento" color="dark"></ion-textarea>
+		  </ion-item>
+	  </ion-list>
+	  </ion-content>
+	`;
+	  } else {
+		categoryHTML = categoryHTML+ `
+		<ion-list-header color="vibrant">
+		<ion-title>Enlace a tu carta</ion-title>       
+		 </ion-list-header>
+		  <ion-item>
+			<ion-label color="vibrant" position="floating">Enlace a tu carta</ion-label>
+		   <ion-textarea id="idDocumento" color="dark"></ion-textarea>
+		  </ion-item>
+	  </ion-list>
+	  </ion-content>
+	`
+
+	  }
+	  
 	  this.innerHTML = categoryHTML;
 	  console.info(categoryHTML);
 	}
   });
-
+};
 customElements.define('nav-products', class NavDetail extends HTMLElement {
 	connectedCallback() {
 	  MAP_PRODUCTS_ID = new Map();
@@ -923,8 +954,11 @@ function saveMenuInfo(){
 	});
 
 	menuInfo[0].categories = newCategories;
-	menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
-	menuInfo[0].nota = document.getElementById("idNota").value;
+	if(LOCAL_INFO.plan !== "lowcost"){
+		menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
+		menuInfo[0].nota = document.getElementById("idNota").value;
+	}
+
 	menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
 	sendMenuInfo(localId, menuInfo[0]);
 }
@@ -1081,14 +1115,18 @@ const sendPreferences = (idLocal, preferencesInfo) => {
 	xhr.send(json);
 };
 
-const doDeregister = (idLocal) => {
+const doDeregister = () => {
 	showLoading("Dando de baja al usuario"); 
     return axios.get(API_PATH_ADMIN+"/deregister/?access_token="+jwtToken,{ crossdomain: true })
         .then(response => {
-			goToLogin();
+			hideLoading();
+			window.location.href = response.data.urlRedirect;			
+
+			//goToLogin();
         })
         .catch(error => {
-			presentToast(error.response.data.message)
+			presentToast(error.response.data.message);
+			hideLoading();
         });
 };
 

@@ -106,9 +106,13 @@ updateMenuInfo = function (menu){
 
 	if(propertyInfo.plan==="lowcost"){
 		var url = menu[0].documentoUrl;
-		window.location.href = url;	
-		
+		window.location.href = url;			
 	} else {
+		document.getElementById("loadingLayer").style.display="none";
+		document.getElementById("menuContent").style.display="inline";
+		document.getElementById("searchbarId").style.display="inline";
+		document.getElementById("toolbarId").style.display="inline";
+
 		menu[0].categories.forEach(category => {
 			if(category.enable){
 				inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
@@ -667,7 +671,7 @@ function isEmpty(obj) {
 };
 
 function goToHome(){
-	window.location.href = HOME;
+	//window.location.href = HOME;
 };
 
 
