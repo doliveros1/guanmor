@@ -534,28 +534,7 @@ function changePassword(){
 }
 
 manageSubscription = async function () {
-	var alert = await alertController.create({
-	  header: '¿Seguro que deseas darte de baja?',
-	  message: 'Perderás toda la información de tu local y carta',
-	  buttons: [
-		{
-		  text: 'Cancelar',
-		  role: 'cancel',
-		  handler: () => {
-			console.log('Cancel clicked');
-		  }
-		},
-		{
-		  text: 'Aceptar',
-		  handler: () => {
-			doDeregister();
-		  }
-		}
-	  ]
-	});
-
-	await alert.present();
-
+	doDeregister();
 };  
 
 async function closeMenu() {

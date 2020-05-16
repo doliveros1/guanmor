@@ -73,6 +73,7 @@ getPropertyInfo = function (idProperty) {
 }; 
 
 setPropertyInfo = function (idProperty, object){
+	addFavoriteLocal(idProperty, object);
 	propertyInfo = object;
 	if(propertyInfo.orderEnabled && propertyInfo.plan==="pro"){
 		orderEnabled = true;
@@ -84,8 +85,20 @@ setPropertyInfo = function (idProperty, object){
 	var text = "Ver carta de "+object.propertyName;
     shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+window.btoa(idProperty);
     document.getElementById("shareButton").href=shareHref;
-    document.getElementById("backButton").href=HOME+"?zipCode="+propertyInfo.codPostal;
+	document.getElementById("backButton").href=HOME+"?zipCode="+propertyInfo.codPostal;
+	
     
+};
+
+addFavoriteLocal = function (idProperty, object){
+	let mapFavorites;
+	if(localStorage.getItem("local-favorites")=== null){
+		mapFavorites = new Map();
+	} else {
+		mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
+	}
+	mapFavorites[idProperty]= JSON.stringify(object);
+	localStorage.setItem("local-favorites",JSON.stringify(mapFavorites));
 };
 
 setMenuInfo = function (object){
@@ -133,13 +146,15 @@ updateMenuInfo = function (menu){
 			  inner = inner + `<ion-item></ion-item><ion-item></ion-item>`;
 		}
 	
-		inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
-		<ion-fab-button onclick="handleButtonClick()" color="vibrant">
-		  <ion-icon name="cart-outline"></ion-icon>
-		  <ion-badge id="cart-badge2" color="danger"></ion-badge>
-	
-		</ion-fab-button>
-	  </ion-fab>`;
+		if(propertyInfo.plan==="pro"){
+			inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+			<ion-fab-button onclick="handleButtonClick()" color="vibrant">
+			  <ion-icon name="cart-outline"></ion-icon>
+			  <ion-badge id="cart-badge2" color="danger"></ion-badge>
+		
+			</ion-fab-button>
+		  </ion-fab>`;
+		}		
 	  
 	}
 
@@ -169,21 +184,23 @@ updateCategoryProducts = function(categoryProducts){
 						</i>
 					</ion-col>
 				</ion-row>
-				<ion-row >
-					<ion-col>
-						<div>
-							<input class="productItemCantity" type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>
-						</div>
-						<ion-button color="vibrant" onclick="decrement('`+idInput+`')">
-							<ion-icon slot="icon-only" name="remove-circle-outline">
-							</ion-icon>
-						</ion-button>
-						<ion-button color="vibrant" onclick="increment('`+idInput+`')">
-							<ion-icon slot="icon-only" name="add-circle-outline">
-							</ion-icon>
-						</ion-button>
-					</ion-col>
-					<ion-col><div align="right">`;
+				<ion-row ><ion-col>`;
+				if(propertyInfo.plan==="pro") {				
+					product = product+`
+							<div>
+								<input class="productItemCantity" type="number" id="`+idInput+`" value="0" placeHolder="Cdad." min="0" max="10000000" id="points" name="points" step="1" disabled>
+							</div>
+							<ion-button color="vibrant" onclick="decrement('`+idInput+`')">
+								<ion-icon slot="icon-only" name="remove-circle-outline">
+								</ion-icon>
+							</ion-button>
+							<ion-button color="vibrant" onclick="increment('`+idInput+`')">
+								<ion-icon slot="icon-only" name="add-circle-outline">
+								</ion-icon>
+							</ion-button>
+						`;
+				}
+					product = product +`</ion-col><ion-col><div align="right">`;
 
 					if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
 						var alerg = prod.alergenos.toString();
@@ -671,7 +688,7 @@ function isEmpty(obj) {
 };
 
 function goToHome(){
-	//window.location.href = HOME;
+	window.location.href = HOME;
 };
 
 

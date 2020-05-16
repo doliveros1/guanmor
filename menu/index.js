@@ -25,7 +25,7 @@ window.onload = (e) => {
     	getLocalesInfo(zipCode);
 	}
 	//showLoading("Cargando cartas de restaurantes");
-    //getLocalesInfo();
+    getFavoritesInfo();
 }
 
 GetURLParameter = function (sParam) {
@@ -45,7 +45,21 @@ getLocalesInfo = function (query) {
 	fetchLocales(query);
 }; 
 
+getFavoritesInfo = function () {
+	let favoritesInfo = [];
+	let mapFavorites;
+	if(localStorage.getItem("local-favorites")=== null){
+		favoritesInfo = [];
+	} else {
+		mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
+		favoritesInfo = Object.values(mapFavorites);
+	}
+
+	setFavoritesInfo(favoritesInfo);	
+}; 
+
 setLocalesInfo = function (locales){
+
 	var listLocales = document.getElementById("propertiesList");
 	var inner = `<ion-list><ion-list-header>Restaurantes con carta</ion-list-header>`;
 	
@@ -64,6 +78,58 @@ setLocalesInfo = function (locales){
 
 };
 
+setFavoritesInfo= function (locales){
+
+	var listLocales = document.getElementById("favoritesList");
+	var inner = `<ion-list><ion-list-header>Mis cartas favoritas</ion-list-header>`;
+	
+	locales.forEach(local => {
+		let parsedLocal = JSON.parse(local);
+		inner = inner + `<ion-list><ion-item >
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+          <ion-label onclick="goToCarta('`+parsedLocal.id+`')">
+            <h2>`+parsedLocal.propertyName+`</h2>
+            <p>`+parsedLocal.description+`</p>
+		  </ion-label>
+		  <ion-button onclick="removeLocal('`+parsedLocal.id+`')" color="dark">
+		  <ion-icon name="trash-outline" slot="end"></ion-icon>
+		  </ion-button>
+        </ion-item>`;
+	});
+	inner = inner + `</ion-list>`;	
+	listLocales.innerHTML = inner;
+
+};
+
+removeLocal = async function (id) {
+	var nombreLocal;
+	var mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
+	nombreLocal = JSON.parse(mapFavorites[id]).propertyName;
+	var alert = await alertController.create({
+	  header: '¿Quieres eliminar la carta de '+nombreLocal+" de favoritos?",
+	  message: 'Si eliminas no te aparecerá en favoritos',
+	  buttons: [
+		{
+		  text: 'Cancelar',
+		  role: 'cancel',
+		  handler: () => {
+			console.log('Cancel clicked');
+		  }
+		},
+		{
+		  text: 'Aceptar',
+		  handler: () => {
+			delete mapFavorites[id];
+			localStorage.setItem("local-favorites",JSON.stringify(mapFavorites));
+			getFavoritesInfo();
+		  }
+		}
+	  ]
+	});
+
+	await alert.present();
+
+};  
 
 showLoading = function (text) {
 	loading = document.createElement('ion-loading');

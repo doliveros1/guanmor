@@ -4,6 +4,7 @@ var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
 
 window.onload = (e) => { 
+	cookieConsent(); 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
 	});

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165918831-1');
+</script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Love Menu</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
+  <link rel="manifest" href="/admin/manifest.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">  
+  <script src="../config.js"></script>
+  <script src="./register.js"></script>  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+  <link rel="stylesheet" href="./style.css">
+
+
+  <script type="module">
+    import { menuController } from 'https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/index.esm.js';
+    window.menuController = menuController;
+  </script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <style>
+
+    
+    :root {
+      --ion-safe-area-top: 20px;
+      --ion-safe-area-bottom: 22px;
+    }
+    .footer{
+		height: 60px;
+		width: 100%;
+		background-color: black;    
+    }
+
+    div.horizontal {
+    	height: 60px;
+		width: 100%;
+		background-color: #1B1B1E; 
+    	display: flex;
+    	justify-content: center;
+    	border-top:1px solid #3ed7ca;
+
+	}
+
+	div.vertical {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+	}
+	
+  
+	@font-face {
+		font-family: guanmorFont;
+		src: url(ubuntu-v14-latin-regular.woff);
+	}
+	* {
+		font-family: guanmorFont;
+	}
+	.price{
+    	text-align: right;
+	}
+
+	.multiline {
+  		padding:20px;
+  		white-space: pre-wrap;
+	}
+	
+	.titleMenu {
+		padding-top:10px;
+	}
+	
+	.toolBar {
+		border-bottom:1px solid #3ed7ca;
+	}
+	.ion-color-vibrant {
+  		--ion-color-base: #3ed7ca;
+  		--ion-color-base-rgb: 255,255,0;
+  		--ion-color-contrast: #000000;
+  		--ion-color-contrast-rgb: 0,0,0;
+  		--ion-color-shade: #e0e000;
+  		--ion-color-tint: #3ed7ca;
+	}
+	
+
+  </style>
+</head>
+
+<body>
+  <ion-app>
+	<ion-header>
+        <ion-toolbar color="dark" >
+			<ion-buttons slot="start">
+        		<ion-button id="backButton" href="./register.html">
+      				<ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        		</ion-button>
+
+        	</ion-buttons>
+		  <ion-label id="locationTitle">Política de privacidad y cookies</ion-label>
+        </ion-toolbar>
+      </ion-header>
+<ion-content color="dark" padding>
+
+	<!--div >
+		<h2 style="padding:20px;color:#3ed7ca;">Política de privacidad y cookies</h2>
+	</div-->
+
+	<div style="padding: 20px;">
+		<p>I Love menu es [Descripci&oacute;n de la startup, temas legales]. Esta pol&iacute;tica de privacidad explicar&aacute; de qu&eacute; manera nuestra organizaci&oacute;n usa los datos personales obtenidos en el uso de nuestro sitio web.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;Qu&eacute; datos recogemos?</li>
+		</ul>
+		<p>Nuestra compa&ntilde;&iacute;a recoge los siguientes datos. Informaci&oacute;n personal: e-mail y n&uacute;mero de tel&eacute;fono. Adem&aacute;s usted indica informaci&oacute;n relativa a su local y la carta.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;C&oacute;mo obtenemos sus datos?</li>
+		</ul>
+		<p>Una vez que se ha registrado en el sistema, usted voluntariamente indica la informaci&oacute;n de su local y carta dentro de nuestra web.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;C&oacute;mo vamos a usar sus datos?</li>
+		</ul>
+		<p>Sus datos no ser&aacute;n usados con terceros. Su informaci&oacute;n personal, sobre su local y carta se mostrar&aacute;n desde nuestra plataforma a sus clientes.&nbsp;</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;C&oacute;mo almacenamos sus datos?</li>
+		</ul>
+		<p>Nuestros datos est&aacute;n almacenados en un servidor Azure en Holanda. Usted &uacute;nicamente podr&aacute; modificar esos datos autentic&aacute;ndose en nuestro sistema.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;Cu&aacute;les son sus derechos de protecci&oacute;n de datos?</li>
+		</ul>
+		<p>Tiene derecho al acceso a los datos, a ser rectificados (usted los puede editar directamente) y a ser destruidos cuando as&iacute; lo desee. Una vez que usted se da de baja de nuestro servicio, sus datos ser&aacute;n borrados sin disponer de copia de seguridad.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;Qu&eacute; son las cookies?</li>
+		</ul>
+		<p>Las&nbsp;<strong>cookies</strong>&nbsp;son archivos que crean los sitios que visitas. Guardan informaci&oacute;n de la navegaci&oacute;n para hacer que tu experiencia en l&iacute;nea sea m&aacute;s sencilla.&nbsp;</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;C&oacute;mo usamos las cookies?</li>
+		</ul>
+		<p>Usamos las cookies principalmente para mantenerle autenticado en nuestro sistema as&iacute; como para comprender el uso que se hace de nuestra web.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">&iquest;Qu&eacute; tipos de cookies usamos?</li>
+		</ul>
+		<p>Nuestro sitio web usa cookies de funcionalidad (para mantenerle autenticado)&nbsp;</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">Pol&iacute;tica de privacidad de terceros.</li>
+		</ul>
+		<p>Nuestra web puede contener enlaces a otras webs cuya pol&iacute;tica de privacidad es independiente de la nuestra.</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">Cambios en nuestra pol&iacute;tica de privacidad.</li>
+		</ul>
+		<p>La &uacute;ltima versi&oacute;n de esta pol&iacute;tica de privacidad es del 18 de mayo de 2020</p>
+		<ul>
+		<li style="padding: 10px; color: #3ed7ca;">C&oacute;mo contactar con nosotros.</li>
+		</ul>
+		<p><a href="mailto:dpo@ilovemenu.es">dpo@ilovemenu.es</a>&nbsp;para protecci&oacute;n de datos <a href="mailto:info@ilovemenu.es">info@ilovemenu.es</a>&nbsp;para informaci&oacute;n general</p>
+		</div>
+</ion-content>
+    <ion-footer>
+		<div class="horizontal div1">
+    		<div class="vertical">
+    			<a href="../index.html" target="_blank">
+    				<img class="logo" src="guanmor_logo.svg">
+    			</a>				
+   			 </div>
+		</div>
+	</ion-footer>
+  </ion-app>
+</body>
+</html>
