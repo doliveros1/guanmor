@@ -79,25 +79,31 @@ setLocalesInfo = function (locales){
 };
 
 setFavoritesInfo= function (locales){
-
+	var inner = "";
 	var listLocales = document.getElementById("favoritesList");
-	var inner = `<ion-list><ion-list-header>Mis cartas favoritas</ion-list-header>`;
+	if(locales.length>0){
+
+		inner = `<ion-list><ion-list-header>Mis cartas favoritas</ion-list-header>`;
 	
-	locales.forEach(local => {
-		let parsedLocal = JSON.parse(local);
-		inner = inner + `<ion-list><ion-item >
-          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
-          <ion-label onclick="goToCarta('`+parsedLocal.id+`')">
-            <h2>`+parsedLocal.propertyName+`</h2>
-            <p>`+parsedLocal.description+`</p>
-		  </ion-label>
-		  <ion-button onclick="removeLocal('`+parsedLocal.id+`')" color="dark">
-		  <ion-icon name="trash-outline" slot="end"></ion-icon>
-		  </ion-button>
-        </ion-item>`;
-	});
-	inner = inner + `</ion-list>`;	
-	listLocales.innerHTML = inner;
+		locales.forEach(local => {
+			let parsedLocal = JSON.parse(local);
+			inner = inner + `<ion-list><ion-item >
+			<ion-icon name="restaurant-outline" slot="start"></ion-icon>
+			<ion-label onclick="goToCarta('`+parsedLocal.id+`')">
+				<h2>`+parsedLocal.propertyName+`</h2>
+				<p>`+parsedLocal.description+`</p>
+			</ion-label>
+			<ion-button onclick="removeLocal('`+parsedLocal.id+`')" color="dark">
+			<ion-icon name="trash-outline"></ion-icon>
+			</ion-button>
+			</ion-item>`;
+		});
+		inner = inner + `</ion-list>`;	
+		listLocales.innerHTML = inner;
+	} else {
+		inner = inner + `<div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center"><h4 style="padding:10px;">No tienes cartas añadidadas a favoritos</h4></div>`;	
+		listLocales.innerHTML = inner;
+	}
 
 };
 
