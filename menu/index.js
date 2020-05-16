@@ -11,25 +11,46 @@ var clientAddress;
 var loading;
 var searchBar;
 let deferredPrompt;
+var zipCode = "";
 
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
 	});
+
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	} 	  
 	
 	searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
-	var zipCode = GetURLParameter("zipCode");
-	if(zipCode!==""){
-		showLoading("Buscando cartas de restaurantes");
-    	getLocalesInfo(zipCode);
-	}
+	//zipCode = GetURLParameter("zipCode");
+	
 	//showLoading("Cargando cartas de restaurantes");
     getFavoritesInfo();
 }
 
+function showPosition(position) {
+	var urlZipCode = "https://ezcmd.com/apps/api_geo_postal_codes/nearby_locations_by_coords/GUEST_USER/-1?within=1&coords="+position.coords.latitude+","+position.coords.longitude;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+	   console.info(xhttp.responseText);
+	   zipCode = JSON.parse(xhttp.responseText).search_results[0].postal_code;
+	   	if(zipCode!==""){
+			showLoading("Buscando cartas de restaurantes");
+    		getLocalesInfo(zipCode);
+		}
+    }
+	};
+	xhttp.open("GET", urlZipCode, true);
+	xhttp.send();
+
+}
+
 GetURLParameter = function (sParam) {
-	var code = "45880";
+	var code = "";
 	var sPageURL = window.location.search.substring(1);
 	var sURLVariables = sPageURL.split('&');
 	for (var i = 0; i < sURLVariables.length; i++){
@@ -60,21 +81,28 @@ getFavoritesInfo = function () {
 
 setLocalesInfo = function (locales){
 
+	var inner = "";
 	var listLocales = document.getElementById("propertiesList");
-	var inner = `<ion-list><ion-list-header>Restaurantes con carta</ion-list-header>`;
+	if(locales.length>0){
+
+		inner = `<ion-list><ion-list-header>Cartas disponibles</ion-list-header>`;
 	
-	locales.forEach(local => {
-		inner = inner + `<ion-list><ion-item onclick="goToCarta('`+local.id+`')">
-          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
-          <ion-label>
-            <h2>`+local.propertyName+`</h2>
-            <p>`+local.description+`</p>
-          </ion-label>
-        </ion-item>`;
-	});
-	inner = inner + `</ion-list>`;
-	
-	listLocales.innerHTML = inner;
+		locales.forEach(local => {
+			inner = inner + `<ion-list><ion-item >
+			<ion-icon name="restaurant-outline" slot="start"></ion-icon>
+			<ion-label onclick="goToCarta('`+local.id+`')">
+				<h2>`+local.propertyName+`</h2>
+				<p>`+local.description+`</p>
+			</ion-label>
+			</ion-item>`;
+		});
+		inner = inner + `</ion-list>`;	
+		listLocales.innerHTML = inner;
+	} else {
+		inner = inner + `<div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center;text-align: center;"><h4 style="padding:10px;">No tienes cartas cerca de tu ubicación</h4></div>`;	
+		listLocales.innerHTML = inner;
+	}
+
 
 };
 
@@ -93,15 +121,19 @@ setFavoritesInfo= function (locales){
 				<h2>`+parsedLocal.propertyName+`</h2>
 				<p>`+parsedLocal.description+`</p>
 			</ion-label>
-			<ion-button onclick="removeLocal('`+parsedLocal.id+`')" color="dark">
-			<ion-icon name="trash-outline"></ion-icon>
+			<ion-buttons slot="end">
+			<ion-button id="backButton" onclick="removeLocal('`+parsedLocal.id+`')">
+				  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 			</ion-button>
+
+		</ion-buttons>
+
 			</ion-item>`;
 		});
 		inner = inner + `</ion-list>`;	
 		listLocales.innerHTML = inner;
 	} else {
-		inner = inner + `<div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center"><h4 style="padding:10px;">No tienes cartas añadidadas a favoritos</h4></div>`;	
+		inner = inner + `<div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center;text-align: center;"><h4 style="padding:10px;">No tienes cartas añadidas a favoritos</h4></div>`;	
 		listLocales.innerHTML = inner;
 	}
 
@@ -109,6 +141,7 @@ setFavoritesInfo= function (locales){
 
 removeLocal = async function (id) {
 	var nombreLocal;
+	var mapMenu = JSON.parse(localStorage.getItem("local-menus"));
 	var mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
 	nombreLocal = JSON.parse(mapFavorites[id]).propertyName;
 	var alert = await alertController.create({
@@ -126,7 +159,11 @@ removeLocal = async function (id) {
 		  text: 'Aceptar',
 		  handler: () => {
 			delete mapFavorites[id];
+			delete mapMenu[id];
 			localStorage.setItem("local-favorites",JSON.stringify(mapFavorites));
+			localStorage.setItem("local-menus",JSON.stringify(mapMenu));
+
+			//Borrar carta también
 			getFavoritesInfo();
 		  }
 		}
@@ -177,6 +214,6 @@ function handleInputSearchBar(event) {
     	getLocalesInfo(query);
 	} else if(query.length === 0){
 		showLoading("Buscando cartas de restaurantes");
-    	getLocalesInfo(query);
+    	getLocalesInfo(zipCode);
 	}
 }

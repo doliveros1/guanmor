@@ -175,12 +175,12 @@
         		<ion-button id="backButton" href="./index.html">
       				<ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
         		</ion-button>
-        		<ion-button onclick="handleButtonInfoClick(this)">        		
-        			<ion-icon slot="icon-only"  name="information-outline"></ion-icon>
+        		<ion-button onclick="downloadCarta()">        		
+        			<ion-icon slot="icon-only"  name="heart-outline"></ion-icon>
   				</ion-button>
         	</ion-buttons>
 
-        <ion-title class="localTitle" id="propertyName" mode=ios>-</ion-title>
+        <ion-title onclick="handleButtonInfoClick(this)" class="localTitle" id="propertyName" mode=ios>-</ion-title>
 	</ion-toolbar>
 	<ion-toolbar id="searchbarId" style="display: none;" class="searchBar" color="dark">
 		<ion-searchbar placeholder="Buscar plato">	

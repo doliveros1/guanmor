@@ -73,7 +73,6 @@ getPropertyInfo = function (idProperty) {
 }; 
 
 setPropertyInfo = function (idProperty, object){
-	addFavoriteLocal(idProperty, object);
 	propertyInfo = object;
 	if(propertyInfo.orderEnabled && propertyInfo.plan==="pro"){
 		orderEnabled = true;
@@ -85,8 +84,16 @@ setPropertyInfo = function (idProperty, object){
 	var text = "Ver carta de "+object.propertyName;
     shareHref = "whatsapp://send?text="+text+" "+MENU_BASE_URL+"?property="+window.btoa(idProperty);
     document.getElementById("shareButton").href=shareHref;
-	document.getElementById("backButton").href=HOME+"?zipCode="+propertyInfo.codPostal;
+	document.getElementById("backButton").href=HOME;
 	
+	if(localStorage.getItem("local-favorites")=== null){
+		downloadCartaRequest(object.propertyName);
+	} else {
+		var mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
+		if(mapFavorites[localId]===undefined){
+			downloadCartaRequest(object.propertyName);
+		}
+	}
     
 };
 
@@ -100,6 +107,32 @@ addFavoriteLocal = function (idProperty, object){
 	mapFavorites[idProperty]= JSON.stringify(object);
 	localStorage.setItem("local-favorites",JSON.stringify(mapFavorites));
 };
+
+getCurrentLocal = function(){
+	var local = null;
+	if(localStorage.getItem("local-favorites")=== null){
+		local = null;
+	} else {
+		var localString = JSON.parse(localStorage.getItem("local-favorites"))[localId];
+		local = JSON.parse(localString);
+	}
+	return local;
+}
+getCurrentMenu = function (){
+	var local = null;
+	if(localStorage.getItem("local-menus")=== null){
+		local = null;
+	} else {
+		var localString = JSON.parse(localStorage.getItem("local-menus"))[localId];
+		if(localString === undefined){
+			local = null;
+		} else{
+			local = JSON.parse(localString);
+
+		}
+	}
+	return local;
+}
 
 setMenuInfo = function (object){
     propertyMenu = object;
@@ -161,6 +194,34 @@ updateMenuInfo = function (menu){
 	menuContent.innerHTML = inner;
 };
 
+downloadCarta = function(){
+	addFavoriteLocal(localId, propertyInfo);
+	presentToast("Carta añadida a favoritos")
+}
+downloadCartaRequest = async function (nombreLocal) {
+	var alert = await alertController.create({
+	  header: '¿Quieres añadir la carta de '+nombreLocal+" a favoritos?",
+	  message: 'La tendrás accesible desde la pantalla principal',
+	  buttons: [
+		{
+		  text: 'Cancelar',
+		  role: 'cancel',
+		  handler: () => {
+			console.log('Cancel clicked');
+		  }
+		},
+		{
+		  text: 'Aceptar',
+		  handler: () => {
+			downloadCarta();
+		  }
+		}
+	  ]
+	});
+
+	await alert.present();
+
+};  
 updateCategoryProducts = function(categoryProducts){
 	var products = "";
 	categoryProducts.forEach(prod =>{
@@ -647,7 +708,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 //DATA
 
 const fetchLocal = (local) => {
-    return axios.get(API_PATH+local,{ crossdomain: true })
+		return axios.get(API_PATH+local,{ crossdomain: true })
         .then(response => {
 			if(isEmpty(response.data)){
 				hideLoading();
@@ -662,25 +723,27 @@ const fetchLocal = (local) => {
 			goToHome();
 
 		});
+	
+    
 };
 
 const fetchMenu = (local) => {
-    return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
-        .then(response => {
-			hideLoading();
-			resetBadge();
-			if(isEmpty(response.data)){
+		return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
+			.then(response => {
 				hideLoading();
-				//Toast no hay carta		
-			} else{
-        		setMenuInfo(response.data);	   
-        		hideLoading();     				
-			}
-        })
-        .catch(error => {
-			hideLoading();
-			goToHome();
-		});
+				resetBadge();
+				if(isEmpty(response.data)){
+					hideLoading();
+				} else{
+					setMenuInfo(response.data);	   
+					hideLoading();     				
+				}
+			})
+			.catch(error => {
+				hideLoading();
+				goToHome();
+			});
+	
 };
 
 function isEmpty(obj) {
