@@ -4,6 +4,7 @@
 		<!-- Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
+<script type="text/javascript" src="./js/jsqrscanner.nocache.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -105,6 +106,24 @@
 			  
 			</ion-content>
 		  </ion-tab>
+
+		  <ion-tab tab="qr">
+			<ion-toolbar color="dark">
+				<div class="horizontal div1">
+					<div class="vertical">
+						<a href="../index.html" target="_blank">
+							<img class="logo" src="guanmor_logo.svg">
+						</a>				
+						</div>
+				</div>
+			</ion-toolbar>
+		
+			<ion-content fullscreen>	
+				<div id="scanner">
+
+				</div>		  
+			</ion-content>		
+		  </ion-tab>	
 	
 		  <ion-tab tab="buscar">
 			<ion-toolbar color="dark">
@@ -130,6 +149,10 @@
 			  <ion-label>Cartas favoritas</ion-label>
 			  <ion-icon name="heart-outline"></ion-icon>
 			</ion-tab-button>
+			<ion-tab-button tab="qr">
+				<ion-label>Escanea el QR</ion-label>
+				<ion-icon name="scan-outline"></ion-icon>
+			  </ion-tab-button>
 			<ion-tab-button tab="buscar">
 			  <ion-label>Buscar cartas</ion-label>
 			  <ion-icon name="search-outline"></ion-icon>

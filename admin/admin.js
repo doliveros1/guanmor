@@ -1,6 +1,7 @@
 var API_PATH_ADMIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_ADMIN = "http://localhost:8080/api/guanmor/1.0.0";
 var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
+var s3bucket = "https://i-love-menu.s3.eu-west-2.amazonaws.com/"
 
 var indexCategory = 0;
 var indexProduct = 0;
@@ -21,6 +22,11 @@ var page;
 
 window.onload = (e) => { 
 	nav = document.querySelector('ion-nav');
+	// Inicializar el proveedor de credenciales de Amazon Cognito
+AWS.config.region = 'eu-west-2'; // Región
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'eu-west-2:a777e4e5-5a34-4511-b113-4a1b74c31911',
+});
 
 	jwtToken = localStorage.getItem("jwt-token");
 	if(jwtToken === null){
@@ -579,6 +585,7 @@ function setMenuInfo(menuInfo){
 	if(LOCAL_INFO.plan==="lowcost") {
 		document.getElementById("idDocumento").value = menuInfo[0].documentoUrl;
 	} else {
+		document.getElementById("idDocumento").value = menuInfo[0].documentoUrl;
 		document.getElementById("idSugerencias").value = menuInfo[0].sugerencias;
 		document.getElementById("idNota").value = menuInfo[0].nota;
 		var listCategories = document.getElementById("listCategories");
@@ -658,8 +665,7 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 		   <ion-textarea id="idNota" color="dark"></ion-textarea>
 		  </ion-item>
 		  <ion-item>
-			<ion-label color="vibrant" position="floating">Enlace a tu documento</ion-label>
-		   <ion-textarea id="idDocumento" color="dark"></ion-textarea>
+		  	<ion-textarea placeholder="Enlace a tu documento" id="idDocumento"></ion-textarea >
 		  </ion-item>
 	  </ion-list>
 	  </ion-content>
@@ -669,9 +675,11 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 		<ion-list-header color="vibrant">
 		<ion-title>Enlace a tu carta</ion-title>       
 		 </ion-list-header>
+		 <ion-item>
+		 <ion-textarea placeholder="Enlace a tu documento" id="idDocumento"></ion-textarea >
+	 </ion-item>
 		  <ion-item>
-			<ion-label color="vibrant" position="floating">Enlace a tu carta</ion-label>
-		   <ion-textarea id="idDocumento" color="dark"></ion-textarea>
+			<input accept="application/pdf" type="file" id="idSubmit">
 		  </ion-item>
 	  </ion-list>
 	  </ion-content>
@@ -684,6 +692,32 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 	}
   });
 };
+
+function readFile(file) {
+	if(file!==undefined){
+		showLoading("Subiendo carta en pdf"); 
+		var s3 = new AWS.S3();
+		var extension = file.name.split('.').pop();
+		var content = file.type;
+		var params = {Bucket: 'i-love-menu', Key: localId+"."+extension, ContentType: content, Body: file, ACL: 'public-read'};
+		s3.putObject(params, function(err, data) {
+			hideLoading();
+			if(err===null){
+				document.getElementById("idDocumento").value = s3bucket+localId+"."+extension;
+				var menuInfo = MENU_INFO;
+				menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
+				sendMenuInfo(localId, menuInfo[0]);		
+			} else {
+				presentToast("Error al subir el fichero");
+			}
+		});
+	} else {
+		var menuInfo = MENU_INFO;
+		menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
+		sendMenuInfo(localId, menuInfo[0]);		
+	}	
+  }
+
 customElements.define('nav-products', class NavDetail extends HTMLElement {
 	connectedCallback() {
 	  MAP_PRODUCTS_ID = new Map();
@@ -925,21 +959,27 @@ function saveLocalInfo(){
 }
 
 function saveMenuInfo(){
-	var menuInfo = MENU_INFO;
-	var arrayCategories = Array.from(MAP_CATEGORIES_ID);
-	var newCategories = [];
-	arrayCategories.forEach(categoryObject=>{
-		newCategories.push(categoryObject[1])
-	});
 
-	menuInfo[0].categories = newCategories;
-	if(LOCAL_INFO.plan !== "lowcost"){
-		menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
-		menuInfo[0].nota = document.getElementById("idNota").value;
+	if(LOCAL_INFO.plan==="lowcost"){
+		readFile(document.getElementById("idSubmit").files[0]);
+	} else {
+		var menuInfo = MENU_INFO;
+		var arrayCategories = Array.from(MAP_CATEGORIES_ID);
+		var newCategories = [];
+		arrayCategories.forEach(categoryObject=>{
+			newCategories.push(categoryObject[1])
+		});
+	
+		menuInfo[0].categories = newCategories;
+		if(LOCAL_INFO.plan !== "lowcost"){
+			menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
+			menuInfo[0].nota = document.getElementById("idNota").value;
+		}
+	
+		menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
+		sendMenuInfo(localId, menuInfo[0]);
 	}
 
-	menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
-	sendMenuInfo(localId, menuInfo[0]);
 }
 
 function savePreferencesInfo(){

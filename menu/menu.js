@@ -7,6 +7,7 @@ const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
 var localId;
 var propertyInfo;
 var propertyMenu;
+var firstTime = true;
 
 var clientAddress;
 
@@ -50,7 +51,6 @@ window.onload = (e) => {
 	
     searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
-    showLoading("Cargando la carta");
     getPropertyInfo(localId);
     
 }
@@ -87,11 +87,15 @@ setPropertyInfo = function (idProperty, object){
 	document.getElementById("backButton").href=HOME;
 	
 	if(localStorage.getItem("local-favorites")=== null){
-		downloadCartaRequest(object.propertyName);
+		if(firstTime){
+			downloadCartaRequest(object.propertyName);
+		}
 	} else {
 		var mapFavorites = JSON.parse(localStorage.getItem("local-favorites"));
-		if(mapFavorites[localId]===undefined){
+		if(firstTime && mapFavorites[localId]===undefined){
 			downloadCartaRequest(object.propertyName);
+		} else{
+			fetchMenu(localId);
 		}
 	}
     
@@ -141,8 +145,7 @@ setMenuInfo = function (object){
 };
 
 refresh = function (){
-	showLoading("Cargando la carta");
-    getPropertyInfo(localId);
+	fetchMenu(localId);
 };
 
 updateMenuInfo = function (menu){
@@ -199,6 +202,7 @@ downloadCarta = function(){
 	presentToast("Carta añadida a favoritos")
 }
 downloadCartaRequest = async function (nombreLocal) {
+	firstTime = false;
 	var alert = await alertController.create({
 	  header: '¿Quieres añadir la carta de '+nombreLocal+" a favoritos?",
 	  message: 'La tendrás accesible desde la pantalla principal',
@@ -207,13 +211,14 @@ downloadCartaRequest = async function (nombreLocal) {
 		  text: 'Cancelar',
 		  role: 'cancel',
 		  handler: () => {
-			console.log('Cancel clicked');
+			fetchMenu(localId);
 		  }
 		},
 		{
 		  text: 'Aceptar',
 		  handler: () => {
 			downloadCarta();
+			fetchMenu(localId);
 		  }
 		}
 	  ]
@@ -715,7 +720,6 @@ const fetchLocal = (local) => {
 				goToHome();		
 			} else{
         		setPropertyInfo(local, response.data);	
-        		fetchMenu(local);
 			}
         })
         .catch(error => {
@@ -728,6 +732,8 @@ const fetchLocal = (local) => {
 };
 
 const fetchMenu = (local) => {
+	showLoading("Cargando la carta");
+
 		return axios.get(API_PATH+local+"/menu",{ crossdomain: true })
 			.then(response => {
 				hideLoading();

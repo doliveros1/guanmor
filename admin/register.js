@@ -23,7 +23,7 @@ GetURLParameter = function (sParam) {
 	for (var i = 0; i < sURLVariables.length; i++){
 		var sParameterName = sURLVariables[i].split('=');
 		if (sParameterName[0] == sParam){
-			if(sParameterName[1]==="basic"||sParameterName[1]==="pro"){
+			if(sParameterName[1]==="basic"||sParameterName[1]==="pro"||sParameterName[1]==="lowcost"){
 				code = sParameterName[1];
 			}
 		}
