@@ -3,7 +3,7 @@ const REGISTER = "./register.html";
 
 var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
-var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
+var stripe = Stripe('pk_live_694KCTC09F6l6luGWX4mAiv700FxVom9CO');
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {

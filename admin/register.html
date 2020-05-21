@@ -119,10 +119,14 @@
 			<input type="password" id="registerRePassword" placeholder="Repetir Password">
 			<input type="text" id="registerMail" placeholder="E-mail">
 			<select id="suscription">
-				<option value="lowcost">LowCost (0.99€/mes)</option>
+				<option value="lowcost">Fast (4.99€/mes)</option>
 				<option value="basic">Basic (4.99€/mes)</option>
 				<option value="pro">Pro (9.99€/mes)</option>
 			</select>
+			<div style="padding:10px">
+				<input id="checkMarketing" type="checkbox" name="marketing" >
+				<label for="marketing">Deseo recibir ofertas y promociones de I Love Menu</label>
+			</div>			
 			<button type="button" onclick="register()">Registrar</button>
 			<div style="padding:10px;" id="text" onClick="login()"><a href="#">Volver al login</a></div>		
 			</form>

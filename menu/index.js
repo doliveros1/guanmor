@@ -17,10 +17,7 @@ window.onload = (e) => {
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
 	});
-
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(showPosition);
-	} 	  
+  
 	
 	searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
@@ -215,7 +212,7 @@ function handleInputSearchBar(event) {
 	}
 }
 
-function onQRCodeScanned(scannedText)
+/*function onQRCodeScanned(scannedText)
 {
 	window.location.href = scannedText;
 }
@@ -234,4 +231,4 @@ function JsQRScannerReady()
 		//append the jbScanner to an existing DOM element
 		jbScanner.appendTo(scannerParentElement);
 	}        
-}
+}*/

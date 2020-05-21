@@ -4,7 +4,7 @@
 		<!-- Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
-<script type="text/javascript" src="./js/jsqrscanner.nocache.js"></script>
+<!--script type="text/javascript" src="./js/jsqrscanner.nocache.js"></script-->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -107,7 +107,7 @@
 			</ion-content>
 		  </ion-tab>
 
-		  <ion-tab tab="qr">
+		  <!--ion-tab tab="qr">
 			<ion-toolbar color="dark">
 				<div class="horizontal div1">
 					<div class="vertical">
@@ -123,7 +123,7 @@
 
 				</div>		  
 			</ion-content>		
-		  </ion-tab>	
+		  </ion-tab-->	
 	
 		  <ion-tab tab="buscar">
 			<ion-toolbar color="dark">
@@ -141,7 +141,8 @@
 				</ion-searchbar>    
 			</ion-toolbar>
 		
-			<ion-content id="propertiesList" fullscreen>			  
+			<ion-content id="propertiesList" fullscreen>	
+				<div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center;text-align: center;"><h4 style="padding:10px;">Introduce un código postal para buscar locales en tu zona</h4></div		  
 			</ion-content>		
 		  </ion-tab>	
 		  <ion-tab-bar color="dark" slot="bottom">
@@ -149,10 +150,10 @@
 			  <ion-label>Cartas favoritas</ion-label>
 			  <ion-icon name="heart-outline"></ion-icon>
 			</ion-tab-button>
-			<ion-tab-button tab="qr">
+			<!--ion-tab-button tab="qr">
 				<ion-label>Escanea el QR</ion-label>
 				<ion-icon name="scan-outline"></ion-icon>
-			  </ion-tab-button>
+			  </ion-tab-button-->
 			<ion-tab-button tab="buscar">
 			  <ion-label>Buscar cartas</ion-label>
 			  <ion-icon name="search-outline"></ion-icon>

@@ -154,24 +154,30 @@ updateMenuInfo = function (menu){
 	var inner = "";
 
 	if(propertyInfo.plan==="lowcost"){
+		document.getElementById("loadingLayer").style.display="none";
+		document.getElementById("menuContent").style.display="inline";
+		document.getElementById("searchbarId").style.display="none";
+		document.getElementById("toolbarId").style.display="inline";
 		var url = menu[0].documentoUrl;
-		window.location.href = url;			
+		inner = inner + `<object width="100%" height="100%" style="height=100%;width=100%" type="text/html" data="`+url+`"></object>`;
+		
+	
 	} else {
 		document.getElementById("loadingLayer").style.display="none";
 		document.getElementById("menuContent").style.display="inline";
 		document.getElementById("searchbarId").style.display="inline";
 		document.getElementById("toolbarId").style.display="inline";
 
-		menu[0].categories.forEach(category => {
-			if(category.enable){
-				inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
-				inner = inner + category.title + `</ion-list-header>`;
-				inner = inner + updateCategoryProducts(category.products);
-				inner = inner + `</ion-list>`;
-			}
-		});
-		
-		inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
+		if(menu[0].categories.length>0 || menu[0].documentoUrl===undefined){
+			menu[0].categories.forEach(category => {
+				if(category.enable){
+					inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
+					inner = inner + category.title + `</ion-list-header>`;
+					inner = inner + updateCategoryProducts(category.products);
+					inner = inner + `</ion-list>`;
+				}
+			});
+			inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 		inner = inner + menu[0].sugerencias + `</ion-label></ion-item>`;
 		inner = inner + `<ion-item text-center><ion-label class="ion-text-wrap" color="danger">`;
 		inner = inner + menu[0].nota + `</ion-label></ion-item>`;
@@ -190,7 +196,12 @@ updateMenuInfo = function (menu){
 		
 			</ion-fab-button>
 		  </ion-fab>`;
+		}	
+		} else {
+			document.getElementById("searchbarId").style.display="none";
+			inner = inner + `<object width="100%" height="100%" style="height=100%;width=100%" type="text/html" data="`+menu[0].documentoUrl+`"></object>`;
 		}		
+		
 	  
 	}
 
@@ -764,8 +775,8 @@ function goToHome(){
     customElements.define('modal-content', class ModalContent extends HTMLElement {
       connectedCallback() {
       	var currentOrder = getCurrentOrderInner();
-   
-        this.innerHTML = `
+		var inner = "";
+        inner= `
           <ion-header translucent>
             <ion-toolbar color="dark">
               <ion-title>Mi Pedido</ion-title>
@@ -776,14 +787,21 @@ function goToHome(){
           </ion-header>
           <ion-content fullscreen>
             <ion-list>
-                 <ion-radio-group mode=md value="sendType" >
+				 <ion-radio-group mode=md value="sendType" >
+				 
 					<ion-item class="typeSendInput" onclick="pickUp()">
             			<ion-label >Recoger en el local</ion-label>
-            			<ion-radio slot="start" color="vibrant" value="recoger"></ion-radio>
+            			<ion-radio slot="start" color="vibrant" value="recoger" ></ion-radio>
           			</ion-item>
 					<ion-item class="typeSendInput" onclick="sendHome()">
             			<ion-label>Enviar a casa</ion-label>
-            			<ion-radio slot="start" color="vibrant" value="enviar"></ion-radio>
+						<ion-radio slot="start" color="vibrant" value="enviar"`;
+
+						if(!propertyInfo.homeDelivery){
+							inner = inner + " disabled";
+						}
+						
+						inner = inner+`></ion-radio>
           			</ion-item>
                   </ion-radio-group>
          		<form class="formAddressDisable" id="formAddress">
@@ -805,7 +823,8 @@ function goToHome(){
 		</div>
 
 	</ion-footer>
-        `;
+		`;
+		this.innerHTML = inner;
       }
     });
 

@@ -1,7 +1,7 @@
 const LOGIN = "./login.html";
 var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
-var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
+var stripe = Stripe('pk_live_694KCTC09F6l6luGWX4mAiv700FxVom9CO');
 
 window.onload = (e) => { 
 	cookieConsent(); 
@@ -88,7 +88,9 @@ function validateRegister() {
 	} else {
 		var e = document.getElementById("suscription");
 		var plan = e.options[e.selectedIndex].value;
-		fetchRegister(user, password, email,plan);
+		var acceptMarketing = document.getElementById("checkMarketing").checked;
+	
+		fetchRegister(user, password, email, plan, acceptMarketing);
 	}
 
 }
@@ -135,14 +137,14 @@ const getPayment = (plan) => {
         });
 };
 
-const fetchRegister = (pUser, pPassword, pMail, pPlan) => {
+const fetchRegister = (pUser, pPassword, pMail, pPlan, acceptMarketing) => {
 	showLoading("Registrando");
 	var postData = {
       user: pUser,
 	  password: pPassword,
 	  email: pMail,
-	  plan: pPlan
-	  
+	  plan: pPlan,
+	  acceptMarketing: acceptMarketing
     };
     // Post a user
 	var url = API_PATH_LOGIN+"/signing/register";

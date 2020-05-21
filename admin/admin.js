@@ -1,6 +1,6 @@
 var API_PATH_ADMIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_ADMIN = "http://localhost:8080/api/guanmor/1.0.0";
-var stripe = Stripe('pk_test_eeMsoTVs3SZt2Nn5p7k1LPmx00kPvt407h');
+var stripe = Stripe('pk_live_694KCTC09F6l6luGWX4mAiv700FxVom9CO');
 var s3bucket = "https://i-love-menu.s3.eu-west-2.amazonaws.com/"
 
 var indexCategory = 0;
@@ -648,8 +648,15 @@ customElements.define('nav-categories', class NavHome extends HTMLElement {
 		categoryHTML = categoryHTML+ `<ion-header translucent>
 		<ion-toolbar color="vibrant">
 		  <ion-title>Categorías</ion-title>
+		  		<ion-button target="_blank" href="../ilovemenu_template.xlsx" size="small" slot="end" color="danger" >
+					Bajar Template Excel
+				</ion-button>
 		</ion-toolbar>
 	  </ion-header>
+	  <ion-item>
+      <ion-label id="profile_image" color="dark" stacked>Subir excel con la carta</ion-label>
+      <input id="cartaExcel" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" ></input>
+    </ion-item>
 		<ion-list id="listCategories"></ion-list>	  
 		
 		<ion-list>
@@ -706,7 +713,7 @@ function readFile(file) {
 				document.getElementById("idDocumento").value = s3bucket+localId+"."+extension;
 				var menuInfo = MENU_INFO;
 				menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
-				sendMenuInfo(localId, menuInfo[0]);		
+				sendMenuInfo(localId, menuInfo[0], true);		
 			} else {
 				presentToast("Error al subir el fichero");
 			}
@@ -714,7 +721,7 @@ function readFile(file) {
 	} else {
 		var menuInfo = MENU_INFO;
 		menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
-		sendMenuInfo(localId, menuInfo[0]);		
+		sendMenuInfo(localId, menuInfo[0], false);		
 	}	
   }
 
@@ -966,18 +973,48 @@ function saveMenuInfo(){
 		var menuInfo = MENU_INFO;
 		var arrayCategories = Array.from(MAP_CATEGORIES_ID);
 		var newCategories = [];
-		arrayCategories.forEach(categoryObject=>{
-			newCategories.push(categoryObject[1])
-		});
+		if(document.getElementById("cartaExcel").files.length>0){
+			var file = document.getElementById("cartaExcel").files[0];
+			var reader = new FileReader();  
+			reader.onload = function(e) {
+			  var data = e.target.result;
+			  var workbook = XLSX.read(data, {
+				type: 'binary'
+			  });
+				workbook.SheetNames.forEach(function(sheetName) {
+				// Here is your object
+				var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+				var json_object = JSON.stringify(XL_row_object);
+					newCategories = getCategoriesFromExcel(json_object);
+					menuInfo[0].categories = newCategories;
+					if(LOCAL_INFO.plan !== "lowcost"){
+						menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
+						menuInfo[0].nota = document.getElementById("idNota").value;
+					}
+				
+					menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
+					sendMenuInfo(localId, menuInfo[0], true);
+				})  
+			};
+			  reader.onerror = function(ex) {
+			  console.log(ex);
+			};
+			  reader.readAsBinaryString(file);			
+		} else{
+			arrayCategories.forEach(categoryObject=>{
+				newCategories.push(categoryObject[1])
+			});
+			menuInfo[0].categories = newCategories;
+			if(LOCAL_INFO.plan !== "lowcost"){
+				menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
+				menuInfo[0].nota = document.getElementById("idNota").value;
+			}
+		
+			menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
+			sendMenuInfo(localId, menuInfo[0], false);
+		}	
 	
-		menuInfo[0].categories = newCategories;
-		if(LOCAL_INFO.plan !== "lowcost"){
-			menuInfo[0].sugerencias = document.getElementById("idSugerencias").value;
-			menuInfo[0].nota = document.getElementById("idNota").value;
-		}
-	
-		menuInfo[0].documentoUrl = document.getElementById("idDocumento").value;
-		sendMenuInfo(localId, menuInfo[0]);
+		
 	}
 
 }
@@ -1086,7 +1123,7 @@ const sendLocalInfo = (idLocal, localPostData) => {
 	xhr.send(json);
 };
 
-const sendMenuInfo = (idLocal, menuPostData) => {
+const sendMenuInfo = (idLocal, menuPostData, refresh) => {
 	showLoading("Guardando datos de la carta"); 
 	var url = API_PATH_ADMIN+"/local/"+idLocal+"/menu?access_token="+jwtToken;
 	var json = JSON.stringify(menuPostData);
@@ -1096,7 +1133,10 @@ const sendMenuInfo = (idLocal, menuPostData) => {
 	xhr.setRequestHeader('Content-type','application/json');
 	xhr.onload = function () {
 	if (xhr.readyState == 4 && xhr.status == "200") {
-	    hideLoading();
+		hideLoading();
+		if(refresh){
+			fetchMenu(idLocal);
+		}
 	    presentToast("Datos guardados correctamente");
 	} else if(xhr.status == "403"){
 		hideLoading();
@@ -1135,7 +1175,7 @@ const sendPreferences = (idLocal, preferencesInfo) => {
 };
 
 const doDeregister = () => {
-	showLoading("Dando de baja al usuario"); 
+	showLoading("Accediendo a la administración de la subscripción"); 
     return axios.get(API_PATH_ADMIN+"/deregister/?access_token="+jwtToken,{ crossdomain: true })
         .then(response => {
 			hideLoading();
@@ -1149,4 +1189,79 @@ const doDeregister = () => {
         });
 };
 
+function getCategoriesFromExcel(object){
+	var mapCategories = {};
+	var finalCategories = [];
+	var excelCategories = JSON.parse(object);
+	excelCategories.forEach(product=>{
+		if(product.CATEGORIA in mapCategories){
+			mapCategories[product.CATEGORIA].push(getAPIProduct(product));
+		} else {
+			mapCategories[product.CATEGORIA] = [];
+			mapCategories[product.CATEGORIA].push(getAPIProduct(product));
+		}
+	});
+	var categoryNew;
+	Object.entries(mapCategories).forEach(cat=>{
+		categoryNew = {};
+		categoryNew.title = cat[0];
+		categoryNew.enable = true;
+		categoryNew.products = cat[1];
+		finalCategories.push(categoryNew);
+	});
+	return finalCategories;
+}
+
+function getAPIProduct(product){
+	var apiProduct = {};
+	apiProduct.title = product.NOMBRE_PRODUCTO;
+	apiProduct.description = product.DESCRIP_PRODUCTO;
+	apiProduct.pvp = product.PRECIO;
+	apiProduct.enable = true;
+	apiProduct.alergenos = [];
+	if(product.ALER_ALTRAMUCES === "1"){
+		apiProduct.alergenos.push("altramuces");
+	}
+	if(product.ALER_APIO === "1"){
+		apiProduct.alergenos.push("apio");
+	}
+	if(product.ALER_CACAHUETES === "1"){
+		apiProduct.alergenos.push("cacahuetes");
+	}
+	if(product.ALER_CASCARA === "1"){
+		apiProduct.alergenos.push("cascara");
+	}
+	if(product.ALER_CRUSTACEOS === "1"){
+		apiProduct.alergenos.push("crustaceos");
+	}
+	if(product.ALER_GLUTEN === "1"){
+		apiProduct.alergenos.push("gluten");
+	}
+	if(product.ALER_HUEVOS === "1"){
+		apiProduct.alergenos.push("huevos");
+	}
+	if(product.ALER_LACTEOS === "1"){
+		apiProduct.alergenos.push("lacteos");
+	}
+	if(product.ALER_MOLUSCOS === "1"){
+		apiProduct.alergenos.push("moluscos");
+	}
+	if(product.ALER_MOSTAZA === "1"){
+		apiProduct.alergenos.push("mostaza");
+	}
+	if(product.ALER_PESCADO === "1"){
+		apiProduct.alergenos.push("pescado");
+	}
+	if(product.ALER_SESAMO === "1"){
+		apiProduct.alergenos.push("sesamo");
+	}
+	if(product.ALER_SOJA === "1"){
+		apiProduct.alergenos.push("soja");
+	}
+	if(product.ALER_SULFITOS === "1"){
+		apiProduct.alergenos.push("sulfitos");
+	}
+	return apiProduct;
+
+}
 
