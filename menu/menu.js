@@ -17,6 +17,7 @@ var numProductos=0;
 
 var isPickUp = false;
 var isToHome =  false;
+var isLocal =  false;
 
 var currentPopover;
 
@@ -447,15 +448,24 @@ hideLoading = function () {
 hacerPedido = function () {
        
     var address = "Para recoger";
-    var street = document.getElementById("streetId").value;
+	var street = document.getElementById("streetId").value;
+	var mesa = document.getElementById("mesaId").value;
+	
     if(isToHome){    	
     	address = street;
-    }
+    } else if (isLocal) {
+		address = mesa;
+	}
+
 	var cartaContent = document.getElementById("menuContent").children;
 	var itemsPedido = Array.from(document.getElementsByClassName("carritoItem"));
 
 	var pedido = "_Pedido_";
-	pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
+	if(isToHome || isPickUp){
+		pedido = pedido + "\r\n\r\n*Dirección de envío: "+address+"*";
+	} else {
+		pedido = pedido + "\r\n\r\n*Mesa: "+address+"*";	
+	}
 	var empty = true;
 	
 	for(var i=0;i<itemsPedido.length;i++){
@@ -467,10 +477,12 @@ hacerPedido = function () {
 	var freeText = document.getElementById("freeText").value;
 	pedido = pedido + "\r\n\r\n_"+freeText+"_";
 
-	if(!isPickUp && !isToHome) {
+	if(!isPickUp && !isToHome && !isLocal) {
 		presentToast("Indique el modo de envío/recogida");    	
 	}else if(isToHome && (street === "")) {
 		presentToast("Indique una dirección de envío");    	
+	}else if(isLocal && (mesa === "")) {
+		presentToast("Indique la mesa o su nombre");    	
 	} else {
 		dismissModal();
 		var encodedPedido = window.encodeURIComponent(pedido);
@@ -788,7 +800,10 @@ function goToHome(){
           <ion-content fullscreen>
             <ion-list>
 				 <ion-radio-group mode=md value="sendType" >
-				 
+				 	<ion-item class="typeSendInput" onclick="inLocal()">
+            			<ion-label >Estoy en el local</ion-label>
+            			<ion-radio slot="start" color="vibrant" value="local" ></ion-radio>
+          			</ion-item>
 					<ion-item class="typeSendInput" onclick="pickUp()">
             			<ion-label >Recoger en el local</ion-label>
             			<ion-radio slot="start" color="vibrant" value="recoger" ></ion-radio>
@@ -806,10 +821,15 @@ function goToHome(){
                   </ion-radio-group>
          		<form class="formAddressDisable" id="formAddress">
       				<ion-item>
-        				<ion-label>Dirección</ion-label>
-       			 		<ion-input type="text" id="streetId" name="title"></ion-input>
+						<ion-textarea id="streetId" placeholder="Dirección"></ion-textarea>
       				</ion-item>
+				</form>
+				<form class="formMesaDisable" id="formMesa">
+					<ion-item>
+						<ion-textarea id="mesaId" placeholder="Mesa / Nombre"></ion-textarea>
+			 	 	</ion-item>
     	  		</form>
+				  
 				<ion-item>
   					<ion-textarea id="freeText" placeholder="Coméntanos lo que quieras"></ion-textarea>
 				</ion-item>
@@ -847,13 +867,28 @@ function dismissModal() {
 function sendHome(){
 	isToHome =  true;
 	isPickUp = false;
+	isLocal = false;
 	document.getElementById("formAddress").className="formAddressEnable";
+	document.getElementById("formMesa").className="formMesaDisable";
+
 };
 
 function pickUp(){
 	isToHome =  false;
 	isPickUp = true;
+	isLocal = false;
 	document.getElementById("formAddress").className="formAddressDisable";
+	document.getElementById("formMesa").className="formMesaDisable";
+
+};
+
+function inLocal(){
+	isToHome =  false;
+	isPickUp = false;
+	isLocal = true;
+	document.getElementById("formAddress").className="formAddressDisable";
+	document.getElementById("formMesa").className="formMesaEnable";
+
 };
 
 
