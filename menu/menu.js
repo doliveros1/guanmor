@@ -1,8 +1,8 @@
 const HOME = "./index.html"
 const MENU_BASE_URL = "https://www.ilovemenu.es/menu/menu.html";
 const SERVICE_WORKER = '/menu/service-worker.js';
-//const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
-const API_PATH = "http://localhost:8080/api/guanmor/1.0.0/local/";
+const API_PATH = "https://guanmor.herokuapp.com/api/guanmor/1.0.0/local/";
+//const API_PATH = "http://localhost:8080/api/guanmor/1.0.0/local/";
 
 var localId;
 var propertyInfo;
@@ -41,6 +41,7 @@ if ('serviceWorker' in navigator) {
 
 let deferredPrompt;
 var languajes = [];
+var selectedLanguaje;
 
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
@@ -50,8 +51,10 @@ window.onload = (e) => {
 		localId = window.atob(GetURLParameter('property'));
 	} catch(e){
 		goToHome();
-	}
-	
+    }
+    var language = window.navigator.userLanguage || window.navigator.language;
+    selectedLanguaje =language.substring(0,2);
+    document.getElementById("flag-image").src = "./flags/"+selectedLanguaje+"-100.png"
     searchbar = document.querySelector('ion-searchbar');
     searchbar.addEventListener('ionInput', handleInputSearchBar);
     getPropertyInfo(localId);
@@ -1354,9 +1357,8 @@ handleLanguajeButtonInfoClick = async function handleLanguajeButtonInfoClick(ev)
     }
   });
 
-translateTo = function(code){
-    codeLanguaje = code;
-    dismissPopover();
+translateTo = function(){
+    codeLanguaje = selectedLanguaje;
     fetchMenu(localId);
 }
 

@@ -1,4 +1,6 @@
 const LOGIN = "./login.html";
+const WELCOME = "./welcome.html";
+
 var API_PATH_LOGIN = "https://guanmor.herokuapp.com/api/guanmor/1.0.0";
 //var API_PATH_LOGIN = "http://localhost:8080/api/guanmor/1.0.0";
 var stripe = Stripe('pk_live_694KCTC09F6l6luGWX4mAiv700FxVom9CO');
@@ -40,6 +42,11 @@ login = function () {
 
 goToLogin = function(){
 	window.location.href = LOGIN;
+
+};
+
+goToWelcome = function(){
+	window.location.href = WELCOME;
 
 };
 
@@ -156,7 +163,8 @@ const fetchRegister = (pUser, pPassword, pMail, pPlan, acceptMarketing) => {
 	xhr.onload = function () {
 		hideLoading();
 		if (xhr.readyState == 4 && xhr.status == "200") {	
-			var response = JSON.parse(xhr.responseText);
+			goToWelcome();
+			/*var response = JSON.parse(xhr.responseText);
 			stripe.redirectToCheckout({
 				// Make the id field from the Checkout Session creation API response
 				// available to this file, so you can provide it as parameter here
@@ -167,7 +175,7 @@ const fetchRegister = (pUser, pPassword, pMail, pPlan, acceptMarketing) => {
 				// If `redirectToCheckout` fails due to a browser or network
 				// error, display the localized error message to your customer
 				// using `result.error.message`.
-			  });
+			  });*/
 		} else {
 			var response = JSON.parse(xhr.responseText);
 			presentToast(response.message)

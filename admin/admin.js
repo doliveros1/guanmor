@@ -62,7 +62,7 @@ addNewCategory = function (id) {
       					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
         			</ion-button>
 					<ion-button color="vibrant" onclick="checkEnableCategory('`+category+`')" >        		
-						<ion-icon class="inputEnableCategory" slot="icon-only"  name="heart-outline"></ion-icon>
+						<ion-icon class="inputEnableCategory" slot="icon-only"  name="eye-outline"></ion-icon>
   					</ion-button>
   					<ion-button color="vibrant" onclick="showCategoryDetail('`+category+`')">        		
         				<ion-icon slot="icon-only"  name="pencil-outline"></ion-icon>
@@ -138,7 +138,7 @@ addNewProduct= function (idCategory, idProduct) {
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 				  </ion-button>
 				  <ion-button color="vibrant" onclick="checkEnableProduct('`+idCategory+`','`+product+`')" >        		
-				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="heart-outline"></ion-icon>
+				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="eye-outline"></ion-icon>
 					</ion-button>
 				</div>
 			</ion-col>
@@ -266,7 +266,7 @@ addNewProduct= function (idCategory, idProduct) {
 				<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 				  </ion-button>
 				  <ion-button color="vibrant" onclick="checkEnableProduct('`+idCategory+`','`+product+`')" >        		
-				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="heart-outline"></ion-icon>
+				  <ion-icon class="inputEnableProduct" slot="icon-only"  name="eye-outline"></ion-icon>
 					</ion-button>
 			  </ion-buttons>  
 			 `;*/
@@ -313,12 +313,12 @@ updateCategory = function (idCategory) {
 checkEnableCategory = function (idCategory) {
 	var inputEnable = document.getElementById(idCategory).getElementsByClassName("inputEnableCategory");
 	var enable;
-	if(inputEnable[0].name === "heart-dislike-outline"){
+	if(inputEnable[0].name === "eye-off-outline"){
 		enable = true;
-		inputEnable[0].name = "heart-outline";
-	} else if(inputEnable[0].name === "heart-outline"){
+		inputEnable[0].name = "eye-outline";
+	} else if(inputEnable[0].name === "eye-outline"){
 		enable = false;
-		inputEnable[0].name = "heart-dislike-outline";
+		inputEnable[0].name = "eye-off-outline";
 	}
 	var category = MAP_CATEGORIES_ID.get(idCategory);
 	category.enable = enable;
@@ -430,12 +430,12 @@ updateAllergen = function(allergen, idProduct){
 checkEnableProduct = function (idCategory, idProduct) {
 	var inputEnable = document.getElementById(idProduct).getElementsByClassName("inputEnableProduct");
 	var enable;
-	if(inputEnable[0].name === "heart-dislike-outline"){
+	if(inputEnable[0].name === "eye-off-outline"){
 		enable = true;
-		inputEnable[0].name = "heart-outline";
-	} else if(inputEnable[0].name === "heart-outline"){
+		inputEnable[0].name = "eye-outline";
+	} else if(inputEnable[0].name === "eye-outline"){
 		enable = false;
-		inputEnable[0].name = "heart-dislike-outline";
+		inputEnable[0].name = "eye-off-outline";
 	}
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	product.enable = enable;
@@ -595,9 +595,9 @@ function setMenuInfo(menuInfo){
 			var idCategory = "category"+indexCategory;
 			MAP_CATEGORIES_ID.set(idCategory,category);
 			if(category.enable){
-				iconHeart = "heart-outline";
+				iconHeart = "eye-outline";
 			} else{
-				iconHeart = "heart-dislike-outline";
+				iconHeart = "eye-off-outline";
 			}
 			categoryHTML = categoryHTML + `<ion-item id="`+idCategory+`">
 			<div slot="end">
@@ -737,6 +737,12 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			  <ion-back-button defaultHref="/"></ion-back-button>
 			</ion-buttons>
 			<ion-title>`+this.categoryProduct.value.title+`</ion-title>
+			<ion-buttons slot="end">
+				<ion-button >
+					<ion-icon size="large" slot="icon-only" name="camera-outline">
+					</ion-icon>
+				</ion-button>
+        	</ion-buttons>
 		  </ion-toolbar>
 		</ion-header>
 		<ion-content fullscreen class="ion-padding">
@@ -745,9 +751,9 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 	  this.categoryProduct.value.products.forEach(product=>{
 		var iconHeart;
 		if(product.enable){
-			iconHeart = "heart-outline";
+			iconHeart = "eye-outline";
 		} else{
-			iconHeart = "heart-dislike-outline";
+			iconHeart = "eye-off-outline";
 		}
 		indexProduct = indexProduct +1;
 		var idProduct = "product"+indexProduct;
@@ -763,12 +769,15 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			</ion-item>
 		  </ion-col>  
 		  <ion-col size=4>
-		  <div align="right">
-			<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
-			<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+			  <div align="right">
+			  	<ion-button color="vibrant" onclick="addPhoto('`+this.categoryProduct.id+`','`+idProduct+`')" >
+			  		<ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+		  		</ion-button>
+				<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
+					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 				</ion-button>
 				<ion-button color="vibrant" onclick="checkEnableProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >        		
-				<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
+					<ion-icon class="inputEnableProduct" slot="icon-only"  name="`+iconHeart+`"></ion-icon>
 				</ion-button>
 			</div>
           </ion-col>            
