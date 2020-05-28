@@ -31,6 +31,8 @@ var orderEnabled = false;
 var selectedAllergens = {};
 var selectedAllergenProduct = "";
 
+var mode;
+
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
@@ -48,7 +50,8 @@ window.onload = (e) => {
 		deferredPrompt = e;
 	});
 	try{
-		localId = window.atob(GetURLParameter('property'));
+        localId = window.atob(GetURLParameter('property'));
+        mode = GetURLParameter('mode');
 	} catch(e){
 		goToHome();
     }
@@ -922,7 +925,20 @@ refresh = function (){
 updateMenuInfo = function (menu){
 	var menuContent = document.getElementById("menuContent");
 
-	var inner = "";
+    var inner = "";
+    
+    if(mode !== undefined && mode === "menu"){
+        document.getElementById("loadingLayer").style.display="none";
+		document.getElementById("menuContent").style.display="inline";
+		document.getElementById("searchbarId").style.display="inline";
+        document.getElementById("toolbarId").style.display="none";
+        document.getElementById("footer").style.display="none";
+    } else {
+		document.getElementById("loadingLayer").style.display="none";
+		document.getElementById("menuContent").style.display="inline";
+		document.getElementById("searchbarId").style.display="inline";
+        document.getElementById("toolbarId").style.display="inline";
+    }
 
 	if(propertyInfo.plan==="lowcost"){
 		document.getElementById("loadingLayer").style.display="none";
@@ -930,14 +946,9 @@ updateMenuInfo = function (menu){
 		document.getElementById("searchbarId").style.display="none";
 		document.getElementById("toolbarId").style.display="inline";
 		var url = menu[0].documentoUrl;
-		inner = inner + `<object width="100%" height="100%" style="height=100%;width=100%" type="text/html" data="`+url+`"></object>`;
-		
+		inner = inner + `<object width="100%" height="100%" style="height=100%;width=100%" type="text/html" data="`+url+`"></object>`;	
 	
 	} else {
-		document.getElementById("loadingLayer").style.display="none";
-		document.getElementById("menuContent").style.display="inline";
-		document.getElementById("searchbarId").style.display="inline";
-		document.getElementById("toolbarId").style.display="inline";
 
 		if(menu[0].categories.length>0 || menu[0].documentoUrl===undefined){
 			menu[0].categories.forEach(category => {
