@@ -45,7 +45,7 @@
 	  --ion-safe-area-bottom: 22px;
 	  --main-bg-color: #3ed7ca; 
 	  --secondary-bg-color: #1B1B1E; 
-	  --terciary-bg-color: #3ed7ca; 
+	  --terciary-bg-color: white; 
 	}
 
     .footer{
@@ -91,11 +91,11 @@
 	}
 	
 	.localTitle {
-  		color: var(--main-bg-color);
+  		color: var(--terciary-bg-color); 
 	}
 	
 	.categoryTitle {
-  		color: #1B1B1E;
+  		color: var(--terciary-bg-color); 
 		background-color: var(--main-bg-color);
   		font-size: 20px;
 		font-weight: bold;
@@ -183,9 +183,8 @@
       			<ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
       		</ion-button>
       		<ion-button id="shareButton" >
-      			<ion-icon size="large" slot="icon-only" name="share-social-outline">
+      			<ion-icon slot="icon-only" name="share-social-outline">
       			</ion-icon>
-				<ion-badge id="cart-badge" color="danger"></ion-badge>
         	</ion-button>
         </ion-buttons>
        <ion-buttons slot="start">
@@ -212,8 +211,10 @@
 	<ion-footer id="footer">
 		<div class="horizontal div1">
     		<div class="vertical">
-    			<a href="../index.html" target="_blank">
-    				<img class="logo" height='30' width='200' src="guanmor_logo.svg">
+				<a href="../index.html" target="_blank">
+					<img class="logo" height='80' width='280' src="chipotle.png">
+
+    				<!--img class="logo" height='30' width='200' src="guanmor_logo.svg"-->
     			</a>				
    			 </div>
 		</div>

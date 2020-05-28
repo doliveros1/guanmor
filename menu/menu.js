@@ -1000,8 +1000,8 @@ updateMenuInfo = function (menu){
 		if(propertyInfo.plan==="pro"){
 			inner = inner + `<ion-fab horizontal="end" vertical="bottom" slot="fixed">
 			<ion-fab-button onclick="handleButtonClick()" color="vibrant">
-			  <ion-icon name="cart-outline"></ion-icon>
-			  <ion-badge id="cart-badge2" color="danger"></ion-badge>
+			  <ion-icon name="cart-outline" color></ion-icon>
+			  <ion-badge id="cart-badge2" color="vibrant2"></ion-badge>
 		
 			</ion-fab-button>
 		  </ion-fab>`;
