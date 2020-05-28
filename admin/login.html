@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Login I Love Menú</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="shortcut icon" href="../favicon.ico">  
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+
 		<!-- Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165918831-1"></script>
@@ -18,13 +45,11 @@
   <title>I Love Menu</title>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
   <link rel="manifest" href="/admin/manifest.webmanifest">
   <link rel="shortcut icon" href="../favicon.ico">  
   <script src="../config.js"></script>
   <script src="./login.js"></script>  
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
-  <link rel="stylesheet" href="./style.css">
 
 
   <script type="module">
@@ -34,121 +59,81 @@
     window.alertController = alertController;
   </script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-  <style>
-
-    
-    :root {
-      --ion-safe-area-top: 20px;
-      --ion-safe-area-bottom: 22px;
-    }
-    .footer{
-		height: 60px;
-		width: 100%;
-		background-color: black;    
-    }
-
-    div.horizontal {
-    	height: 60px;
-		width: 100%;
-		background-color: #1B1B1E; 
-    	display: flex;
-    	justify-content: center;
-    	border-top:1px solid #3ed7ca;
-
-	}
-
-	div.vertical {
-    	display: flex;
-    	flex-direction: column;
-    	justify-content: center;
-	}
-	
-  
-	@font-face {
-		font-family: guanmorFont;
-		src: url(ubuntu-v14-latin-regular.woff);
-	}
-	* {
-		font-family: guanmorFont;
-	}
-	.price{
-    	text-align: right;
-	}
-
-	.multiline {
-  		padding:20px;
-  		white-space: pre-wrap;
-	}
-	
-	.titleMenu {
-		padding-top:10px;
-	}
-	
-	.toolBar {
-		border-bottom:1px solid #3ed7ca;
-	}
-	.ion-color-vibrant {
-  		--ion-color-base: #3ed7ca;
-  		--ion-color-base-rgb: 255,255,0;
-  		--ion-color-contrast: #000000;
-  		--ion-color-contrast-rgb: 0,0,0;
-  		--ion-color-shade: #e0e000;
-  		--ion-color-tint: #3ed7ca;
-	}
-	
-
-  </style>
 </head>
-
 <body>
-  <ion-app>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-logo">
+						<img src="images/icon.png"></img>
+					</span>
 
-<ion-content color="dark" padding>
-  <div class="wrapper">
-	<div>		
-		<form>
-			<div class="container">
-				<h2 style="color:black;">Login</h2>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Log in
+					</span>
 
-				<input type="text" id="loginUser" placeholder="Usuario ILoveMenu" required>
-		  
-				<input type="password" id="loginPassword" placeholder="Password">
-				  
-				<button type="button" onclick="login()">Login</button>
+					<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						<input class="input100" type="text" id="loginUser" name="username" placeholder="Usuario I Love Menú">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
 
-				<div style="padding:20px;" id="text" onClick="recover()"><a href="#">¿Olvidó su usuario y/o contraseña?<a></a></div>		
-				<button style="margin-top:30px;"  type="button" onclick="register()">Registrarme</button>
-			</div>	
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" id="loginPassword" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
 
-		
-		</form>
+					<!--div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div-->
 
+					<div style="padding-top: 10px ;" class="container-login100-form-btn">
+						<button class="login100-form-btn" type="button" onclick="login()">
+							Login
+						</button>
+					</div>
+					<div style="padding-top:30px;font-size: 20px;" class="container-login100-form-btn">
+						<a style="color:white" href="#" onclick="register()">
+							Registrarme
+						</a>
+						<!--button class="login100-form-btn" type="button" onclick="register()">
+							Registrarme
+						</button-->
+					</div>
+
+					<div class="text-center p-t-30">
+						<a onClick="recover()" class="txt1" href="#">
+							¿Olvidó su usuario y/o contraseña?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	
-	<ul class="bg-bubbles">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-</div>
-</ion-content>
-    <ion-footer>
-		<div class="horizontal div1">
-    		<div class="vertical">
-    			<a href="../index.html" target="_blank">
-    				<img class="logo" src="guanmor_logo.svg">
-    			</a>				
-   			 </div>
-		</div>
-	</ion-footer>
-  </ion-app>
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 </body>
 </html>
