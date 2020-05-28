@@ -31,6 +31,10 @@ var orderEnabled = false;
 var selectedAllergens = {};
 var selectedAllergenProduct = "";
 
+var primaryColor = null;
+var secondaryColor = null;
+var tertiaryColor = null;
+
 var mode;
 
 // Check that service workers are supported
@@ -52,6 +56,29 @@ window.onload = (e) => {
 	try{
         localId = window.atob(GetURLParameter('property'));
         mode = GetURLParameter('mode');
+        codeLanguaje = GetURLParameter('language');
+        primaryColor = GetURLParameter('primary');
+        secondaryColor = GetURLParameter('secondary');
+        tertiaryColor = GetURLParameter('tertiary');
+
+        let root = document.documentElement;
+
+        if(codeLanguaje === undefined){
+            codeLanguaje = null;
+        }
+
+        if(primaryColor !== undefined){
+            root.style.setProperty('--main-bg-color', '#'+primaryColor);
+        }
+
+        if(secondaryColor !== undefined){
+            root.style.setProperty('--secondary-bg-color', '#'+secondaryColor);
+        }
+
+        if(tertiaryColor !== undefined){
+            root.style.setProperty('--terciary-bg-color', '#'+tertiaryColor);
+        }
+        
 	} catch(e){
 		goToHome();
     }

@@ -43,20 +43,21 @@
     :root {
       --ion-safe-area-top: 20px;
 	  --ion-safe-area-bottom: 22px;
-	  --main-bg-color: #A89174; 
+	  --main-bg-color: #3ed7ca; 
 	  --secondary-bg-color: #1B1B1E; 
+	  --terciary-bg-color: #3ed7ca; 
 	}
 
     .footer{
 		height: 60px;
 		width: 100%;
-		background-color: #1B1B1E;    
+		background-color: var(--secondary-bg-color);    
     }
 
     div.horizontal {
     	height: 60px;
 		width: 100%;
-		background-color: #1B1B1E; 
+		background-color: var(--secondary-bg-color); 
     	display: flex;
     	justify-content: center;
     	border-top:1px solid var(--main-bg-color);
@@ -124,7 +125,7 @@
 	.ion-color-vibrant2 {
   		--ion-color-base: var(--secondary-bg-color);
   		--ion-color-base-rgb: 255,255,0;
-  		--ion-color-contrast: #000000;
+  		--ion-color-contrast: var(--terciary-bg-color);
   		--ion-color-contrast-rgb: 0,0,0;
   		--ion-color-shade: #e0e000;
   		--ion-color-tint: #3ed7ca;
@@ -176,7 +177,7 @@
 </head>
 <body>
   <ion-app >
-	<ion-toolbar id="toolbarId" style="display: none;" color="dark">
+	<ion-toolbar id="toolbarId" style="display: none;" color="vibrant2">
 		<ion-buttons slot="end">
 			<ion-button onclick="refresh()">
       			<ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
