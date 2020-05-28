@@ -1640,7 +1640,7 @@ function goToHome(){
 		var inner = "";
         inner= `
           <ion-header translucent>
-            <ion-toolbar color="dark">
+            <ion-toolbar color="vibrant2">
               <ion-title>Mi Pedido</ion-title>
               <ion-buttons slot="end">
                 <ion-button onclick="dismissModal()">Cerrar</ion-button>
