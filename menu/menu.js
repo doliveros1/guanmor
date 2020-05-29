@@ -907,8 +907,14 @@ customElements.define('modal-image-content', class ModalContent extends HTMLElem
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content fullscreen>
-            <img style="object-fit: cover;" height="100%" height="100" src="`+this.params.url+`"></img>
+        <ion-content >
+        <ion-list>
+        <ion-item lines="none">
+        <div height="100%" width="100%">
+            <img style="object-fit: cover;" src="`+this.params.url+`"></img>
+        </div>
+        </ion-item>
+        </ion-list>
            </ion-content>
       `;
       this.innerHTML = inner;
