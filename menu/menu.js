@@ -323,7 +323,7 @@ updateCategoryProducts = function(categoryProducts){
 			inputCon = inputCon + 1;
 			var product = `<ion-item class="productItem">
 			<ion-grid>
-					<ion-row>
+					<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`')">
 						<ion-col size=9>
 							<div style="align:right;"><ion-label class="productItemTitle ion-text-wrap">`+prod.title+`
 							</ion-label></div>
@@ -332,7 +332,7 @@ updateCategoryProducts = function(categoryProducts){
 							<div align="right"><b class="productItemPVP">`+prod.pvp+`</b>€</div>						
 						</ion-col>
 					</ion-row>
-				<ion-row >
+				<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`')">
 					<ion-col>
 						<i class="productDescription">`+prod.description+`
 						</i>
@@ -383,7 +383,7 @@ handleButtonClick = function () {
 		presentToast("No ha seleccionado ningún producto");    		
 	} else {
 		//showOrderDetail();
-		createModal();
+		createModal('modal-content',{});
 	}
 };
 
@@ -397,6 +397,15 @@ showAllergen = function (allergenProduct, allergens) {
 	  document.body.appendChild(popover);
 	  return popover.present();
 };
+
+showProductImage =  function (product, url){
+    var params = {};
+    params.product = product;
+    params.url = url;
+    if(url !== "undefined" && url !==""){
+        createModal('modal-image-content',{params})
+    }
+}
 
 setSelectedAllergens = function (allergens){
 	selectedAllergens = {};
@@ -886,6 +895,25 @@ function goToHome(){
 	window.location.href = HOME;
 };
 
+customElements.define('modal-image-content', class ModalContent extends HTMLElement {
+    connectedCallback() {
+      var inner = "";
+      inner= `
+        <ion-header translucent>
+          <ion-toolbar color="vibrant2">
+            <ion-title>`+this.params.product+`</ion-title>
+            <ion-buttons slot="end">
+              <ion-button onclick="dismissModal()">Cerrar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content fullscreen>
+            <img height="100%" height="100" src="`+this.params.url+`"></img>
+           </ion-content>
+      `;
+      this.innerHTML = inner;
+    }
+  });
 
     customElements.define('modal-content', class ModalContent extends HTMLElement {
       connectedCallback() {
@@ -953,9 +981,10 @@ function goToHome(){
 
 var currentModal = null;
 
-async function createModal() {
+async function createModal(type, params) {
 	const modal = await modalController.create({
-	component: 'modal-content'
+    component: type,
+    componentProps: params
 	});
 	await modal.present();
 	currentModal = modal;
