@@ -43,24 +43,25 @@
     :root {
       --ion-safe-area-top: 20px;
 	  --ion-safe-area-bottom: 22px;
-	  --main-bg-color: #3ed7ca; 
-	  --secondary-bg-color: #1B1B1E; 
-	  --terciary-bg-color: white; 
+	  --footer-color: #1B1B1E;
+	  --header-color: #1B1B1E;
+	  --main-color:#3ed7ca; 
+	  --text-color:white; 
 	}
 
     .footer{
 		height: 60px;
 		width: 100%;
-		background-color: var(--terciary-bg-color);    
+		background-color: var(--footer-color);    
     }
 
     div.horizontal {
     	height: 60px;
 		width: 100%;
-		background-color: var(--terciary-bg-color);    
+		background-color: var(--footer-color);    
     	display: flex;
     	justify-content: center;
-    	border-top:1px solid var(--main-bg-color);
+    	border-top:1px solid var(--main-color);
 	}
 
 	div.vertical {
@@ -91,22 +92,22 @@
 	}
 	
 	.localTitle {
-  		color: var(--terciary-bg-color); 
+  		color: var(--text-color); 
 	}
 	
 	.categoryTitle {
-  		color: var(--terciary-bg-color); 
-		background-color: var(--main-bg-color);
+  		color: var(--text-color); 
+		background-color: var(--main-color);
   		font-size: 20px;
 		font-weight: bold;
   		
 	}
 	.searchBar {
-		border-bottom:1px solid var(--main-bg-color);
+		border-bottom:1px solid var(--main-color);
 		visibility: none;
 	}
 	
-	ion-item{ --border-color: var(--main-bg-color); 
+	ion-item{ --border-color: var(--main-color); 
 	}
 	
 	.typeSendInput{
@@ -114,18 +115,18 @@
 	}
 	
 	.ion-color-vibrant {
-  		--ion-color-base: var(--main-bg-color);
+  		--ion-color-base: var(--main-color);
   		--ion-color-base-rgb: 255,255,0;
-  		--ion-color-contrast: #000000;
+  		--ion-color-contrast: var(--text-color);
   		--ion-color-contrast-rgb: 0,0,0;
   		--ion-color-shade: #e0e000;
   		--ion-color-tint: #3ed7ca;
 	}
 
 	.ion-color-vibrant2 {
-  		--ion-color-base: var(--secondary-bg-color);
+  		--ion-color-base: var(--header-color);
   		--ion-color-base-rgb: 255,255,0;
-  		--ion-color-contrast: var(--terciary-bg-color);
+  		--ion-color-contrast: var(--text-color);
   		--ion-color-contrast-rgb: 0,0,0;
   		--ion-color-shade: #e0e000;
   		--ion-color-tint: #3ed7ca;
@@ -167,7 +168,7 @@
 	
 
 	.priceContour {
-		border: 1px solid var(--main-bg-color);
+		border: 1px solid var(--main-color);
 		padding: 1px;
 		border-radius: 3px;
 	}
@@ -212,9 +213,7 @@
 		<div class="horizontal div1">
     		<div class="vertical">
 				<a href="../index.html" target="_blank">
-					<img class="logo" height='50' width='220' src="chipotle.png">
-
-    				<!--img class="logo" height='30' width='200' src="guanmor_logo.svg"-->
+    				<img class="logo" height='30' width='200' src="guanmor_logo.svg">
     			</a>				
    			 </div>
 		</div>

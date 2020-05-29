@@ -31,9 +31,10 @@ var orderEnabled = false;
 var selectedAllergens = {};
 var selectedAllergenProduct = "";
 
-var primaryColor = null;
-var secondaryColor = null;
-var tertiaryColor = null;
+var headerColor = null;
+var footerColor = null;
+var mainColor = null;
+var textColor = null;
 
 var mode;
 
@@ -57,9 +58,10 @@ window.onload = (e) => {
         localId = window.atob(GetURLParameter('property'));
         mode = GetURLParameter('mode');
         codeLanguaje = GetURLParameter('language');
-        primaryColor = GetURLParameter('primary');
-        secondaryColor = GetURLParameter('secondary');
-        tertiaryColor = GetURLParameter('tertiary');
+        headerColor = GetURLParameter('header');
+        footerColor = GetURLParameter('footer');
+        mainColor = GetURLParameter('main');
+        textColor = GetURLParameter('text');
 
         let root = document.documentElement;
 
@@ -67,16 +69,19 @@ window.onload = (e) => {
             codeLanguaje = null;
         }
 
-        if(primaryColor !== undefined){
-            root.style.setProperty('--main-bg-color', '#'+primaryColor);
+        if(headerColor !== undefined){
+            root.style.setProperty('--header-color', '#'+headerColor);
         }
 
-        if(secondaryColor !== undefined){
-            root.style.setProperty('--secondary-bg-color', '#'+secondaryColor);
+        if(footerColor !== undefined){
+            root.style.setProperty('--footer-color', '#'+footerColor);
         }
 
-        if(tertiaryColor !== undefined){
-            root.style.setProperty('--terciary-bg-color', '#'+tertiaryColor);
+        if(mainColor !== undefined){
+            root.style.setProperty('--main-color', '#'+mainColor);
+        }
+        if(textColor !== undefined){
+            root.style.setProperty('--text-color', '#'+textColor);
         }
         
 	} catch(e){
