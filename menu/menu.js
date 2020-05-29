@@ -50,6 +50,8 @@ let deferredPrompt;
 var languajes = [];
 var selectedLanguaje;
 
+let root;
+
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
 		deferredPrompt = e;
@@ -63,7 +65,7 @@ window.onload = (e) => {
         mainColor = GetURLParameter('main');
         textColor = GetURLParameter('text');
 
-        let root = document.documentElement;
+        root = document.documentElement;
 
         if(codeLanguaje === undefined){
             codeLanguaje = null;
@@ -903,7 +905,26 @@ setPropertyInfo = function (idProperty, object){
 		} else{
 			fetchMenu(localId);
 		}
-	}
+    }
+
+    if(object.colorHeader !== undefined){
+        root.style.setProperty('--header-color', '#'+object.colorHeader);
+    }
+
+    if(object.colorMain !== undefined){
+        root.style.setProperty('--footer-color', '#'+object.colorMain);
+    }
+
+    if(object.colorText !== undefined){
+        root.style.setProperty('--main-color', '#'+object.colorText);
+    }
+    if(object.colorFooter !== undefined){
+        root.style.setProperty('--text-color', '#'+object.colorFooter);
+    }
+    
+    if(object.urlLogo !== undefined && object.urlLogo!== ""){
+        document.getElementById("imageLogo").src = object.urlLogo;
+    }
     
 };
 

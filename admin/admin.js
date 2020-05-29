@@ -472,6 +472,10 @@ selectConfiguration = function (idConfiguration) {
 		} else{
 			qrcode = new QRCode(document.getElementById("qrcode"), "https://www.ilovemenu.es/menu/menu.html?property="+window.btoa(localId));
 		}
+		setColors();
+		if(LOCAL_INFO.urlLogo !== undefined){
+			document.getElementById("logobar").value = LOCAL_INFO.urlLogo;
+		}
 	} else if(idConfiguration === "settings"){
 		document.getElementById("local").style.display="none";
 		document.getElementById("carta").style.display="none";
@@ -485,7 +489,19 @@ selectConfiguration = function (idConfiguration) {
 	closeMenu();
 
 };
+function setColors(){
+	if(LOCAL_INFO.colorHeader === undefined){
+		LOCAL_INFO.colorHeader = "#1B1B1E";
+		LOCAL_INFO.colorMain = "#3ed7ca";
+		LOCAL_INFO.colorText = "#FFFFFF";
+		LOCAL_INFO.colorFooter = "#1B1B1E";
+	} 
 
+	document.getElementById('pickheader').jscolor.fromString(LOCAL_INFO.colorHeader);
+	document.getElementById("pickmain").jscolor.fromString(LOCAL_INFO.colorMain);
+	document.getElementById("picktext").jscolor.fromString(LOCAL_INFO.colorText);
+	document.getElementById("pickfooter").jscolor.fromString(LOCAL_INFO.colorFooter);
+}
 copyLink = function () {
 	 /* Get the text field */
 	 var copyText = document.getElementById("linkCarta");
@@ -974,6 +990,18 @@ function saveLocalInfo(){
 	sendLocalInfo(localId, localInfo);
 }
 
+function saveCustomizeInfo(){
+	var localInfo = {};
+	localInfo.colorHeader = document.getElementById("pickheader").value;
+	localInfo.colorMain = document.getElementById("pickmain").value;
+	localInfo.colorText = document.getElementById("picktext").value;
+	localInfo.colorFooter = document.getElementById("pickfooter").value;
+	localInfo.urlLogo = document.getElementById("logobar").value;
+	
+	LOCAL_INFO = localInfo;
+	sendLocalInfo(localId, localInfo);
+}
+
 function saveMenuInfo(){
 
 	if(LOCAL_INFO.plan==="lowcost"){
@@ -1042,7 +1070,9 @@ function saveSettings() {
 		saveMenuInfo();
 	} else if (page === "settings"){
 		savePreferencesInfo();
-	}
+	} else if (page === "code"){
+		saveCustomizeInfo();
+	}	
 };
 
 showLoading = function (text) {
@@ -1069,7 +1099,8 @@ const fetchLocal = (idLocal) => {
 	showLoading("Obteniendo información del local"); 
     return axios.get(API_PATH_ADMIN+"/local/"+idLocal,{ crossdomain: true })
         .then(response => {
-        	setLocalInfo(response.data);
+			var localInfo = response.data;
+        	setLocalInfo(localInfo);
         	hideLoading();
         })
         .catch(error => {

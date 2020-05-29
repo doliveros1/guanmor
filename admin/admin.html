@@ -24,7 +24,8 @@
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@next/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@next/css/ionic.bundle.css"/>
   <script src="../config.js"></script>
-  <script src="./admin.js"></script>  
+  <script src="./admin.js"></script>   
+  <script src="./js/jscolor.js"></script>  
   <script src="./qrcode.js"></script>  
   <link rel="shortcut icon" href="../favicon.ico">  
 
@@ -138,23 +139,23 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item onclick="selectConfiguration('local')">
+          <ion-item lines="none" onclick="selectConfiguration('local')">
             <ion-icon color="vibrant" name="home-outline" slot="start"></ion-icon>
             <ion-label color="dark" >Configura tu local</ion-label>
           </ion-item>
-          <ion-item onclick="selectConfiguration('carta')">
+          <ion-item lines="none" onclick="selectConfiguration('carta')">
             <ion-icon color="vibrant" name="fast-food-outline" slot="start"></ion-icon>
             <ion-label color="dark">Configura tu carta</ion-label>
           </ion-item>
-          <ion-item onclick="selectConfiguration('code')">
+          <ion-item lines="none" onclick="selectConfiguration('code')">
             <ion-icon color="vibrant" name="qr-code-outline" slot="start"></ion-icon>
             <ion-label color="dark">Comparte tu carta</ion-label>
 		  </ion-item>
-		  <ion-item onclick="selectConfiguration('settings')">
+		  <ion-item lines="none" onclick="selectConfiguration('settings')">
             <ion-icon color="vibrant" name="settings-outline" slot="start"></ion-icon>
             <ion-label color="dark">Configura tu cuenta</ion-label>
           </ion-item>
-          <ion-item onclick="selectConfiguration('exit')">
+          <ion-item lines="none" onclick="selectConfiguration('exit')">
             <ion-icon color="vibrant" name="log-out-outline" slot="start"></ion-icon>
             <ion-label color="dark">Salir</ion-label>
           </ion-item>        
@@ -238,9 +239,7 @@
     			<ion-label>Pago en efectivo</ion-label>
     			<ion-checkbox id="cash" color="vibrant" slot="end" value="efectivo"></ion-checkbox>
   			</ion-item>
-  			  <ion-item>
-    			<ion-label></ion-label>
-  			</ion-item>
+
 
 		</ion-list>
       	</ion-content>
@@ -264,24 +263,35 @@
 					<div style="padding:20px" id="qrcode"></div>
 				</div>
 			  </ion-grid>
-			
 
-		<!--ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="vibrant">
-          <ion-icon name="share-social-outline"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-list side="start">
-          <ion-fab-button color="light">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button color="light">
-            <ion-icon name="logo-twitter"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button color="light">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-          </ion-fab-button>
-        </ion-fab-list>
-      </ion-fab-->
+			  <ion-grid style="padding:20px">
+				<ion-row>
+				  <ion-label color="vibrant">Customiza tu carta</ion-label>
+				</ion-row>
+				<ion-list>
+					<ion-item>
+						<ion-label class="ion-text-wrap" color="vibrant" >Cabecera:</ion-label>
+						<input id="pickheader" class="jscolor" >
+					</ion-item>
+					<ion-item>
+						<ion-label class="ion-text-wrap" color="vibrant" >Principal:</ion-label>
+						<input id="pickmain" class="jscolor" >
+					</ion-item>
+					<ion-item>
+						<ion-label class="ion-text-wrap" color="vibrant" >Texto:</ion-label>
+						<input id="picktext" class="jscolor" >
+					</ion-item>
+					<ion-item>
+						<ion-label class="ion-text-wrap" color="vibrant" >Pie:</ion-label>
+						<input id="pickfooter" class="jscolor" >
+					</ion-item>
+					<ion-item>
+						<ion-label class="ion-text-wrap" color="vibrant" >Sube tu logo:</ion-label>
+						<ion-input id="logobar" value=""></ion-input>
+					</ion-item>
+				</ion-list>
+			  </ion-grid>
+			
 		</ion-content>
 		<ion-content id="settings" class="ion-padding">
 			<ion-list>
