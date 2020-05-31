@@ -320,10 +320,15 @@ updateCategoryProducts = function(categoryProducts){
 	categoryProducts.forEach(prod =>{
 		if(prod.enable){
 			var idInput = "pvpInput"+inputCon;
-			inputCon = inputCon + 1;
+            inputCon = inputCon + 1;
+            var alerg = "";
+            if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
+                alerg = prod.alergenos.toString();
+                alerg = alerg.replace(/,/g,'|');
+            }
 			var product = `<ion-item class="productItem">
 			<ion-grid>
-					<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`')">
+					<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`','`+alerg+`')">
 						<ion-col size=9>
 							<div style="align:right;"><ion-label class="productItemTitle ion-text-wrap">`+prod.title+`
 							</ion-label></div>
@@ -332,7 +337,7 @@ updateCategoryProducts = function(categoryProducts){
 							<div align="right"><b class="productItemPVP">`+prod.pvp+`</b>€</div>						
 						</ion-col>
 					</ion-row>
-				<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`')">
+				<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`','`+alerg+`')">
 					<ion-col>
 						<i class="productDescription">`+prod.description+`
 						</i>
@@ -354,14 +359,19 @@ updateCategoryProducts = function(categoryProducts){
 							</ion-button>
 						`;
 				}
-					product = product +`</ion-col><ion-col><div align="right">`;
+                    product = product +`</ion-col><ion-col><div align="right">`;
+                    
+                    if(prod.hasOwnProperty("urlPhoto")){
+                        product = product + `<ion-icon color="vibrant2" size="large" name="camera-outline"></ion-icon>`;
+                    }
 
 					if(prod.hasOwnProperty("alergenos") && prod.alergenos.length){
 						var alerg = prod.alergenos.toString();
-						alerg = alerg.replace(/,/g,'|');
-
-						product = product + `<ion-button onclick="showAllergen('`+prod.title+`','`+alerg+`')" size="small" color="danger"">
-						Alérgenos</ion-button>`;
+                        alerg = alerg.replace(/,/g,'|');
+                        product = product + `<ion-icon color="vibrant2" size="large" name="alert-circle-outline"></ion-icon>`;
+                        /*product = product + `<ion-button onclick="showAllergen('`+prod.title+`','`+alerg+`')" size="small" color="danger"">
+                        <ion-icon name="alert-circle-outline"></ion-icon></ion-icon>
+						</ion-button>`;*/
 					} ;
 					product = product + `</div>
 					</ion-col>
@@ -398,11 +408,13 @@ showAllergen = function (allergenProduct, allergens) {
 	  return popover.present();
 };
 
-showProductImage =  function (product, url){
+showProductImage =  function (product, url, alerg){
     var params = {};
     params.product = product;
     params.url = url;
-    if(url !== "undefined" && url !==""){
+    setSelectedAllergens(alerg.split("|"));
+
+    if((url !== "undefined" && url !=="") || alerg !== "" ){
         createModal('modal-image-content',{params})
     }
 }
@@ -709,7 +721,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 			`+selectedAllergenProduct+`
 		  </ion-list-header>
   
-		  	<ion-item lines="none" style="display:`+selectedAllergens.altramuces+`">
+		  	<ion-item style="display:`+selectedAllergens.altramuces+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/altramuces.png">
 				</ion-avatar>
@@ -718,7 +730,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.apio+`">
+			  <ion-item style="display:`+selectedAllergens.apio+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/apio.png">
 				</ion-avatar>
@@ -727,7 +739,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.cacahuetes+`">
+			  <ion-item style="display:`+selectedAllergens.cacahuetes+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/cacahuetes.png">
 				</ion-avatar>
@@ -736,7 +748,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 				  
-			  <ion-item lines="none" style="display:`+selectedAllergens.cascara+`">
+			  <ion-item style="display:`+selectedAllergens.cascara+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/cascara.png">
 				</ion-avatar>
@@ -745,7 +757,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.crustaceos+`">
+			  <ion-item style="display:`+selectedAllergens.crustaceos+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/crustaceos.png">
 				</ion-avatar>
@@ -754,7 +766,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.gluten+`">
+			  <ion-item style="display:`+selectedAllergens.gluten+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/gluten.png">
 				</ion-avatar>
@@ -763,7 +775,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.huevos+`">
+			  <ion-item style="display:`+selectedAllergens.huevos+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/huevos.png">
 				</ion-avatar>
@@ -772,7 +784,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 
-			  <ion-item lines="none" style="display:`+selectedAllergens.lacteos+`">
+			  <ion-item style="display:`+selectedAllergens.lacteos+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/lacteos.png">
 				</ion-avatar>
@@ -781,7 +793,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.moluscos+`">
+			  <ion-item style="display:`+selectedAllergens.moluscos+`">
 		  		<ion-avatar slot="start">
 		  			<img src="./images/moluscos.png">
 				</ion-avatar>
@@ -790,7 +802,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 			  </ion-item>
 			  
-			  <ion-item lines="none" style="display:`+selectedAllergens.mostaza+`">
+			  <ion-item style="display:`+selectedAllergens.mostaza+`">
 			  	<ion-avatar slot="start">
 					<img src="./images/mostaza.png">
 				</ion-avatar>
@@ -799,7 +811,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 				</ion-label>
 		  		</ion-item>
 
-				<ion-item lines="none" style="display:`+selectedAllergens.pescado+`">
+				<ion-item style="display:`+selectedAllergens.pescado+`">
 					<ion-avatar slot="start">
 						<img src="./images/pescado.png">
 					</ion-avatar>
@@ -808,7 +820,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 					</ion-label>
 				</ion-item>
 
-				<ion-item lines="none" style="display:`+selectedAllergens.sesamo+`">
+				<ion-item style="display:`+selectedAllergens.sesamo+`">
 					<ion-avatar slot="start">
 						<img src="./images/sesamo.png">
 					</ion-avatar>
@@ -817,7 +829,7 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 					</ion-label>
 				</ion-item>
 
-				<ion-item lines="none" style="display:`+selectedAllergens.soja+`">
+				<ion-item style="display:`+selectedAllergens.soja+`">
 					<ion-avatar slot="start">
 						<img src="./images/soja.png">
 					</ion-avatar>
@@ -826,12 +838,12 @@ handleButtonInfoClick = async function handleButtonInfoClick(ev) {
 					</ion-label>
 				</ion-item>
 
-				<ion-item lines="none" style="display:`+selectedAllergens.sulfitos+`">
+				<ion-item style="display:`+selectedAllergens.sulfitos+`">
 					<ion-avatar slot="start">
 						<img src="./images/sulfitos.png">
 					</ion-avatar>
 					<ion-label>
-						<h3>Sulfittos</h3>
+						<h3>Sulfitos</h3>
 					</ion-label>
 				</ion-item>
 		  
@@ -908,12 +920,143 @@ customElements.define('modal-image-content', class ModalContent extends HTMLElem
           </ion-toolbar>
         </ion-header>
         <ion-content >
-        <ion-list>
-        <ion-item lines="none">
-        <div height="100%" width="100%">
-            <img style="object-fit: cover;" src="`+this.params.url+`"></img>
-        </div>
+        <ion-list>`;
+        if(this.params.url !== "undefined" && this.params.url !== ""){
+            inner = inner + `
+            <ion-item lines="none">
+                <img height="300px" width="auto" style="margin:auto;display:block;" src="`+this.params.url+`"></img>
+            </ion-item>`;
+        }
+        inner = inner +`
+        <ion-item>
+            <ion-label><h2>Alérgenos</h2></ion-label>
         </ion-item>
+        <ion-item style="display:`+selectedAllergens.altramuces+`">
+        <ion-avatar slot="start">
+            <img src="./images/altramuces.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Altramuces</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.apio+`">
+        <ion-avatar slot="start">
+            <img src="./images/apio.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Apio</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.cacahuetes+`">
+        <ion-avatar slot="start">
+            <img src="./images/cacahuetes.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Cacahuetes</h3>
+      </ion-label>
+    </ion-item>
+        
+    <ion-item style="display:`+selectedAllergens.cascara+`">
+        <ion-avatar slot="start">
+            <img src="./images/cascara.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Cáscara</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.crustaceos+`">
+        <ion-avatar slot="start">
+            <img src="./images/crustaceos.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Crustaceos</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.gluten+`">
+        <ion-avatar slot="start">
+            <img src="./images/gluten.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Gluten</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.huevos+`">
+        <ion-avatar slot="start">
+            <img src="./images/huevos.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Huevos</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item style="display:`+selectedAllergens.lacteos+`">
+        <ion-avatar slot="start">
+            <img src="./images/lacteos.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Lácteos</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.moluscos+`">
+        <ion-avatar slot="start">
+            <img src="./images/moluscos.png">
+      </ion-avatar>
+      <ion-label>
+            <h3>Moluscos</h3>
+      </ion-label>
+    </ion-item>
+    
+    <ion-item style="display:`+selectedAllergens.mostaza+`">
+        <ion-avatar slot="start">
+          <img src="./images/mostaza.png">
+      </ion-avatar>
+      <ion-label>
+        <h3>Mostaza</h3>
+      </ion-label>
+        </ion-item>
+
+      <ion-item style="display:`+selectedAllergens.pescado+`">
+          <ion-avatar slot="start">
+              <img src="./images/pescado.png">
+          </ion-avatar>
+          <ion-label>
+              <h3>Pescado</h3>
+          </ion-label>
+      </ion-item>
+
+      <ion-item style="display:`+selectedAllergens.sesamo+`">
+          <ion-avatar slot="start">
+              <img src="./images/sesamo.png">
+          </ion-avatar>
+          <ion-label>
+              <h3>Sésamo</h3>
+          </ion-label>
+      </ion-item>
+
+      <ion-item style="display:`+selectedAllergens.soja+`">
+          <ion-avatar slot="start">
+              <img src="./images/soja.png">
+          </ion-avatar>
+          <ion-label>
+              <h3>Soja</h3>
+          </ion-label>
+      </ion-item>
+
+      <ion-item style="display:`+selectedAllergens.sulfitos+`">
+          <ion-avatar slot="start">
+              <img src="./images/sulfitos.png">
+          </ion-avatar>
+          <ion-label>
+              <h3>Sulfitos</h3>
+          </ion-label>
+      </ion-item>
+		  
         </ion-list>
            </ion-content>
       `;
