@@ -356,10 +356,12 @@ updateProduct = function (idCategory, idProduct) {
 	var valueTitle = document.getElementById(idProduct).getElementsByClassName("inputProductTitle")[0].value;
 	var valueDescription = document.getElementById(idProduct).getElementsByClassName("inputProductDescription")[0].value;
 	var valuePvp= document.getElementById(idProduct).getElementsByClassName("inputProductPvp")[0].value;
+	var valueImage= document.getElementById(idProduct).getElementsByClassName("inputProductImage")[0].value;
 	var product = MAP_PRODUCTS_ID.get(idProduct);
 	product.title = valueTitle;
 	product.description = valueDescription;
 	product.pvp = valuePvp;
+	product.urlPhoto = valueImage;
 };  
 
 updateAllergen = function(allergen, idProduct){
@@ -753,12 +755,6 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 			  <ion-back-button defaultHref="/"></ion-back-button>
 			</ion-buttons>
 			<ion-title>`+this.categoryProduct.value.title+`</ion-title>
-			<ion-buttons slot="end">
-				<ion-button >
-					<ion-icon size="large" slot="icon-only" name="camera-outline">
-					</ion-icon>
-				</ion-button>
-        	</ion-buttons>
 		  </ion-toolbar>
 		</ion-header>
 		<ion-content fullscreen class="ion-padding">
@@ -786,9 +782,6 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 		  </ion-col>  
 		  <ion-col size=4>
 			  <div align="right">
-			  	<ion-button color="vibrant" onclick="addPhoto('`+this.categoryProduct.id+`','`+idProduct+`')" >
-			  		<ion-icon slot="icon-only" name="camera-outline"></ion-icon>
-		  		</ion-button>
 				<ion-button color="vibrant" onclick="removeProduct('`+this.categoryProduct.id+`','`+idProduct+`')" >
 					<ion-icon slot="icon-only" name="trash-outline"></ion-icon>
 				</ion-button>
@@ -813,6 +806,14 @@ customElements.define('nav-products', class NavDetail extends HTMLElement {
 				<ion-input type="number" onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.pvp+`" class="ion-text-wrap inputProductPvp">
 			</ion-item>
 		  </ion-col> 		       
+		</ion-row>
+		<ion-row>
+			<ion-col>
+			<ion-item class="productItem" >
+				<ion-label position="stacked"  color="vibrant">Enlace a imagen</ion-label>
+				<ion-input onfocusout="updateProduct('`+this.categoryProduct.id+`','`+idProduct+`')" value="`+product.urlPhoto+`" class="ion-text-wrap inputProductImage">
+			</ion-item>
+			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-label color="vibrant">Alérgenos</ion-label>

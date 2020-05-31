@@ -412,6 +412,7 @@ showProductImage =  function (product, url, alerg){
     var params = {};
     params.product = product;
     params.url = url;
+    params.alerg = alerg;
     setSelectedAllergens(alerg.split("|"));
 
     if((url !== "undefined" && url !=="") || alerg !== "" ){
@@ -927,10 +928,14 @@ customElements.define('modal-image-content', class ModalContent extends HTMLElem
                 <img height="300px" width="auto" style="margin:auto;display:block;" src="`+this.params.url+`"></img>
             </ion-item>`;
         }
+        if(this.params.alerg !== ""){
+            inner = inner +`
+            <ion-item>
+                <ion-label><h2>Alérgenos</h2></ion-label>
+            </ion-item>`;
+        }
         inner = inner +`
-        <ion-item>
-            <ion-label><h2>Alérgenos</h2></ion-label>
-        </ion-item>
+       
         <ion-item style="display:`+selectedAllergens.altramuces+`">
         <ion-avatar slot="start">
             <img src="./images/altramuces.png">
