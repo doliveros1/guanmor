@@ -239,12 +239,21 @@ updateMenuInfo = function (menu){
 	} else {
 
 		if(menu[0].categories.length>0 || menu[0].documentoUrl===undefined){
+            var contCategory = 0;
+            var categoryId;
+            var iconId;
 			menu[0].categories.forEach(category => {
 				if(category.enable){
-                    inner = inner + `<ion-list class="bg-transparent"><ion-list-header class="categoryTitle">`;
+                    categoryId = "category"+contCategory;
+                    iconId = "iconExpandable"+categoryId;
+                    contCategory = contCategory + 1;
+                    inner = inner + `<ion-list id="`+categoryId+`" class="bg-transparent"><ion-list-header onclick="showCategory('`+categoryId+`')" class="categoryTitle">`;
                     inner = inner + `<ion-item lines="none" class="categoryTitleLabel">
-                        <ion-label>`+ category.title +`</ion-label>
-                        </ion-item></ion-list-header>`
+                        <ion-label class="ion-text-wrap">`+ category.title +`</ion-label>
+                        <ion-icon slot="start" id="`+iconId+`" color="vibrant2" name="arrow-forward-circle-outline">
+                        </ion-item>
+                        </ion-icon>
+                        </ion-list-header>`
 					inner = inner + updateCategoryProducts(category.products);
 					inner = inner + `</ion-list>`;
 				}
@@ -279,6 +288,32 @@ updateMenuInfo = function (menu){
 
 	menuContent.innerHTML = inner;
 };
+
+showCategory = function(idCategory){
+    var action = "";
+    var currentStatus = "";
+    var nameIcon;
+    var categories = document.getElementById(idCategory).children;
+    for(var i=1;i<categories.length;i++){
+        if(i===1){
+            currentStatus = categories[i].style.display;
+            if(currentStatus === "none"){
+                action = "inline";
+                nameIcon = "arrow-down-circle-outline"
+            } else if(currentStatus === "inline"){
+                action = "none"
+                nameIcon = "arrow-forward-circle-outline"
+            }
+        }
+        categories[i].style.display=action;
+    }
+    document.getElementById("iconExpandable"+idCategory).name = nameIcon;
+    scrollTo(idCategory);
+}
+
+scrollTo = function (element) {
+    document.getElementById(element).scrollIntoView();
+}
 
 downloadCarta = function(){
 	addFavoriteLocal(localId, propertyInfo);
@@ -326,7 +361,7 @@ updateCategoryProducts = function(categoryProducts){
                 alerg = prod.alergenos.toString();
                 alerg = alerg.replace(/,/g,'|');
             }
-			var product = `<ion-item class="productItem">
+			var product = `<ion-item style="display:none" class="productItem">
 			<ion-grid>
 					<ion-row onclick="showProductImage('`+prod.title+`','`+prod.urlPhoto+`','`+alerg+`')">
 						<ion-col size=9>
@@ -1186,7 +1221,7 @@ function inLocal(){
         items.forEach(item => {
           var productLabel = item.children[0].children[0].textContent;
           var shouldShow = productLabel.toLowerCase().indexOf(query) > -1;
-          item.style.display = shouldShow ? 'block' : 'none';
+          item.style.display = shouldShow ? 'inline' : 'none';
         });
       });
     }
