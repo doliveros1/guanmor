@@ -102,6 +102,10 @@ loadMap = function (){
 	
 	// disable map rotation using touch rotation gesture
 	map.touchZoomRotate.disableRotation();
+	$('#search-bar').click(function(e){
+		$(this).focus();
+	});
+
 }
 setLocalesInfo = function (locales){
 	$( ".marker" ).remove();
