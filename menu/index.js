@@ -30,19 +30,6 @@ window.onload = (e) => {
 	//showLoading("Cargando cartas de restaurantes");
 	getFavoritesInfo();
 	
-	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
-	map = new mapboxgl.Map({
-	container: 'map',
-	style: 'mapbox://styles/mapbox/light-v10'
-	});
-	map.addControl(
-		new mapboxgl.GeolocateControl({
-			positionOptions: {
-			enableHighAccuracy: true
-		},
-			trackUserLocation: true
-		})
-	);
 }
 
 function showPosition(position) {
@@ -94,6 +81,23 @@ getFavoritesInfo = function () {
 	setFavoritesInfo(favoritesInfo);	
 }; 
 
+loadMap = function (){
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
+	map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/light-v10',
+	center: [-3, 40], // starting position [lng, lat]
+	zoom: 4 // st
+	});
+	map.addControl(
+		new mapboxgl.GeolocateControl({
+			positionOptions: {
+			enableHighAccuracy: true
+		},
+			trackUserLocation: true
+		})
+	);
+}
 setLocalesInfo = function (locales){
 	$( ".marker" ).remove();
 
@@ -292,13 +296,7 @@ function onQRCodeScanned(scannedText)
 		   return Promise.reject('Could not find a webcam');
 		 }
 		 
-		 return navigator.mediaDevices.getUserMedia({
-			 video: {
-			   'optional': [{
-				 'sourceId': ids.length === 1 ? ids[0] : ids[1]//this way QQ browser opens the rear camera
-				 }]
-			 }
-		 });        
+		 return navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } });        
 	 });                
  }  
 
@@ -324,10 +322,7 @@ function onQRCodeScanned(scannedText)
 		}
 	  };
 	  if(userMedia === null) {
-		navigator.mediaDevices.getUserMedia({
-			audio: false,
-			video: true
-			})
+		navigator.mediaDevices.getUserMedia({video: { facingMode: "environment" } })
 			.then(successCallback, errorCallback);
 	  }
 	 

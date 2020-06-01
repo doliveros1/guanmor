@@ -44,6 +44,13 @@
 		background-color: black;    
     }
 
+	.noScroll {
+		overflow: hidden;
+	}
+	#map {
+		height: 100%;
+		width: 100%;
+	}
 	.mapboxgl-popup {
   		max-width: 200px;
 	}
@@ -161,10 +168,8 @@
 				</ion-searchbar>    
 			</ion-toolbar>
 		
-			<ion-content fullscreen>	
-				<div id='map' style="height:100%;weight:100%;display:flex;"></div>
-
-				<!--div style="height:100%;weight:100%;display:flex; justify-content:center; align-items:center;text-align: center;"><h4 style="padding:10px;">Introduce un código postal para buscar locales en tu zona</h4></div-->		  
+			<ion-content class="noScroll">	
+				<div id="map"></div>
 			</ion-content>		
 		  </ion-tab>	
 		  <ion-tab-bar color="dark" slot="bottom">
@@ -176,7 +181,7 @@
 				<ion-label>Escanea el QR</ion-label>
 				<ion-icon name="scan-outline"></ion-icon>
 			  </ion-tab-button>
-			<ion-tab-button tab="buscar">
+			<ion-tab-button onclick="loadMap()" tab="buscar">
 			  <ion-label>Buscar cartas</ion-label>
 			  <ion-icon name="search-outline"></ion-icon>
 			</ion-tab-button>
