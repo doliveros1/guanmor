@@ -97,6 +97,11 @@ loadMap = function (){
 			trackUserLocation: true
 		})
 	);
+		// disable map rotation using right click + drag
+	map.dragRotate.disable();
+	
+	// disable map rotation using touch rotation gesture
+	map.touchZoomRotate.disableRotation();
 }
 setLocalesInfo = function (locales){
 	$( ".marker" ).remove();
