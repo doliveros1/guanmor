@@ -12,6 +12,10 @@ var loading;
 var searchBar;
 let deferredPrompt;
 var zipCode = "";
+var userMedia = null;
+var markers = [];
+
+var map;
 
 window.onload = (e) => { 
 	window.addEventListener('beforeinstallprompt', (e) => {
@@ -24,7 +28,21 @@ window.onload = (e) => {
 	//zipCode = GetURLParameter("zipCode");
 	
 	//showLoading("Cargando cartas de restaurantes");
-    getFavoritesInfo();
+	getFavoritesInfo();
+	
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
+	map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/light-v10'
+	});
+	map.addControl(
+		new mapboxgl.GeolocateControl({
+			positionOptions: {
+			enableHighAccuracy: true
+		},
+			trackUserLocation: true
+		})
+	);
 }
 
 function showPosition(position) {
@@ -77,6 +95,44 @@ getFavoritesInfo = function () {
 }; 
 
 setLocalesInfo = function (locales){
+	$( ".marker" ).remove();
+
+	var geojson = {type: 'FeatureCollection'};
+	var features = [];
+	locales.forEach(local=>{
+		var feature = {};
+		feature.type = 'Feature';
+		var geometry = {};
+		geometry.type = 'Point';
+		geometry.coordinates = [];
+		geometry.coordinates.push(local.latitude);
+		geometry.coordinates.push(local.longitude);
+		feature.geometry = geometry;
+		var properties = {};
+		properties.name = local.propertyName;
+		properties.description = local.description;
+		properties.id = local.id;
+		feature.properties = properties;
+		features.push(feature);
+	});
+
+	geojson.features = features;
+	  // add markers to map
+	geojson.features.forEach(function(marker) {
+
+	// create a HTML element for each feature
+	var el = document.createElement('div');
+	el.className = 'marker';
+  
+	// make a marker for each feature and add to the map
+	let newMarker = new mapboxgl.Marker(el)
+	  .setLngLat(marker.geometry.coordinates)
+	  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML('<h3>' + marker.properties.name + '</h3><p>' + marker.properties.description + '</p><button onclick="goToCarta(\''+marker.properties.id+'\')">Ir a la carta</button>'))
+	  .addTo(map);
+	 });
+
+	 markers.push(newMarker);
 
 	var inner = "";
 	var listLocales = document.getElementById("propertiesList");
@@ -212,23 +268,68 @@ function handleInputSearchBar(event) {
 	}
 }
 
-/*function onQRCodeScanned(scannedText)
+function onQRCodeScanned(scannedText)
 {
 	window.location.href = scannedText;
 }
 
-//this function will be called when JsQRScanner is ready to use
-function JsQRScannerReady()
-{
-	//create a new scanner passing to it a callback function that will be invoked when
-	//the scanner succesfully scan a QR code
-	var jbScanner = new JsQRScanner(onQRCodeScanned);
-	//reduce the size of analyzed images to increase performance on mobile devices
-	jbScanner.setSnapImageMaxSize(300);
-	var scannerParentElement = document.getElementById("scanner");
-	if(scannerParentElement)
-	{
-		//append the jbScanner to an existing DOM element
-		jbScanner.appendTo(scannerParentElement);
-	}        
-}*/
+ //funtion returning a promise with a video stream
+ function provideVideoQQ()
+ {
+	 return navigator.mediaDevices.enumerateDevices()
+	 .then(function(devices) {
+		 var exCameras = [];
+		 devices.forEach(function(device) {
+		 if (device.kind === 'videoinput') {
+		   exCameras.push(device.kind)
+		 }
+	  });
+		 
+		 return Promise.resolve(exCameras);
+	 }).then(function(ids){
+		 if(ids.length === 0)
+		 {
+		   return Promise.reject('Could not find a webcam');
+		 }
+		 
+		 return navigator.mediaDevices.getUserMedia({
+			 video: {
+			   'optional': [{
+				 'sourceId': ids.length === 1 ? ids[0] : ids[1]//this way QQ browser opens the rear camera
+				 }]
+			 }
+		 });        
+	 });                
+ }  
+
+ //this function will be called when JsQRScanner is ready to use
+ function launchQR()
+ {
+	var successCallback = async function(localMediaStream) {
+			//create a new scanner passing to it a callback function that will be invoked when
+		//the scanner succesfully scan a QR code
+		userMedia = await provideVideoQQ();
+		var jbScanner = new JsQRScanner(onQRCodeScanned, provideVideoQQ);
+		//reduce the size of analyzed images to increase performance on mobile devices
+		jbScanner.setSnapImageMaxSize(300);
+		var scannerParentElement = document.getElementById("scanner");
+		if(scannerParentElement)
+		{
+			//append the jbScanner to an existing DOM element
+			jbScanner.appendTo(scannerParentElement);
+		}   
+	  };
+	  var errorCallback = function(error) {
+		if (error.name == 'NotAllowedError') {
+		}
+	  };
+	  if(userMedia === null) {
+		navigator.mediaDevices.getUserMedia({
+			audio: false,
+			video: true
+			})
+			.then(successCallback, errorCallback);
+	  }
+	 
+     
+ }
