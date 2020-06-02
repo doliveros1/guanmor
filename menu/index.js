@@ -85,7 +85,7 @@ loadMap = function (){
 	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
 	map = new mapboxgl.Map({
 	container: 'map',
-	style: 'mapbox://styles/mapbox/light-v10',
+	style: 'mapbox://styles/ilovemenu/ckaxmddbi0rcn1imu363ls54c',
 	center: [-3, 40], // starting position [lng, lat]
 	zoom: 4 // st
 	});
