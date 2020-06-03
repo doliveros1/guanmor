@@ -41,7 +41,6 @@ function showPosition(position) {
 	   console.info(xhttp.responseText);
 	   zipCode = JSON.parse(xhttp.responseText).search_results[0].postal_code;
 	   	if(zipCode!==""){
-			showLoading("Buscando cartas de restaurantes");
     		getLocalesInfo(zipCode);
 		}
     }
@@ -82,34 +81,34 @@ getFavoritesInfo = function () {
 }; 
 
 loadMap = function (){
-	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
-	map = new mapboxgl.Map({
-	container: 'map',
-	style: 'mapbox://styles/ilovemenu/ckaxmddbi0rcn1imu363ls54c',
-	center: [-3, 40], // starting position [lng, lat]
-	zoom: 4 // st
-	});
-	map.addControl(
-		new mapboxgl.GeolocateControl({
-			positionOptions: {
-			enableHighAccuracy: true
-		},
-			trackUserLocation: true
-		})
-	);
-		// disable map rotation using right click + drag
-	map.dragRotate.disable();
-	
-	// disable map rotation using touch rotation gesture
-	map.touchZoomRotate.disableRotation();
-	$('#search-bar').click(function(e){
-		$(this).focus();
-	});
+	setTimeout(function(){
+			mapboxgl.accessToken = 'pk.eyJ1IjoiaWxvdmVtZW51IiwiYSI6ImNrYXdxOGU1MzA2cmMyeW12bmx5MzMwdGEifQ.xyCT7-sMb8lJX_tG4uMCSg';
+			map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/ilovemenu/ckaxmddbi0rcn1imu363ls54c',
+			center: [-3, 40], // starting position [lng, lat]
+			zoom: 4 // st
+			});
+			map.addControl(
+				new mapboxgl.GeolocateControl({
+					positionOptions: {
+					enableHighAccuracy: true
+				},
+					trackUserLocation: true
+				})
+			);
+				// disable map rotation using right click + drag
+			map.dragRotate.disable();
+			
+			// disable map rotation using touch rotation gesture
+		 map.touchZoomRotate.disableRotation();
+		 fetchLocales("");
+		}, 200);
 
 }
 setLocalesInfo = function (locales){
 	$( ".marker" ).remove();
-
+	var bounds = [];
 	var geojson = {type: 'FeatureCollection'};
 	var features = [];
 	locales.forEach(local=>{
@@ -120,6 +119,10 @@ setLocalesInfo = function (locales){
 		geometry.coordinates = [];
 		geometry.coordinates.push(local.latitude);
 		geometry.coordinates.push(local.longitude);
+		var bound = [];
+		bound.push(local.latitude);
+		bound.push(local.longitude);
+		bounds.push(bound);
 		feature.geometry = geometry;
 		var properties = {};
 		properties.name = local.propertyName;
@@ -250,14 +253,15 @@ hideLoading = function () {
 //DATA
 
 const fetchLocales = (zipCode) => {
+	//showLoading("Buscando cartas de restaurantes");
     return axios.get(API_PATH+"?zipCode="+zipCode,{ crossdomain: true })
         .then(response => {
-			hideLoading();
+			//hideLoading();
 			setLocalesInfo(response.data);	
 			
         })
         .catch(error => {
-			hideLoading();
+			//hideLoading();
         });
 };
 
@@ -272,11 +276,9 @@ function goToCarta(idLocal){
 
 function handleInputSearchBar(event) {
 	var query = event.target.value.toLowerCase();
-	if(query.length === 5){
-		showLoading("Buscando cartas de restaurantes");
+	if(query.length >= 4){
     	getLocalesInfo(query);
 	} else if(query.length === 0){
-		showLoading("Buscando cartas de restaurantes");
     	getLocalesInfo(zipCode);
 	}
 }
